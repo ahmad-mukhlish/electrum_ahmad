@@ -20,11 +20,7 @@ class LoginForm extends HookConsumerWidget {
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
 
-    // Use useEffect to setup listener once
-    useEffect(() {
-      _setupAuthListener(ref, context);
-      return null;
-    }, const []);
+    _setupAuthListener(ref, context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,7 +37,8 @@ class LoginForm extends HookConsumerWidget {
         _buildSignInButton(
           colorScheme,
           authState,
-          () => _handleLogin(ref, emailController.text, passwordController.text),
+          () =>
+              _handleLogin(ref, emailController.text, passwordController.text),
         ),
         const SizedBox(height: 24),
         _buildSignUpLink(colorScheme, textTheme),

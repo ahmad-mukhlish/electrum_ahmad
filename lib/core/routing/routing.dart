@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart'; // ⬅️ for ValueNotifier
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -9,11 +10,21 @@ part 'routing.g.dart';
 
 @riverpod
 GoRouter router(Ref ref) {
-  final authState = ref.watch(authProvider);
+  // NEW: bridge Riverpod auth -> a Listenable for GoRouter
+  final auth = ValueNotifier<AsyncValue<bool>>(const AsyncLoading());
+  ref.onDispose(auth.dispose);
+
+  ref.listen<AsyncValue<bool>>(authProvider, (_, next) {
+    auth.value = next;
+  });
 
   return GoRouter(
     initialLocation: '/',
+    // NEW: tell GoRouter to refresh redirects when auth changes
+    refreshListenable: auth,
     redirect: (context, state) {
+      final authState = auth.value; // ⬅️ was: ref.watch(authProvider)
+
       final isLoading = authState.isLoading;
       final isLoggedIn = authState.value ?? false;
       final isLoginRoute = state.matchedLocation == '/login';
