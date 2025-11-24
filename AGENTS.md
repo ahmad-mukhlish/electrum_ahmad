@@ -1,19 +1,12 @@
 # Electrum Ahmad
 
-Flutter mobile application targeting mobile and web, with platform-specific widgets split for clarity.
+Flutter mobile application.
 
 ## Tech Stack
 
 - Flutter 3.x
 - Dart SDK ^3.9.2
-- State management: Riverpod
-
-## Why Riverpod
-
-- Modern, compile-safe state management that pairs cleanly with `go_router`; GetX brings its own router, which conflicts with that approach.
-- Less boilerplate and ceremony than Bloc while staying testable and explicit.
-- Keeps dependency injection light and composable as features grow.
-
+- State Management: Riverpod (2 skill available)
 
 ## Project Structure (following clean architecture with MVVM pattern)
 
@@ -44,13 +37,14 @@ lib/
 
 ## Commands
 
-- `flutter run` — Run app
-- `flutter test` — Run tests
-- `flutter analyze` — Lint check
-- `flutter build apk` — Build Android
-- `flutter build ios` — Build iOS
+```bash
+flutter run          # Run app
+flutter test         # Run tests
+flutter analyze      # Lint check
+flutter build apk    # Build Android
+flutter build ios    # Build iOS
+```
 
-## Notes
+## Conventions
 
-- Widgets under `features/todos/presentation/widgets` are split into `mobile` and `web`; import the appropriate one in pages based on platform.
-
+- Skills stored in `.claude/skills`; use both available skills when applicable

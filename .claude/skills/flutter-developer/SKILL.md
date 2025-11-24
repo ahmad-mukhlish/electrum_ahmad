@@ -33,7 +33,6 @@ Expert assistance for Flutter development covering modern patterns, architecture
 - Use const widgets to reduce rebuilds
 - Implement RepaintBoundary for complex custom painters
 - Use ListView.builder for long lists
-- Avoid unnecessary rebuilds with proper widget keys
 - Profile with Flutter DevTools before optimizing
 
 ### 3. Clean Architecture
@@ -178,37 +177,6 @@ class MyWidget extends StatelessWidget {
   }
 }
 ```
-
-### Responsive Design
-```dart
-class ResponsiveLayout extends StatelessWidget {
-  const ResponsiveLayout({
-    super.key,
-    required this.mobile,
-    this.tablet,
-    this.desktop,
-  });
-
-  final Widget mobile;
-  final Widget? tablet;
-  final Widget? desktop;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth >= 1200 && desktop != null) {
-          return desktop!;
-        } else if (constraints.maxWidth >= 600 && tablet != null) {
-          return tablet!;
-        }
-        return mobile;
-      },
-    );
-  }
-}
-```
-
 ### Navigation with GoRouter
 ```dart
 final router = GoRouter(
@@ -433,8 +401,6 @@ flutter doctor -v
 - [ ] Use const constructors for immutable widgets
 - [ ] Separate business logic from UI
 - [ ] Implement proper error handling
-- [ ] Add meaningful widget keys where needed
-- [ ] Write widget tests for critical UI
 - [ ] Follow Flutter style guide
 - [ ] Use meaningful variable and class names
 - [ ] Document complex widgets and logic

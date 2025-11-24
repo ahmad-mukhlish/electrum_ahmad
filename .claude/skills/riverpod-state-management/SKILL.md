@@ -913,26 +913,30 @@ void main() {
 ```
 
 
-## Project Structure
-
+## Project Structure (following clean architecture with MVVM pattern)
 ```
 lib/
-├── core/
-│   ├── providers/         # Core providers (DI, services)
-│   └── utils/
-├── features/
-│   └── todos/
-│       ├── data/
-│       │   ├── models/
-│       │   ├── repositories/
-│       │   └── providers/  # Data providers
-│       ├── domain/
-│       │   └── entities/
-│       └── presentation/
-│           ├── providers/  # State providers
-│           ├── pages/
-│           └── widgets/
-└── main.dart
+  core/
+    services/                   # Dio, Firebase (Firestore), Secure Storage
+    utils/                      # Helpers, Design tokens
+    widgets/                    # Shared widgets
+  features/
+    auth/
+      data/
+        dtos/                   # JSON annotated dtos from datasources
+        repositories/           # Provider, wire to datasources 
+        datasources/            # Data providers (Wrapper to API services / Local services) 
+      domain/
+        entities/               # Business Entity (Model)
+      presentation/
+        viewmodel/
+          notifiers/            # Notifiers (View model)
+          states/               # Freezed UI states
+        screens/                # Screen (View)
+        widgets/
+          mobile/               # Widgets tailored for mobile
+          web/                  # Widgets tailored for web
+  main.dart                     # App entry point
 ```
 
 ## Common Patterns
