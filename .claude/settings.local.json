@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-
+      "WebFetch(domain:medium.com)",
+      "Bash(flutter pub add:*)",
+      "Bash(dart run build_runner:*)",
+      "Bash(/Users/ahmadmukhlis/AndroidStudioProjects/electrum_ahmad/lib/features/auth/data/datasources/.gitkeep )",
+      "Bash(/Users/ahmadmukhlis/AndroidStudioProjects/electrum_ahmad/lib/features/auth/data/repositories/.gitkeep )",
+      "Bash(/Users/ahmadmukhlis/AndroidStudioProjects/electrum_ahmad/lib/features/auth/presentation/viewmodel/notifiers/.gitkeep)"
     ],
     "deny": [],
     "ask": []

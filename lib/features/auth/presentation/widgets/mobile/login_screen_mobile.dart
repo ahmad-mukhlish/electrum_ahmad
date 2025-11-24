@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../login_form.dart';
+import '../shared/login_form.dart';
 
 class LoginScreenMobile extends StatelessWidget {
-  const LoginScreenMobile({super.key, this.onSignIn, this.onSignUp});
-
-  final VoidCallback? onSignIn;
-  final VoidCallback? onSignUp;
+  const LoginScreenMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +25,7 @@ class LoginScreenMobile extends StatelessWidget {
             // Form section
             Padding(
               padding: const EdgeInsets.all(24),
-              child: LoginForm(onSignIn: onSignIn, onSignUp: onSignUp),
+              child: const LoginForm(),
             ),
           ],
         ),

@@ -1,34 +1,31 @@
-import 'package:electrum_ahmad/features/auth/presentation/widgets/mobile/login_screen_mobile.dart';
 import 'package:flutter/material.dart';
 
-import '../login_form.dart';
+import '../mobile/login_screen_mobile.dart';
+import '../shared/login_form.dart';
 
 class LoginScreenWeb extends StatelessWidget {
-  const LoginScreenWeb({super.key, this.onSignIn, this.onSignUp});
-
-  final VoidCallback? onSignIn;
-  final VoidCallback? onSignUp;
+  const LoginScreenWeb({super.key});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         // Responsive: collapse to single column on narrow screens
-        if (constraints.maxWidth < 800) return LoginScreenMobile(onSignIn: onSignIn, onSignUp: onSignUp,);
-        return buildWebLayout(context);
+        if (constraints.maxWidth < 800) return const LoginScreenMobile();
+        return _buildWebLayout(context);
       },
     );
   }
 
-  Widget buildWebLayout(BuildContext context) {
+  Widget _buildWebLayout(BuildContext context) {
     return Row(
       children: [
         // Left side - Form
         Flexible(
           flex: 2,
-          child: Padding(
-            padding: const EdgeInsets.all(36.0),
-            child: LoginForm(onSignIn: onSignIn, onSignUp: onSignUp, isWebView: true,),
+          child: const Padding(
+            padding: EdgeInsets.all(36.0),
+            child: LoginForm(isWebView: true),
           ),
         ),
         // Right side - Image

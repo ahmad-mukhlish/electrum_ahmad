@@ -92,6 +92,14 @@ flutter build ios    # Build iOS
 - Firebase Auth + Firestore are used as the primary backend; keep access funneled through the data layer so other backends can be swapped in later if needed.
 - AI-assisted development implementation: every big task keeps `docs/<task>/brief.md` and `docs/<task>/plan-ai.md` so humans and AI share intent, maintain context across sessions, and minimize token usage.
 - Design tokens (colors): use theme colors from `main.dart` via `Theme.of(context).colorScheme`, no hard codes
+- use DRY and YAGNI principle
+- avoid writing testing strategy at plan.md unless explicit mention at brief.md
+- avoid writing code / implementation at plan.md
+- Using `HookConsumerWidget` instead of `ConsumerStatefulWidget` for less boilerplate
+- When more than 2 lines, create a named function instead of nameless function / lambda
+- **Pass only what you need**: Extract minimal data before passing to methods (e.g., pass `String` instead of `TextEditingController`, pass `ColorScheme` instead of `BuildContext`)
+- **Omit unused parameters**: Use single underscore `_` for unused callback parameters (e.g., `(_, next)` instead of `(previous, next)` if previous is unused)
+- always use fat arrow => for functions whenever possible especially one line function
 
 ### UI Widget Organization
 
