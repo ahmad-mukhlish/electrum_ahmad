@@ -10,20 +10,20 @@ part 'routing.g.dart';
 
 @riverpod
 GoRouter router(Ref ref) {
-  // NEW: bridge Riverpod auth -> a Listenable for GoRouter
-  final auth = ValueNotifier<AsyncValue<bool>>(const AsyncLoading());
-  ref.onDispose(auth.dispose);
+  //Bridge from Riverpod to listanable : a Listenable for GoRouter
+  final listenable = ValueNotifier<AsyncValue<bool>>(const AsyncLoading());
+  ref.onDispose(listenable.dispose);
 
   ref.listen<AsyncValue<bool>>(authProvider, (_, next) {
-    auth.value = next;
+    listenable.value = next;
   });
 
   return GoRouter(
     initialLocation: '/',
-    // NEW: tell GoRouter to refresh redirects when auth changes
-    refreshListenable: auth,
+    //Tell GoRouter to refresh redirects when listenable changes
+    refreshListenable: listenable,
     redirect: (context, state) {
-      final authState = auth.value; // ⬅️ was: ref.watch(authProvider)
+      final authState = listenable.value;
 
       final isLoading = authState.isLoading;
       final isLoggedIn = authState.value ?? false;

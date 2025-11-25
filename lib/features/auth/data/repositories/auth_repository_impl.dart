@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_local_datasource.dart';
 
 part 'auth_repository_impl.g.dart';
@@ -8,12 +9,6 @@ part 'auth_repository_impl.g.dart';
 AuthRepository authRepository(Ref ref) {
   final datasource = ref.watch(authLocalDatasourceProvider);
   return AuthRepositoryImpl(datasource);
-}
-
-abstract class AuthRepository {
-  Future<bool> login(String email, String password);
-  Future<void> logout();
-  Future<bool> isLoggedIn();
 }
 
 class AuthRepositoryImpl implements AuthRepository {
