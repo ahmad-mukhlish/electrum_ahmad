@@ -48,7 +48,7 @@ final class SharedPreferencesProvider
   }
 }
 
-String _$sharedPreferencesHash() => r'7cd30c9640ca952d1bcf1772c709fc45dc47c8b3';
+String _$sharedPreferencesHash() => r'dc403fbb1d968c7d5ab4ae1721a29ffe173701c7';
 
 @ProviderFor(localDbService)
 const localDbServiceProvider = LocalDbServiceProvider._();
@@ -89,4 +89,4 @@ final class LocalDbServiceProvider
   }
 }
 
-String _$localDbServiceHash() => r'366a398abd3d89631543f4a8756199a86f22f90e';
+String _$localDbServiceHash() => r'c97df80f7cbb835caa8ae1b9bc20193ac9a068f5';

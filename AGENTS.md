@@ -102,6 +102,35 @@ flutter build ios    # Build iOS
 - **Omit unused parameters**: Use single underscore `_` for unused callback parameters (e.g., `(_, next)` instead of `(previous, next)` if previous is unused)
 - always use fat arrow => for functions whenever possible especially one line function
 
+### Freezed Models (v3.0.0+)
+
+**Important**: Freezed version 3.0.0 and above requires `sealed` or `abstract` modifier for classes using factory constructors. This is stated in the [V3 Migration Guide](https://pub.dev/packages/freezed#migration-guide).
+
+**Correct Pattern:**
+```dart
+@freezed
+abstract class User with _$User {
+  const User._();
+
+  const factory User({
+    required String uid,
+    required String email,
+    String? displayName,
+    String? photoUrl,
+  }) = _User;
+}
+```
+
+**Why this is needed:**
+- Without `abstract` or `sealed`, Dart analyzer will show "Missing concrete implementations" errors
+- The private constructor `const User._()` allows adding custom methods to Freezed classes
+- After adding the modifier, run: `dart run build_runner build --delete-conflicting-outputs`
+
+**Common patterns:**
+- Use `abstract` for classes that may be extended
+- Use `sealed` for closed type hierarchies (union types)
+- Always include the private constructor if you need custom methods or extensions
+
 ### UI Widget Organization
 
 - **Separate widgets by their role using builder methods**

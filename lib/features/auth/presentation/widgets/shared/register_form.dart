@@ -5,13 +5,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../viewmodel/notifiers/auth_notifier.dart';
 
-class LoginForm extends HookConsumerWidget {
-  const LoginForm({super.key, this.isWebView = false});
+class RegisterForm extends HookConsumerWidget {
+  const RegisterForm({super.key, this.isWebView = false});
 
   final bool isWebView;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final nameController = useTextEditingController();
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final obscurePassword = useState(true);
@@ -31,27 +32,38 @@ class LoginForm extends HookConsumerWidget {
         const SizedBox(height: 16),
         _buildSubtitle(colorScheme, textTheme),
         const SizedBox(height: 16),
+        _buildNameField(textTheme, nameController),
+        const SizedBox(height: 16),
         _buildEmailField(textTheme, emailController),
         const SizedBox(height: 16),
         _buildPasswordField(textTheme, passwordController, obscurePassword),
         const SizedBox(height: 24),
-        _buildSignInButton(
+        _buildSignUpButton(
           colorScheme,
           authState,
-          () =>
-              _handleLogin(ref, emailController.text, passwordController.text),
+          () => _handleRegister(
+            ref,
+            emailController.text,
+            passwordController.text,
+            nameController.text,
+          ),
         ),
         const SizedBox(height: 24),
-        _buildSignUpLink(colorScheme, textTheme, context),
+        _buildSignInLink(colorScheme, textTheme, context),
       ],
     );
   }
 
-  void _handleLogin(WidgetRef ref, String email, String password) =>
-      ref.read(authProvider.notifier).login(email, password);
+  void _handleRegister(
+    WidgetRef ref,
+    String email,
+    String password,
+    String displayName,
+  ) =>
+      ref.read(authProvider.notifier).register(email, password, displayName);
 
   void _setupAuthListener(WidgetRef ref, BuildContext context) {
-    ref.listen(authProvider, (_, next) {
+    ref.listen<AsyncValue<dynamic>>(authProvider, (_, next) {
       next.whenOrNull(
         error: (error, _) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -67,22 +79,21 @@ class LoginForm extends HookConsumerWidget {
   }
 
   Widget _buildHeader(ColorScheme colorScheme, TextTheme textTheme) {
-    final titleStyle = isWebView
-        ? textTheme.headlineLarge
-        : textTheme.bodyLarge;
+    final titleStyle =
+        isWebView ? textTheme.headlineLarge : textTheme.bodyLarge;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          'Your Next Ride',
+          'Create Account',
           style: titleStyle?.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.primary,
           ),
         ),
         Text(
-          'Starts Here',
+          'Join Electrum',
           style: titleStyle?.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.primary,
@@ -93,25 +104,52 @@ class LoginForm extends HookConsumerWidget {
   }
 
   Widget _buildSubtitle(ColorScheme colorScheme, TextTheme textTheme) {
-    final subtitleStyle = isWebView
-        ? textTheme.headlineSmall
-        : textTheme.bodyMedium;
+    final subtitleStyle =
+        isWebView ? textTheme.headlineSmall : textTheme.bodyMedium;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          'Explore Electrum bikes.',
+          'Start your journey with',
           style: subtitleStyle?.copyWith(
             color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          'Hit the road fully charged ⚡',
+          'electric bikes today ⚡',
           style: subtitleStyle?.copyWith(
             color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNameField(
+    TextTheme textTheme,
+    TextEditingController controller,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          'Name',
+          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          keyboardType: TextInputType.name,
+          decoration: InputDecoration(
+            hintText: 'Your full name',
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 14,
+            ),
           ),
         ),
       ],
@@ -163,7 +201,7 @@ class LoginForm extends HookConsumerWidget {
           controller: controller,
           obscureText: obscurePassword.value,
           decoration: InputDecoration(
-            hintText: 'At least 5 characters',
+            hintText: 'At least 6 characters',
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -183,15 +221,15 @@ class LoginForm extends HookConsumerWidget {
     );
   }
 
-  Widget _buildSignInButton(
+  Widget _buildSignUpButton(
     ColorScheme colorScheme,
     AsyncValue<dynamic> authState,
-    VoidCallback onLogin,
+    VoidCallback onRegister,
   ) {
     return FilledButton(
       onPressed: authState.maybeWhen(
         loading: () => null,
-        orElse: () => onLogin,
+        orElse: () => onRegister,
       ),
       style: FilledButton.styleFrom(
         backgroundColor: colorScheme.primary,
@@ -200,37 +238,35 @@ class LoginForm extends HookConsumerWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: authState.when(
-        data: (_) => const Text('Sign in'),
+        data: (_) => const Text('Sign up'),
         loading: () => const SizedBox(
           height: 20,
           width: 20,
           child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
         ),
-        error: (_, _) => const Text('Sign in'),
+        error: (_, _) => const Text('Sign up'),
       ),
     );
   }
 
-  Widget _buildSignUpLink(
+  Widget _buildSignInLink(
     ColorScheme colorScheme,
     TextTheme textTheme,
     BuildContext context,
   ) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("No account?", style: textTheme.bodyMedium),
-        const SizedBox(height: 8),
-        OutlinedButton(
-          onPressed: () => context.go('/register'),
-          style: OutlinedButton.styleFrom(
-            foregroundColor: colorScheme.primary,
-            side: BorderSide(color: colorScheme.primary),
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+        Text("Already have an account? ", style: textTheme.bodyMedium),
+        GestureDetector(
+          onTap: () => context.go('/login'),
+          child: Text(
+            'Sign in',
+            style: textTheme.bodyMedium?.copyWith(
+              color: colorScheme.primary,
+              fontWeight: FontWeight.w600,
             ),
           ),
-          child: const Text('Sign up'),
         ),
       ],
     );
