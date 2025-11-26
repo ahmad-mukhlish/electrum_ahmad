@@ -41,11 +41,16 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> register(String email, String password) async {
+  Future<bool> register(
+    String email,
+    String password,
+    String displayName,
+  ) async {
     try {
       final userDto = await _firebaseDatasource.signUpWithEmailAndPassword(
         email,
         password,
+        displayName,
       );
 
       // Save user data locally

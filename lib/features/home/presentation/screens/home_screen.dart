@@ -33,6 +33,12 @@ class HomeScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 24),
+                  _buildUserInfo(
+                    user.displayName ?? user.email,
+                    Theme.of(context).textTheme.headlineSmall,
+                    colorScheme,
+                  ),
                   const SizedBox(height: 8),
                   _buildUserInfo(
                     user.email,
@@ -54,17 +60,6 @@ class HomeScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(child: Text('Error: $error')),
       ),
-    );
-  }
-
-  Widget _buildProfilePhoto(String? photoUrl, ColorScheme colorScheme) {
-    return CircleAvatar(
-      radius: 50,
-      backgroundColor: colorScheme.primaryContainer,
-      backgroundImage: photoUrl != null ? NetworkImage(photoUrl) : null,
-      child: photoUrl == null
-          ? Icon(Icons.person, size: 50, color: colorScheme.onPrimaryContainer)
-          : null,
     );
   }
 

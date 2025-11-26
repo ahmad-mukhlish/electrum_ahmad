@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../shared/login_form.dart';
+import '../shared/auth_form.dart';
 
-class LoginScreenMobile extends StatelessWidget {
-  const LoginScreenMobile({super.key});
+class AuthScreenMobile extends StatelessWidget {
+  const AuthScreenMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class LoginScreenMobile extends StatelessWidget {
             // Form section
             Padding(
               padding: const EdgeInsets.all(24),
-              child: const LoginForm(),
+              child: const AuthForm(),
             ),
           ],
         ),

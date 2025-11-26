@@ -108,6 +108,7 @@ flutter build ios    # Build iOS
 - **Pass only what you need**: Extract minimal data before passing to methods (e.g., pass `String` instead of `TextEditingController`, pass `ColorScheme` instead of `BuildContext`)
 - **Omit unused parameters**: Use single underscore `_` for unused callback parameters (e.g., `(_, next)` instead of `(previous, next)` if previous is unused)
 - always use fat arrow => for functions whenever possible especially one line function
+- **Delegate build_runner and flutter analyze to user**: To reduce token usage, avoid running `dart run build_runner build` and `flutter analyze` unless explicitly requested. Instead, remind the user to run these commands manually after code changes that require code generation or when checking for lint issues
 
 ### Error Handling in Data Layer
 

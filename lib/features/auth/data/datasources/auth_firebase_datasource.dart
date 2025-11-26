@@ -38,6 +38,7 @@ class AuthFirebaseDatasource {
   Future<UserDto> signUpWithEmailAndPassword(
     String email,
     String password,
+    String displayName,
   ) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -48,7 +49,12 @@ class AuthFirebaseDatasource {
       firebase_auth.User? user = userCredential.user;
       if (user == null) throw Error();
 
-      return _userDtoFromFirebase(user);
+      // Update display name
+      await user.updateDisplayName(displayName);
+      await user.reload();
+      user = _firebaseAuth.currentUser;
+
+      return _userDtoFromFirebase(user!);
     } catch (e) {
       rethrow;
     }

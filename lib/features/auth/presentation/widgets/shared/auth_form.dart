@@ -4,13 +4,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../viewmodel/notifiers/auth_notifier.dart';
 
-class LoginForm extends HookConsumerWidget {
-  const LoginForm({super.key, this.isWebView = false});
+class AuthForm extends HookConsumerWidget {
+  const AuthForm({super.key, this.isWebView = false});
 
   final bool isWebView;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final nameController = useTextEditingController();
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final obscurePassword = useState(true);
@@ -29,8 +30,14 @@ class LoginForm extends HookConsumerWidget {
       children: [
         _buildHeader(colorScheme, textTheme, isRegisterMode.value),
         const SizedBox(height: 16),
-        _buildSubtitle(colorScheme, textTheme, isRegisterMode.value),
-        const SizedBox(height: 16),
+        if (!isRegisterMode.value) ...[
+          _buildSubtitle(colorScheme, textTheme),
+          const SizedBox(height: 16),
+        ],
+        if (isRegisterMode.value) ...[
+          _buildNameField(textTheme, nameController),
+          const SizedBox(height: 16),
+        ],
         _buildEmailField(textTheme, emailController),
         const SizedBox(height: 16),
         _buildPasswordField(textTheme, passwordController, obscurePassword),
@@ -43,6 +50,7 @@ class LoginForm extends HookConsumerWidget {
             ref,
             emailController.text,
             passwordController.text,
+            nameController.text,
             isRegisterMode.value,
           ),
         ),
@@ -56,10 +64,11 @@ class LoginForm extends HookConsumerWidget {
     WidgetRef ref,
     String email,
     String password,
+    String displayName,
     bool isRegister,
   ) {
     if (isRegister) {
-      ref.read(authProvider.notifier).register(email, password);
+      ref.read(authProvider.notifier).register(email, password, displayName);
     } else {
       ref.read(authProvider.notifier).login(email, password);
     }
@@ -111,11 +120,7 @@ class LoginForm extends HookConsumerWidget {
     );
   }
 
-  Widget _buildSubtitle(
-    ColorScheme colorScheme,
-    TextTheme textTheme,
-    bool isRegister,
-  ) {
+  Widget _buildSubtitle(ColorScheme colorScheme, TextTheme textTheme) {
     final subtitleStyle = isWebView
         ? textTheme.headlineSmall
         : textTheme.bodyMedium;
@@ -124,17 +129,45 @@ class LoginForm extends HookConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          isRegister ? 'Start your journey with' : 'Explore Electrum bikes.',
+          'Explore Electrum bikes.',
           style: subtitleStyle?.copyWith(
             color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          isRegister ? 'electric bikes today ⚡' : 'Hit the road fully charged ⚡',
+          'Hit the road fully charged ⚡',
           style: subtitleStyle?.copyWith(
             color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNameField(
+    TextTheme textTheme,
+    TextEditingController controller,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          'Name',
+          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          keyboardType: TextInputType.name,
+          decoration: InputDecoration(
+            hintText: 'Your full name',
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 14,
+            ),
           ),
         ),
       ],

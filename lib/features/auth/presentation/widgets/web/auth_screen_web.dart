@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../mobile/login_screen_mobile.dart';
-import '../shared/login_form.dart';
+import '../mobile/auth_screen_mobile.dart';
+import '../shared/auth_form.dart';
 
-class LoginScreenWeb extends StatelessWidget {
-  const LoginScreenWeb({super.key});
+class AuthScreenWeb extends StatelessWidget {
+  const AuthScreenWeb({super.key});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         // Responsive: collapse to single column on narrow screens
-        if (constraints.maxWidth < 800) return const LoginScreenMobile();
+        if (constraints.maxWidth < 800) return const AuthScreenMobile();
         return _buildWebLayout(context);
       },
     );
@@ -25,7 +25,7 @@ class LoginScreenWeb extends StatelessWidget {
           flex: 2,
           child: const Padding(
             padding: EdgeInsets.all(36.0),
-            child: LoginForm(isWebView: true),
+            child: AuthForm(isWebView: true),
           ),
         ),
         // Right side - Image

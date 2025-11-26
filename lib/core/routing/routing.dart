@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/auth/domain/entities/user.dart';
-import '../../features/auth/presentation/screens/login_screen.dart';
+import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/auth/presentation/viewmodel/notifiers/auth_notifier.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 
@@ -45,7 +45,7 @@ GoRouter router(Ref ref) {
     routes: [
       GoRoute(
         path: '/login',
-        builder: (context, state) => const LoginScreen(),
+        builder: (context, state) => const AuthScreen(),
       ),
       GoRoute(
         path: '/',
