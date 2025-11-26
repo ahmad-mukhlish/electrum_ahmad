@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entities/promotion.dart';
+import '../../domain/entities/promotion/promotion.dart';
 
 part 'promotion_dto.g.dart';
 

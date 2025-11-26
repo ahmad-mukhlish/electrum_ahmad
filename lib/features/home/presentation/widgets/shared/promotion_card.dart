@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/promotion.dart';
+import '../../../domain/entities/promotion/promotion.dart';
 
 class PromotionCard extends StatelessWidget {
   final Promotion promotion;
@@ -65,6 +65,8 @@ class PromotionCard extends StatelessWidget {
 
   Widget _buildValidity(TextTheme textTheme, Color textColor) {
     return Text(
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       promotion.validity,
       style: textTheme.bodySmall?.copyWith(
         color: textColor,

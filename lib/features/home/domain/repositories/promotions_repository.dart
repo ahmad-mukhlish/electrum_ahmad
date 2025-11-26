@@ -1,4 +1,4 @@
-import '../entities/promotion.dart';
+import '../entities/promotion/promotion.dart';
 
 abstract class PromotionsRepository {
   Stream<List<Promotion>> getPromotions();

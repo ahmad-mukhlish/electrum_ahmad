@@ -173,6 +173,55 @@ abstract class User with _$User {
 - Use `sealed` for closed type hierarchies (union types)
 - Always include the private constructor if you need custom methods or extensions
 
+### UI State Naming Convention
+
+**Important**: When creating UI state classes (Freezed classes that extend domain entities with UI-specific data), use the suffix `State` instead of `UIState`.
+
+**Correct Pattern:**
+```dart
+// Domain entity
+@freezed
+abstract class Plan with _$Plan {
+  const Plan._();
+  const factory Plan({
+    required int id,
+    required String name,
+    // ... other fields
+  }) = _Plan;
+}
+
+// UI State (NOT PlanUIState)
+@freezed
+abstract class PlanState with _$PlanState {
+  const PlanState._();
+
+  const factory PlanState({
+    required Plan plan,
+    required double percentageDiscount,
+  }) = _PlanState;
+
+  factory PlanState.fromEntity(Plan plan) {
+    // Calculate UI-specific values
+    return PlanState(
+      plan: plan,
+      percentageDiscount: _calculateDiscount(plan),
+    );
+  }
+}
+```
+
+**Why this pattern:**
+- If it's named `State`, it's clearly for UI purposes - no need for redundant `UI` prefix
+- Shorter, cleaner names improve code readability
+- Follows Flutter's own naming convention (e.g., `ButtonState`, not `ButtonUIState`)
+- File names should match: `plan_state.dart`, not `plan_ui_state.dart`
+- Provider names: `planStateProvider`, not `planUIStateProvider`
+
+**Apply this to:**
+- All UI state classes that extend domain entities
+- Freezed classes used specifically for presentation layer
+- Any state class that combines entity data with calculated UI values
+
 ### Data Transfer Objects (DTOs)
 
 **Important**: DTOs should use `json_serializable` for JSON serialization, NOT Freezed. Freezed is reserved for domain entities only.

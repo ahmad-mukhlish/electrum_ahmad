@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../viewmodel/promotions_provider.dart';
+import '../../viewmodel/notifier/promotion/promotions_provider.dart';
 import 'promotion_card.dart';
 
 class PromotionsCarousel extends HookConsumerWidget {
@@ -59,7 +59,7 @@ class PromotionsCarousel extends HookConsumerWidget {
   }
 
   CarouselOptions _buildCarouselOptions(int itemCount) {
-    final carouselHeight = height ?? 200.0;
+    final carouselHeight = height ?? 250.0;
 
     if (isWeb) {
       return CarouselOptions(
