@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -5,9 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../viewmodel/notifiers/auth_notifier.dart';
 
 class AuthForm extends HookConsumerWidget {
-  const AuthForm({super.key, this.isWebView = false});
-
-  final bool isWebView;
+  const AuthForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,12 +34,17 @@ class AuthForm extends HookConsumerWidget {
           const SizedBox(height: 16),
         ],
         if (isRegisterMode.value) ...[
-          _buildNameField(textTheme, nameController),
+          _buildNameField(textTheme, colorScheme, nameController),
           const SizedBox(height: 16),
         ],
-        _buildEmailField(textTheme, emailController),
+        _buildEmailField(textTheme, emailController, colorScheme),
         const SizedBox(height: 16),
-        _buildPasswordField(textTheme, passwordController, obscurePassword),
+        _buildPasswordField(
+          textTheme,
+          colorScheme,
+          passwordController,
+          obscurePassword,
+        ),
         const SizedBox(height: 24),
         _buildActionButton(
           colorScheme,
@@ -53,6 +57,7 @@ class AuthForm extends HookConsumerWidget {
             nameController.text,
             isRegisterMode.value,
           ),
+          textTheme,
         ),
         const SizedBox(height: 24),
         _buildToggleLink(colorScheme, textTheme, isRegisterMode),
@@ -95,9 +100,7 @@ class AuthForm extends HookConsumerWidget {
     TextTheme textTheme,
     bool isRegister,
   ) {
-    final titleStyle = isWebView
-        ? textTheme.headlineLarge
-        : textTheme.bodyLarge;
+    final titleStyle = kIsWeb ? textTheme.displayMedium : textTheme.bodyLarge;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -105,8 +108,8 @@ class AuthForm extends HookConsumerWidget {
         Text(
           isRegister ? 'Create Account' : 'Your Next Ride',
           style: titleStyle?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: colorScheme.primary,
+            fontWeight: FontWeight.w500,
+            color: colorScheme.onSecondary,
           ),
         ),
         Text(
@@ -121,8 +124,8 @@ class AuthForm extends HookConsumerWidget {
   }
 
   Widget _buildSubtitle(ColorScheme colorScheme, TextTheme textTheme) {
-    final subtitleStyle = isWebView
-        ? textTheme.headlineSmall
+    final subtitleStyle = kIsWeb
+        ? textTheme.headlineLarge
         : textTheme.bodyMedium;
 
     return Column(
@@ -131,15 +134,15 @@ class AuthForm extends HookConsumerWidget {
         Text(
           'Explore Electrum bikes.',
           style: subtitleStyle?.copyWith(
-            color: colorScheme.onSurfaceVariant,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
+            color: colorScheme.tertiary,
           ),
         ),
         Text(
           'Hit the road fully charged ⚡',
           style: subtitleStyle?.copyWith(
-            color: colorScheme.onSurfaceVariant,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
+            color: colorScheme.tertiary,
           ),
         ),
       ],
@@ -148,6 +151,7 @@ class AuthForm extends HookConsumerWidget {
 
   Widget _buildNameField(
     TextTheme textTheme,
+    ColorScheme colorScheme,
     TextEditingController controller,
   ) {
     return Column(
@@ -155,13 +159,23 @@ class AuthForm extends HookConsumerWidget {
       children: [
         Text(
           'Name',
-          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+          style: textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w500,
+            color: colorScheme.onSecondary,
+          ),
         ),
         const SizedBox(height: 8),
         TextField(
+          style: textTheme.bodyLarge?.copyWith(
+            color: colorScheme.onSecondary,
+            fontWeight: FontWeight.w500,
+          ),
           controller: controller,
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
+            hintStyle: textTheme.bodyLarge?.copyWith(
+              color: colorScheme.onSecondary,
+            ),
             hintText: 'Your full name',
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             contentPadding: const EdgeInsets.symmetric(
@@ -177,19 +191,30 @@ class AuthForm extends HookConsumerWidget {
   Widget _buildEmailField(
     TextTheme textTheme,
     TextEditingController controller,
+    ColorScheme colorScheme,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
           'Email',
-          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+          style: textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w500,
+            color: colorScheme.onSecondary,
+          ),
         ),
         const SizedBox(height: 8),
         TextField(
+          style: textTheme.bodyLarge?.copyWith(
+            color: colorScheme.onSecondary,
+            fontWeight: FontWeight.w500,
+          ),
           controller: controller,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
+            hintStyle: textTheme.bodyLarge?.copyWith(
+              color: colorScheme.onSecondary,
+            ),
             hintText: 'Example@email.com',
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             contentPadding: const EdgeInsets.symmetric(
@@ -204,6 +229,7 @@ class AuthForm extends HookConsumerWidget {
 
   Widget _buildPasswordField(
     TextTheme textTheme,
+    ColorScheme colorScheme,
     TextEditingController controller,
     ValueNotifier<bool> obscurePassword,
   ) {
@@ -212,13 +238,23 @@ class AuthForm extends HookConsumerWidget {
       children: [
         Text(
           'Password',
-          style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+          style: textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w500,
+            color: colorScheme.onSecondary,
+          ),
         ),
         const SizedBox(height: 8),
         TextField(
+          style: textTheme.bodyLarge?.copyWith(
+            color: colorScheme.onSecondary,
+            fontWeight: FontWeight.w500,
+          ),
           controller: controller,
           obscureText: obscurePassword.value,
           decoration: InputDecoration(
+            hintStyle: textTheme.bodyLarge?.copyWith(
+              color: colorScheme.onSecondary,
+            ),
             hintText: 'Insert your password',
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             contentPadding: const EdgeInsets.symmetric(
@@ -228,6 +264,7 @@ class AuthForm extends HookConsumerWidget {
             suffixIcon: IconButton(
               icon: Icon(
                 obscurePassword.value ? Icons.visibility_off : Icons.visibility,
+                color: colorScheme.onSecondary,
               ),
               onPressed: () {
                 obscurePassword.value = !obscurePassword.value;
@@ -244,6 +281,7 @@ class AuthForm extends HookConsumerWidget {
     AsyncValue<dynamic> authState,
     bool isRegister,
     VoidCallback onAction,
+    TextTheme textTheme,
   ) {
     return FilledButton(
       onPressed: authState.maybeWhen(
@@ -253,11 +291,16 @@ class AuthForm extends HookConsumerWidget {
       style: FilledButton.styleFrom(
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 24),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: authState.when(
-        data: (_) => Text(isRegister ? 'Sign up' : 'Sign in'),
+        data: (_) => Text(
+          isRegister ? 'Sign up' : 'Sign in',
+          style: textTheme.headlineSmall?.copyWith(
+            color: colorScheme.onPrimary,
+          ),
+        ),
         loading: () => const SizedBox(
           height: 20,
           width: 20,
@@ -277,16 +320,14 @@ class AuthForm extends HookConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          isRegisterMode.value
-              ? "Already have an account? "
-              : "No account? ",
-          style: textTheme.bodyMedium,
+          isRegisterMode.value ? "Already have an account? " : "No account? ",
+          style: textTheme.headlineSmall,
         ),
         GestureDetector(
           onTap: () => isRegisterMode.value = !isRegisterMode.value,
           child: Text(
             isRegisterMode.value ? 'Sign in' : 'Sign up',
-            style: textTheme.bodyMedium?.copyWith(
+            style: textTheme.headlineSmall?.copyWith(
               color: colorScheme.primary,
               fontWeight: FontWeight.w600,
             ),

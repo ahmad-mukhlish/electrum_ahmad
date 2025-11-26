@@ -25,7 +25,7 @@ class AuthScreenWeb extends StatelessWidget {
           flex: 2,
           child: const Padding(
             padding: EdgeInsets.all(36.0),
-            child: AuthForm(isWebView: true),
+            child: AuthForm(),
           ),
         ),
         // Right side - Image
