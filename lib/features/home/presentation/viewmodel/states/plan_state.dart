@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/entities/plan/plan.dart';
-
+import '../../../domain/entities/plan/plan_period.dart';
 
 part 'plan_state.freezed.dart';
 
@@ -58,5 +58,41 @@ abstract class PlanState with _$PlanState {
     final discount =
         ((monthlyAtDailyRate - pricePerMonth) / monthlyAtDailyRate) * 100;
     return discount.clamp(0.0, 100.0);
+  }
+
+  /// Get price based on selected period
+  int getPriceForPeriod(PlanPeriod period) {
+    switch (period) {
+      case PlanPeriod.daily:
+        return plan.pricePerDay;
+      case PlanPeriod.weekly:
+        return plan.pricePerWeek;
+      case PlanPeriod.monthly:
+        return plan.pricePerMonth;
+    }
+  }
+
+  /// Get discount percentage based on selected period
+  double getDiscountForPeriod(PlanPeriod period) {
+    switch (period) {
+      case PlanPeriod.daily:
+        return 0.0; // No discount for daily
+      case PlanPeriod.weekly:
+        return percentagePlanDiscountWeekly;
+      case PlanPeriod.monthly:
+        return percentagePlanDiscountMonthly;
+    }
+  }
+
+  /// Get original price (daily rate multiplied by period)
+  int getOriginalPriceForPeriod(PlanPeriod period) {
+    switch (period) {
+      case PlanPeriod.daily:
+        return plan.pricePerDay;
+      case PlanPeriod.weekly:
+        return plan.pricePerDay * 7;
+      case PlanPeriod.monthly:
+        return plan.pricePerDay * 30;
+    }
   }
 }

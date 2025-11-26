@@ -3,6 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/color_helper.dart';
 import '../../viewmodel/notifier/plan/plans_state_provider.dart';
+import '../../viewmodel/notifier/plan/selected_period_provider.dart';
+import '../shared/period_toggle.dart';
 import '../shared/plan_card.dart';
 
 class PlansSectionWeb extends HookConsumerWidget {
@@ -22,6 +24,8 @@ class PlansSectionWeb extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSectionTitle(context),
+            const SizedBox(height: 16),
+            const _PeriodToggleSection(),
             const SizedBox(height: 24),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +80,24 @@ class PlansSectionWeb extends HookConsumerWidget {
         Center(child: CircularProgressIndicator()),
         SizedBox(height: 200),
       ],
+    );
+  }
+}
+
+/// Separate widget for period toggle to avoid rebuilding entire section
+class _PeriodToggleSection extends ConsumerWidget {
+  const _PeriodToggleSection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedPeriod = ref.watch(selectedPeriodProvider);
+
+    return Center(
+      child: PeriodToggle(
+        selectedPeriod: selectedPeriod,
+        onPeriodChanged: (period) =>
+            ref.read(selectedPeriodProvider.notifier).setPeriod(period),
+      ),
     );
   }
 }

@@ -15,14 +15,15 @@ class PromotionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    Color textColor = backgroundColor == Theme.of(context).colorScheme.secondary ? Colors.black : Colors.white;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    Color textColor = backgroundColor == colorScheme.secondary
+        ? colorScheme.onSecondary
+        : colorScheme.onPrimary;
 
     return Card(
       elevation: 4,
       color: backgroundColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -56,7 +57,8 @@ class PromotionCard extends StatelessWidget {
     return Text(
       promotion.shortCopy,
       style: textTheme.bodyMedium?.copyWith(
-        color: textColor
+        color: textColor,
+        fontWeight: FontWeight.w500,
       ),
       maxLines: 3,
       overflow: TextOverflow.ellipsis,
@@ -67,10 +69,8 @@ class PromotionCard extends StatelessWidget {
     return Text(
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
-      promotion.validity,
-      style: textTheme.bodySmall?.copyWith(
-        color: textColor,
-      ),
+      "Validity : ${promotion.validity}",
+      style: textTheme.bodySmall?.copyWith(color: textColor),
     );
   }
 }

@@ -14,9 +14,8 @@ class HomeContentMobile extends StatelessWidget {
         child: Column(
           children: [
             PromotionsCarousel(),
-            SizedBox(height: 32),
+            SizedBox(height: 16),
             PlansSectionMobile(),
-            SizedBox(height: 32),
           ],
         ),
       ),

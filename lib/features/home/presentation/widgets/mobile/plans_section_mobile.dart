@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../core/utils/color_helper.dart';
 import '../../viewmodel/notifier/plan/plans_state_provider.dart';
 import '../shared/plan_card.dart';
+import 'period_toggle_section.dart';
 
 class PlansSectionMobile extends HookConsumerWidget {
   const PlansSectionMobile({super.key});
@@ -22,6 +23,8 @@ class PlansSectionMobile extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSectionTitle(context),
+            const SizedBox(height: 8),
+            const PeriodToggleSection(),
             const SizedBox(height: 16),
             ...planStates.map((planState) {
               final backgroundColor = hexToColor(planState.plan.hexColor);
@@ -57,7 +60,10 @@ class PlansSectionMobile extends HookConsumerWidget {
   Widget _buildSectionTitle(BuildContext context) {
     return Text(
       'Plans',
-      style: Theme.of(context).textTheme.headlineLarge,
+      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).colorScheme.onSecondary,
+      ),
     );
   }
 

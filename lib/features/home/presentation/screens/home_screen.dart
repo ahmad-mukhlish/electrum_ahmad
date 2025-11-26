@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.onPrimary,
       appBar: kIsWeb ? null : _buildAppBar(context),
       body: kIsWeb ? const HomeContentWeb() : const HomeContentMobile(),
     );
@@ -17,12 +18,14 @@ class HomeScreen extends StatelessWidget {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
+      backgroundColor: Theme.of(context).colorScheme.onPrimary,
       title: Text(
         textAlign: TextAlign.start,
         'For you',
-        style: Theme.of(
-          context,
-        ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.onSecondary,
+        ),
       ),
     );
   }

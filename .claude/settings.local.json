@@ -10,7 +10,9 @@
       "Bash(flutter analyze:*)",
       "Bash(dart analyze:*)",
       "Bash(dart pub get:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Skill(flutter-developer)",
+      "Skill(riverpod-state-management)"
     ],
     "deny": [],
     "ask": []

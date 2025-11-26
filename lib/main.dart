@@ -36,6 +36,8 @@ class MyApp extends ConsumerWidget {
           primary: hexToColor("#48A6A7"),
           secondary: hexToColor("#F2EFE7"),
           tertiary: hexToColor("#008080"),
+          onPrimary: hexToColor("#fffbf7"),
+          onSecondary: hexToColor("#003333"),
         ),
       ),
       routerConfig: router,

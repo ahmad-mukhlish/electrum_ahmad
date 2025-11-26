@@ -109,6 +109,7 @@ flutter build ios    # Build iOS
 - **Omit unused parameters**: Use single underscore `_` for unused callback parameters (e.g., `(_, next)` instead of `(previous, next)` if previous is unused)
 - always use fat arrow => for functions whenever possible especially one line function
 - **Delegate build_runner and flutter analyze to user**: To reduce token usage, avoid running `dart run build_runner build` and `flutter analyze` unless explicitly requested. Instead, remind the user to run these commands manually after code changes that require code generation or when checking for lint issues
+- **One UI class per file**: Never place multiple UI classes/widgets in a single file; keep each UI class in its own file to maintain clarity and reuse
 
 ### Error Handling in Data Layer
 
