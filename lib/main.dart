@@ -1,3 +1,4 @@
+import 'package:electrum_ahmad/core/utils/color_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -31,9 +32,10 @@ class MyApp extends ConsumerWidget {
       title: 'Electrum Ahmad',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF9336B4),
-          primary: const Color(0xFF40128B),
-          secondary: const Color(0xFFFFE79B),
+          seedColor: hexToColor("#006A71"),
+          primary: hexToColor("#48A6A7"),
+          secondary: hexToColor("#F2EFE7"),
+          tertiary: hexToColor("#008080"),
         ),
       ),
       routerConfig: router,
