@@ -101,8 +101,20 @@ flutter build ios    # Build iOS
 - AI-assisted development implementation: every big task keeps `documentations/<area>/<task>/brief.md` and `documentations/<area>/<task>/plan.md` (separate from code) so humans and AI share intent, maintain context across sessions, and minimize token usage.
 - Design tokens (colors): use theme colors from `main.dart` via `Theme.of(context).colorScheme`, no hard codes
 - use DRY and YAGNI principle
+- **IMPORTANT: No hardcoded/magic values in UI** - Never display hardcoded text, numbers, or data that doesn't come from the actual entity/model. Examples:
+  - ❌ Don't create fake feature lists like "Zero Emissions", "Smart Features" when no such field exists
+  - ❌ Don't add placeholder data like "Lorem ipsum" or "Sample description"
+  - ❌ Don't invent fields that aren't in the entity
+  - ✅ Only display data that actually exists in the entity/model
+  - ✅ If a field is empty/null, either hide that section or show an appropriate empty state
+  - ✅ All displayed information must come from real data sources (entities, APIs, Firestore)
 - avoid writing testing strategy at plan.md unless explicit mention at brief.md
-- avoid writing code / implementation at plan.md
+- **IMPORTANT: NEVER write code in plan.md** - plan.md should only contain high-level descriptions, file structure, and implementation steps. Writing code in plan.md:
+  - Wastes tokens (plan files can become thousands of lines)
+  - Makes plans harder to read and navigate
+  - Duplicates information (code will be written during implementation anyway)
+  - Violates the purpose of planning (plans are for strategy, not implementation)
+  - Instead: describe WHAT needs to be done, not HOW (no code examples, no full implementations)
 - Using `HookConsumerWidget` instead of `ConsumerStatefulWidget` for less boilerplate
 - When more than 2 lines, create a named function instead of nameless function / lambda
 - **Pass only what you need**: Extract minimal data before passing to methods (e.g., pass `String` instead of `TextEditingController`, pass `ColorScheme` instead of `BuildContext`)

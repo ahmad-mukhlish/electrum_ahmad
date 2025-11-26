@@ -33,4 +33,21 @@ class BikesFirestoreDatasource {
       rethrow;
     }
   }
+
+  /// Get a single bike by ID from Firestore
+  Stream<BikeDto?> getBikeById(String bikeId) {
+    try {
+      return _firestore.collection('bikes').doc(bikeId).snapshots().map(
+        (snapshot) {
+          if (!snapshot.exists) return null;
+          return BikeDto.fromJson({
+            'id': snapshot.id,
+            ...snapshot.data()!,
+          });
+        },
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

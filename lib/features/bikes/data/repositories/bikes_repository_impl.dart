@@ -28,4 +28,15 @@ class BikesRepositoryImpl implements BikesRepository {
       rethrow;
     }
   }
+
+  @override
+  Stream<Bike?> getBikeById(String bikeId) {
+    try {
+      return _datasource.getBikeById(bikeId).map(
+            (dto) => dto?.toEntity(),
+          );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

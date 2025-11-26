@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart'; // ⬅️ for ValueNotifier
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/auth/domain/entities/user.dart';
 import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/auth/presentation/viewmodel/notifiers/auth_notifier.dart';
+import '../../features/bikes/presentation/screens/bike_detail_screen.dart';
 import '../../features/bikes/presentation/screens/bikes_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/main/presentation/screens/main_screen.dart';
@@ -70,6 +72,28 @@ GoRouter router(Ref ref) {
             pageBuilder: (context, state) => NoTransitionPage(
               child: const BikesScreen(),
             ),
+            routes: [
+              GoRoute(
+                path: ':bikeId',
+                builder: (context, state) {
+                  final bikeId = state.pathParameters['bikeId']!;
+                  return BikeDetailScreen(bikeId: bikeId);
+                },
+                routes: [
+                  GoRoute(
+                    path: 'interest',
+                    builder: (context, state) {
+                      // TODO: Implement InterestFormScreen (separate brief)
+                      return const Scaffold(
+                        body: Center(
+                          child: Text('Interest Form - Coming Soon'),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
           GoRoute(
             path: '/profile',

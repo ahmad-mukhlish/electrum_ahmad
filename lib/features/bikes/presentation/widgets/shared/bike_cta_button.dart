@@ -1,0 +1,51 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../domain/entities/bike.dart';
+
+class BikeCTAButton extends StatelessWidget {
+  const BikeCTAButton({
+    super.key,
+    required this.bike,
+  });
+
+  final Bike bike;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    return FilledButton.icon(
+      onPressed: bike.isAvailable ? () => _handleInterestPress(context) : null,
+      style: FilledButton.styleFrom(
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
+        disabledBackgroundColor: colorScheme.onSecondary.withValues(alpha: 0.3),
+        disabledForegroundColor: colorScheme.onSecondary.withValues(alpha: 0.5),
+        padding: EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      icon: const Icon(Icons.favorite),
+      label: Text(
+        bike.isAvailable ? "I'm interested to rent" : 'Not Available',
+        style: (kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge)
+            ?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: colorScheme.onPrimary,
+        ),
+      ),
+    );
+  }
+
+  void _handleInterestPress(BuildContext context) {
+    context.go('/bikes/${bike.id}/interest', extra: {
+      'bikeId': bike.id,
+      'model': bike.model,
+      'photoUrl': bike.photoUrl,
+    });
+  }
+}
