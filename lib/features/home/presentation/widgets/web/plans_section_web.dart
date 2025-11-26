@@ -24,7 +24,7 @@ class PlansSectionWeb extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSectionTitle(context),
-            const SizedBox(height: 16),
+
             const _PeriodToggleSection(),
             const SizedBox(height: 24),
             Row(
@@ -32,12 +32,9 @@ class PlansSectionWeb extends HookConsumerWidget {
               children: planStates.map((planState) {
                 final backgroundColor = hexToColor(planState.plan.hexColor);
                 return Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: PlanCard(
-                      planState: planState,
-                      backgroundColor: backgroundColor,
-                    ),
+                  child: PlanCard(
+                    planState: planState,
+                    backgroundColor: backgroundColor,
                   ),
                 );
               }).toList(),
@@ -68,7 +65,10 @@ class PlansSectionWeb extends HookConsumerWidget {
       width: double.infinity,
       child: Text(
         'Plans',
-        style: Theme.of(context).textTheme.headlineLarge,
+        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.onSecondary,
+        ),
       ),
     );
   }

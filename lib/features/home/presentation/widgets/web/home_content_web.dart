@@ -21,14 +21,15 @@ class HomeContentWeb extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 "Promotions",
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSecondary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            PromotionsCarousel(
-              isWeb: true,
-              height: carouselHeight,
-            ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 16),
+            PromotionsCarousel(isWeb: true, height: carouselHeight),
+            const SizedBox(height: 24),
             const PlansSectionWeb(),
             const SizedBox(height: 32),
           ],

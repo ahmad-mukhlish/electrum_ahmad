@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../viewmodel/states/plan_state.dart';
@@ -81,12 +82,16 @@ class PlanCard extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: colorScheme.secondary,
           foregroundColor: colorScheme.onSecondary,
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: EdgeInsets.symmetric(vertical: kIsWeb ? 16 : 8),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        child: const Text(
+        child: Text(
           'Subscribe',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: colorScheme.onSecondary,
+          ),
         ),
       ),
     );
