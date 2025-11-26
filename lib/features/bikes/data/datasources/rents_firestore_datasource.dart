@@ -1,0 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/services/firebase_service.dart';
+import '../dtos/rent_dto.dart';
+
+part 'rents_firestore_datasource.g.dart';
+
+@riverpod
+RentsFirestoreDatasource rentsFirestoreDatasource(Ref ref) {
+  final firestore = ref.watch(firestoreProvider);
+  return RentsFirestoreDatasource(firestore);
+}
+
+class RentsFirestoreDatasource {
+  final FirebaseFirestore _firestore;
+
+  RentsFirestoreDatasource(this._firestore);
+
+  /// Create a new rent document in Firestore
+  Future<void> createRent(RentDto rentDto) async {
+    try {
+      final collection = _firestore.collection('rents');
+      await collection.doc(rentDto.id).set(rentDto.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+}

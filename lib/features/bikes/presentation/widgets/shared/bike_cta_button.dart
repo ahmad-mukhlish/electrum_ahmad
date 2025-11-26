@@ -42,10 +42,6 @@ class BikeCTAButton extends StatelessWidget {
   }
 
   void _handleInterestPress(BuildContext context) {
-    context.go('/bikes/${bike.id}/interest', extra: {
-      'bikeId': bike.id,
-      'model': bike.model,
-      'photoUrl': bike.photoUrl,
-    });
+    context.go('/bikes/${bike.id}/interest', extra: bike);
   }
 }
