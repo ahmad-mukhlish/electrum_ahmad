@@ -1,4 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/widgets/header_web.dart';
+import '../../../../core/widgets/primary_app_bar.dart';
+import '../widgets/mobile/bikes_list_mobile.dart';
+import '../widgets/web/bikes_list_web.dart';
 
 class BikesScreen extends StatelessWidget {
   const BikesScreen({super.key});
@@ -8,35 +14,15 @@ class BikesScreen extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bikes'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.motorcycle,
-              size: 80,
-              color: colorScheme.primary,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Bikes Screen',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: colorScheme.onSurface,
-                  ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Coming Soon ⚡',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-            ),
-          ],
-        ),
+      backgroundColor: colorScheme.onPrimary,
+      appBar: kIsWeb ? null : const PrimaryAppBar(title: 'Bikes'),
+      body: Column(
+        children: [
+          if (kIsWeb) const HeaderWeb(title: 'Bikes'),
+          Expanded(
+            child: kIsWeb ? const BikesListWeb() : const BikesListMobile(),
+          ),
+        ],
       ),
     );
   }

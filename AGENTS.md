@@ -111,6 +111,63 @@ flutter build ios    # Build iOS
 - **Delegate build_runner and flutter analyze to user**: To reduce token usage, avoid running `dart run build_runner build` and `flutter analyze` unless explicitly requested. Instead, remind the user to run these commands manually after code changes that require code generation or when checking for lint issues
 - **One UI class per file**: Never place multiple UI classes/widgets in a single file; keep each UI class in its own file to maintain clarity and reuse
 
+### Color Usage
+
+**IMPORTANT**: Always use `Theme.of(context).colorScheme` for colors. Never use `Colors.white`, `Colors.black`, or hardcoded color values.
+
+**Rules:**
+- ❌ Never use: `Colors.black`, `Colors.white`, `Color(0xFF...)` hardcoded values
+- ✅ Always use: `colorScheme.onSecondary` (for black/dark colors)
+- ✅ Always use: `colorScheme.onPrimary` (for white/light colors)
+- ✅ Use semantic tokens: `colorScheme.primary`, `colorScheme.secondary`, `colorScheme.tertiary`, `colorScheme.error`
+
+**Example:**
+```dart
+final colorScheme = Theme.of(context).colorScheme;
+
+// Dark text (instead of Colors.black)
+Text('Hello', style: TextStyle(color: colorScheme.onSecondary))
+
+// Light background (instead of Colors.white)
+Container(color: colorScheme.onPrimary)
+
+// For muted states
+color: colorScheme.onSecondary.withOpacity(0.6)
+```
+
+**Reference**: See `lib/main.dart` for the complete color palette definition.
+
+### Responsive Text Sizing
+
+**IMPORTANT**: Text sizes must be larger on web and smaller on mobile. Use conditional sizing based on platform.
+
+**Pattern:**
+```dart
+import 'package:flutter/foundation.dart';
+
+// Get text theme
+final textTheme = Theme.of(context).textTheme;
+
+// Apply responsive text size using kIsWeb
+final titleStyle = kIsWeb ? textTheme.displayMedium : textTheme.headlineSmall;
+final subtitleStyle = kIsWeb ? textTheme.headlineLarge : textTheme.bodyLarge;
+final bodyStyle = kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge;
+```
+
+**Common Mappings:**
+- **Large headings**: `kIsWeb ? textTheme.displayMedium : textTheme.headlineSmall`
+- **Subheadings**: `kIsWeb ? textTheme.headlineLarge : textTheme.bodyLarge`
+- **Body text**: `kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge`
+- **Small text**: `kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium`
+
+**Why this matters:**
+- Web users typically sit further from screens
+- Mobile users hold devices closer
+- Maintains optimal readability across platforms
+- Consistent with platform conventions
+
+**Reference**: See `lib/features/auth/presentation/widgets/shared/auth_form.dart` for implementation examples (lines 103, 127-129, 300-308, 330).
+
 ### Error Handling in Data Layer
 
 **All methods in datasources and repositories must use try-catch blocks with rethrow** to ensure proper error propagation through the data layer. This allows errors to bubble up to the presentation layer where they can be properly handled and displayed to users.
