@@ -18,7 +18,10 @@ class BikesScreen extends StatelessWidget {
       appBar: kIsWeb ? null : const PrimaryAppBar(title: 'Bikes'),
       body: Column(
         children: [
-          if (kIsWeb) const HeaderWeb(title: 'Bikes'),
+          if (kIsWeb) Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: const HeaderWeb(title: 'Bikes'),
+          ),
           Expanded(
             child: kIsWeb ? const BikesListWeb() : const BikesListMobile(),
           ),

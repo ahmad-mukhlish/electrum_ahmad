@@ -27,7 +27,7 @@ class BikesListWeb extends ConsumerWidget {
                 crossAxisCount: _getCrossAxisCount(context),
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 0.85,
+                childAspectRatio: 1.1,
               ),
               itemCount: bikes.length,
               itemBuilder: (context, index) {
@@ -51,8 +51,8 @@ class BikesListWeb extends ConsumerWidget {
 
   int _getCrossAxisCount(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    if (width > 1200) return 4;
-    if (width > 768) return 3;
+    if (width > 1200) return 3;
+    if (width > 768) return 2;
     return 2;
   }
 
