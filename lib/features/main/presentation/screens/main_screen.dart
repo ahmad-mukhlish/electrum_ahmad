@@ -9,12 +9,9 @@ import '../widgets/mobile/main_screen_mobile.dart';
 import '../widgets/web/main_screen_web.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
-  const MainScreen({super.key, required this.child});
+  const MainScreen({super.key, required this.body});
 
-  final Widget child;
-
-  static void navigateToIndex(BuildContext context, int index) =>
-      context.go(MainNavDestination.fromIndex(index).path);
+  final Widget body;
 
   @override
   ConsumerState<MainScreen> createState() => _MainScreenState();
@@ -40,12 +37,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
   @override
   Widget build(BuildContext context) => kIsWeb
-      ? MainScreenWeb(
-          onNavigate: MainScreen.navigateToIndex,
-          body: widget.child,
-        )
-      : MainScreenMobile(
-          onNavigate: MainScreen.navigateToIndex,
-          body: widget.child,
-        );
+      ? MainScreenWeb(onNavigate: navigateToIndex, body: widget.body)
+      : MainScreenMobile(onNavigate: navigateToIndex, body: widget.body);
+
+  void navigateToIndex(BuildContext context, int index) =>
+      context.go(MainNavDestination.fromIndex(index).path);
 }

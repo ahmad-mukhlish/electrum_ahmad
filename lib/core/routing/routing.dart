@@ -57,7 +57,7 @@ GoRouter router(Ref ref) {
       // - Better performance (controllers, state preserved)
       // - Still maintains URL changes and deep linking
       ShellRoute(
-        builder: (context, state, child) => MainScreen(child: child),
+        builder: (context, state, child) => MainScreen(body: child),
         routes: [
           GoRoute(
             path: '/',

@@ -1,41 +1,35 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import '../../domain/entities/user.dart';
 
-part 'user_dto.freezed.dart';
 part 'user_dto.g.dart';
 
-@freezed
-abstract class UserDto with _$UserDto {
-  const UserDto._();
+@JsonSerializable()
+class UserDto {
+  final String? uid;
+  final String? email;
+  final String? displayName;
+  final String? photoUrl;
 
-  const factory UserDto({
-    required String uid,
-    required String email,
-    String? displayName,
-    String? photoUrl,
-  }) = _UserDto;
+  UserDto({
+    this.uid,
+    this.email,
+    this.displayName,
+    this.photoUrl,
+  });
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 }
 
-// Conversion extensions
-extension UserDtoX on UserDto {
-  /// Convert DTO to domain entity
+/// DTO to Entity mapper
+extension UserDtoMapper on UserDto {
+  /// Convert DTO to domain entity with default values
   User toEntity() => User(
-        uid: uid,
-        email: email,
-        displayName: displayName,
-        photoUrl: photoUrl,
-      );
-}
-
-extension UserX on User {
-  /// Convert domain entity to DTO
-  UserDto toDto() => UserDto(
-        uid: uid,
-        email: email,
+        uid: uid ?? '',
+        email: email ?? '',
         displayName: displayName,
         photoUrl: photoUrl,
       );

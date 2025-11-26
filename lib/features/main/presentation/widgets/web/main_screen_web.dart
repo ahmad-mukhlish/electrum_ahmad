@@ -73,7 +73,7 @@ class MainScreenWeb extends HookConsumerWidget {
               unselectedTitleTextStyle: TextStyle(
                 color: colorScheme.onSurfaceVariant,
               ),
-              backgroundColor: colorScheme.surface,
+              backgroundColor: colorScheme.secondary.withValues(alpha: 0.1),
             ),
             title: Column(
               children: [
