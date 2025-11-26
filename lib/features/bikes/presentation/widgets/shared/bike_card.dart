@@ -44,7 +44,7 @@ class BikeCard extends StatelessWidget {
       child: Image.network(
         bike.photoUrl,
         fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => Container(
+        errorBuilder: (_, _, _) => Container(
           color: colorScheme.secondary,
           child: Icon(
             Icons.two_wheeler,
@@ -116,20 +116,20 @@ class BikeCard extends StatelessWidget {
         Text(
           'Range: ${bike.rangeKm} km',
           style: specStyle?.copyWith(
-            color: colorScheme.onSecondary.withOpacity(0.8),
+            color: colorScheme.onSecondary.withValues(alpha: 0.8),
           ),
         ),
         const SizedBox(width: 16),
         Icon(
           bike.isAvailable ? Icons.check_circle : Icons.cancel,
           size: kIsWeb ? 20 : 16,
-          color: bike.isAvailable ? Colors.green : Colors.grey,
+          color: bike.isAvailable ? colorScheme.primary : colorScheme.error,
         ),
         const SizedBox(width: 4),
         Text(
           bike.isAvailable ? 'Available' : 'Not Available',
           style: specStyle?.copyWith(
-            color: bike.isAvailable ? Colors.green : Colors.grey,
+            color: bike.isAvailable ? colorScheme.primary : colorScheme.error,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -147,7 +147,7 @@ class BikeCard extends StatelessWidget {
           'from ',
           style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
               ?.copyWith(
-            color: colorScheme.onSecondary.withOpacity(0.6),
+            color: colorScheme.onSecondary.withValues(alpha: 0.6),
           ),
         ),
         Text(
@@ -161,7 +161,7 @@ class BikeCard extends StatelessWidget {
           ' / day',
           style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
               ?.copyWith(
-            color: colorScheme.onSecondary.withOpacity(0.6),
+            color: colorScheme.onSecondary.withValues(alpha: 0.6),
           ),
         ),
       ],

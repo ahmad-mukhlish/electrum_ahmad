@@ -52,13 +52,13 @@ class BikesListMobile extends ConsumerWidget {
           Icon(
             Icons.two_wheeler,
             size: 80,
-            color: colorScheme.primary.withOpacity(0.5),
+            color: colorScheme.primary.withValues(alpha: 0.5),
           ),
           const SizedBox(height: 16),
           Text(
             'No bikes available',
             style: textTheme.titleLarge?.copyWith(
-              color: colorScheme.onSecondary.withOpacity(0.7),
+              color: colorScheme.onSecondary.withValues(alpha: 0.7),
             ),
           ),
         ],
@@ -73,12 +73,14 @@ class BikesListMobile extends ConsumerWidget {
   }
 
   void _showErrorSnackbar(BuildContext context, Object error) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error loading bikes: $error'),
-            backgroundColor: Colors.red,
+            backgroundColor: colorScheme.error,
           ),
         );
       }
