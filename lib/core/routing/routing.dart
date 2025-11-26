@@ -5,7 +5,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../features/auth/domain/entities/user.dart';
 import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/auth/presentation/viewmodel/notifiers/auth_notifier.dart';
+import '../../features/bikes/presentation/screens/bikes_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/main/presentation/screens/main_screen.dart';
+import '../../features/profile/presentation/screens/profile_screen.dart';
 
 part 'routing.g.dart';
 
@@ -47,9 +50,34 @@ GoRouter router(Ref ref) {
         path: '/login',
         builder: (context, state) => const AuthScreen(),
       ),
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const HomeScreen(),
+      // ShellRoute: Keeps MainScreen alive, only swaps child content
+      // Benefits:
+      // - No full page rebuilds when navigating between tabs
+      // - Sidebar/navbar stays persistent
+      // - Better performance (controllers, state preserved)
+      // - Still maintains URL changes and deep linking
+      ShellRoute(
+        builder: (context, state, child) => MainScreen(child: child),
+        routes: [
+          GoRoute(
+            path: '/',
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: const HomeScreen(),
+            ),
+          ),
+          GoRoute(
+            path: '/bikes',
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: const BikesScreen(),
+            ),
+          ),
+          GoRoute(
+            path: '/profile',
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: const ProfileScreen(),
+            ),
+          ),
+        ],
       ),
     ],
   );

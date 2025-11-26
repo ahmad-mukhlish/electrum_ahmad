@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class BikesScreen extends StatelessWidget {
+  const BikesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,20 +9,20 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Bikes'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.home,
+              Icons.motorcycle,
               size: 80,
               color: colorScheme.primary,
             ),
             const SizedBox(height: 16),
             Text(
-              'Home Screen',
+              'Bikes Screen',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: colorScheme.onSurface,
