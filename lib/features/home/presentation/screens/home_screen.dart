@@ -33,13 +33,6 @@ class HomeScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildProfilePhoto(user.photoUrl, colorScheme),
-                  const SizedBox(height: 24),
-                  _buildUserInfo(
-                    user.displayName ?? user.email,
-                    Theme.of(context).textTheme.headlineSmall,
-                    colorScheme,
-                  ),
                   const SizedBox(height: 8),
                   _buildUserInfo(
                     user.email,
@@ -50,8 +43,8 @@ class HomeScreen extends ConsumerWidget {
                   Text(
                     'Welcome to Electrum! ⚡',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                        ),
+                      color: colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ],
               ),
@@ -59,9 +52,7 @@ class HomeScreen extends ConsumerWidget {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(
-          child: Text('Error: $error'),
-        ),
+        error: (error, stack) => Center(child: Text('Error: $error')),
       ),
     );
   }
@@ -72,11 +63,7 @@ class HomeScreen extends ConsumerWidget {
       backgroundColor: colorScheme.primaryContainer,
       backgroundImage: photoUrl != null ? NetworkImage(photoUrl) : null,
       child: photoUrl == null
-          ? Icon(
-              Icons.person,
-              size: 50,
-              color: colorScheme.onPrimaryContainer,
-            )
+          ? Icon(Icons.person, size: 50, color: colorScheme.onPrimaryContainer)
           : null,
     );
   }

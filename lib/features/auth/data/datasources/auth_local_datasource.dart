@@ -21,40 +21,59 @@ class AuthLocalDatasource {
   AuthLocalDatasource(this._localDb);
 
   Future<void> saveLoginState(bool isLoggedIn) async {
-    await _localDb.save(_keyLoggedIn, isLoggedIn.toString());
+    try {
+      await _localDb.save(_keyLoggedIn, isLoggedIn.toString());
+    } catch (e) {
+      rethrow;
+    }
   }
 
   bool getLoginState() {
-    final value = _localDb.get(_keyLoggedIn);
-    return value == 'true';
+    try {
+      final value = _localDb.get(_keyLoggedIn);
+      return value == 'true';
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> clearLoginState() async {
-    await _localDb.clearAll();
+    try {
+      await _localDb.clearAll();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Save user data as JSON string
   Future<void> saveUser(UserDto user) async {
-    final jsonString = jsonEncode(user.toJson());
-    await _localDb.save(_keyUser, jsonString);
+    try {
+      final jsonString = jsonEncode(user.toJson());
+      await _localDb.save(_keyUser, jsonString);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Get user data from local storage
   UserDto? getUser() {
-    final jsonString = _localDb.get(_keyUser);
-    if (jsonString == null) return null;
-
     try {
+      final jsonString = _localDb.get(_keyUser);
+      if (jsonString == null) return null;
+
       final json = jsonDecode(jsonString) as Map<String, dynamic>;
       return UserDto.fromJson(json);
     } catch (e) {
-      // Return null if JSON parsing fails
-      return null;
+      rethrow;
     }
   }
 
   /// Clear user data from local storage
   Future<void> clearUser() async {
-    await _localDb.save(_keyUser, '');
+    try {
+      await _localDb.save(_keyUser, '');
+    } catch (e) {
+      rethrow;
+    }
   }
 }

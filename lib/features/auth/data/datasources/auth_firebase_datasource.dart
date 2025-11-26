@@ -29,8 +29,8 @@ class AuthFirebaseDatasource {
       );
 
       return _userDtoFromFirebase(userCredential.user!);
-    } on firebase_auth.FirebaseAuthException catch (e) {
-      throw _handleAuthException(e);
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -38,7 +38,6 @@ class AuthFirebaseDatasource {
   Future<UserDto> signUpWithEmailAndPassword(
     String email,
     String password,
-    String displayName,
   ) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -46,30 +45,34 @@ class AuthFirebaseDatasource {
         password: password,
       );
 
-      // Update display name after account creation
-      await userCredential.user?.updateDisplayName(displayName);
-      await userCredential.user?.reload();
+      firebase_auth.User? user = userCredential.user;
+      if (user == null) throw Error();
 
-      // Get updated user with display name
-      final updatedUser = _firebaseAuth.currentUser;
-
-      return _userDtoFromFirebase(updatedUser!);
-    } on firebase_auth.FirebaseAuthException catch (e) {
-      throw _handleAuthException(e);
+      return _userDtoFromFirebase(user);
+    } catch (e) {
+      rethrow;
     }
   }
 
   /// Sign out current user
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+    try {
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Get current user if logged in
   UserDto? getCurrentUser() {
-    final firebaseUser = _firebaseAuth.currentUser;
-    if (firebaseUser == null) return null;
+    try {
+      final firebaseUser = _firebaseAuth.currentUser;
+      if (firebaseUser == null) return null;
 
-    return _userDtoFromFirebase(firebaseUser);
+      return _userDtoFromFirebase(firebaseUser);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Convert Firebase User to UserDto
@@ -79,24 +82,4 @@ class AuthFirebaseDatasource {
         displayName: user.displayName,
         photoUrl: user.photoURL,
       );
-
-  /// Handle Firebase Auth exceptions and map to user-friendly messages
-  String _handleAuthException(firebase_auth.FirebaseAuthException e) {
-    switch (e.code) {
-      case 'email-already-in-use':
-        return 'already registered please login';
-      case 'user-not-found':
-        return 'not registered yet, please sign up';
-      case 'wrong-password':
-        return 'not registered yet, please sign up';
-      case 'invalid-email':
-        return 'Invalid email address';
-      case 'weak-password':
-        return 'Password too weak';
-      case 'invalid-credential':
-        return 'not registered yet, please sign up';
-      default:
-        return 'An error occurred. Please try again.';
-    }
-  }
 }

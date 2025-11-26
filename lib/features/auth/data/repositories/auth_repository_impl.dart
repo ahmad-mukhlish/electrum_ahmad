@@ -23,55 +23,65 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<bool> login(String email, String password) async {
-    // Call Firebase to authenticate
-    final userDto = await _firebaseDatasource.signInWithEmailAndPassword(
-      email,
-      password,
-    );
+    try {
+      // Call Firebase to authenticate
+      final userDto = await _firebaseDatasource.signInWithEmailAndPassword(
+        email,
+        password,
+      );
 
-    // Save user data locally
-    await _localDatasource.saveUser(userDto);
-    await _localDatasource.saveLoginState(true);
+      // Save user data locally
+      await _localDatasource.saveUser(userDto);
+      await _localDatasource.saveLoginState(true);
 
-    return true;
+      return true;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<bool> register(
-    String email,
-    String password,
-    String displayName,
-  ) async {
-    // Call Firebase to create account
-    final userDto = await _firebaseDatasource.signUpWithEmailAndPassword(
-      email,
-      password,
-      displayName,
-    );
+  Future<bool> register(String email, String password) async {
+    try {
+      final userDto = await _firebaseDatasource.signUpWithEmailAndPassword(
+        email,
+        password,
+      );
 
-    // Save user data locally
-    await _localDatasource.saveUser(userDto);
-    await _localDatasource.saveLoginState(true);
+      // Save user data locally
+      await _localDatasource.saveUser(userDto);
+      await _localDatasource.saveLoginState(true);
+    } catch (e) {
+      rethrow;
+    }
 
     return true;
   }
 
   @override
   Future<void> logout() async {
-    // Sign out from Firebase
-    await _firebaseDatasource.signOut();
+    try {
+      // Sign out from Firebase
+      await _firebaseDatasource.signOut();
 
-    // Clear local data
-    await _localDatasource.clearUser();
-    await _localDatasource.clearLoginState();
+      // Clear local data
+      await _localDatasource.clearUser();
+      await _localDatasource.clearLoginState();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<User?> getUser() async {
-    // Get user from local storage
-    final userDto = _localDatasource.getUser();
+    try {
+      // Get user from local storage
+      final userDto = _localDatasource.getUser();
 
-    // Convert DTO to entity
-    return userDto?.toEntity();
+      // Convert DTO to entity
+      return userDto?.toEntity();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

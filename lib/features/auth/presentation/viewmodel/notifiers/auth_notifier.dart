@@ -21,18 +21,10 @@ class AuthNotifier extends _$AuthNotifier {
     });
   }
 
-  Future<void> register(
-    String email,
-    String password,
-    String displayName,
-  ) async {
+  Future<void> register(String email, String password) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      await ref.read(authRepositoryProvider).register(
-            email,
-            password,
-            displayName,
-          );
+      await ref.read(authRepositoryProvider).register(email, password);
       return await ref.read(authRepositoryProvider).getUser();
     });
   }
