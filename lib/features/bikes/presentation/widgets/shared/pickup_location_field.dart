@@ -22,10 +22,6 @@ class _PickupLocationFieldState extends ConsumerState<PickupLocationField> {
     final textTheme = Theme.of(context).textTheme;
     final formState = ref.watch(rentFormProvider);
 
-    final pickupText = formState.pickupText.isNotEmpty
-        ? formState.pickupText
-        : 'Select pickup location';
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,112 +29,64 @@ class _PickupLocationFieldState extends ConsumerState<PickupLocationField> {
           'Pickup Location',
           style: (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
               ?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: colorScheme.onSecondary,
-          ),
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onSecondary,
+              ),
         ),
         SizedBox(height: kIsWeb ? 16 : 12),
-        if (kIsWeb) ...[
-          _buildWebLocationDisplay(
-            colorScheme: colorScheme,
-            textTheme: textTheme,
-            address: pickupText,
+        TextField(
+          controller: TextEditingController(text: formState.pickupText)
+            ..selection = TextSelection.fromPosition(
+              TextPosition(offset: formState.pickupText.length),
+            ),
+          onChanged: (value) {
+            ref.read(rentFormProvider.notifier).setPickupText(value);
+          },
+          style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
+              ?.copyWith(color: colorScheme.onSecondary),
+          decoration: InputDecoration(
+            hintText: 'Enter pickup location',
+            hintStyle: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
+                ?.copyWith(
+                  color: colorScheme.onSecondary.withValues(alpha: 0.5),
+                ),
+            prefixIcon: Icon(Icons.location_on, color: colorScheme.primary),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: colorScheme.onSecondary.withValues(alpha: 0.3),
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: colorScheme.onSecondary.withValues(alpha: 0.3),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: colorScheme.primary, width: 2),
+            ),
           ),
-          const SizedBox(height: 12),
-          OutlinedButton.icon(
-            onPressed: _isLoadingLocation ? null : _useMyLocation,
-            icon: _isLoadingLocation
-                ? SizedBox(
-                    width: 18,
-                    height: 18,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: colorScheme.primary,
-                    ),
-                  )
-                : Icon(
-                    Icons.my_location,
-                    size: 20,
+        ),
+        SizedBox(height: kIsWeb ? 12 : 8),
+        OutlinedButton.icon(
+          onPressed: _isLoadingLocation ? null : _useMyLocation,
+          icon: _isLoadingLocation
+              ? SizedBox(
+                  width: kIsWeb ? 18 : 16,
+                  height: kIsWeb ? 18 : 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
                     color: colorScheme.primary,
                   ),
-            label: Text(
-              _isLoadingLocation
-                  ? 'Getting location...'
-                  : 'Use my location (OSM)',
-              style: textTheme.bodyLarge?.copyWith(
-                color: colorScheme.onSecondary,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            style: OutlinedButton.styleFrom(
-              side: BorderSide(color: colorScheme.primary),
-              padding: const EdgeInsets.symmetric(vertical: 16),
-            ),
+                )
+              : Icon(Icons.my_location, size: kIsWeb ? 20 : 18),
+          label: Text(
+            _isLoadingLocation ? 'Getting location...' : 'Use my location',
+            style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium),
           ),
-        ] else ...[
-          TextField(
-            controller: TextEditingController(text: formState.pickupText)
-              ..selection = TextSelection.fromPosition(
-                TextPosition(offset: formState.pickupText.length),
-              ),
-            onChanged: (value) {
-              ref.read(rentFormProvider.notifier).setPickupText(value);
-            },
-            style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
-                ?.copyWith(color: colorScheme.onSecondary),
-            decoration: InputDecoration(
-              hintText: 'Enter pickup location',
-              hintStyle: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
-                  ?.copyWith(
-                color: colorScheme.onSecondary.withValues(alpha: 0.5),
-              ),
-              prefixIcon: Icon(
-                Icons.location_on,
-                color: colorScheme.primary,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
-                  color: colorScheme.onSecondary.withValues(alpha: 0.3),
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
-                  color: colorScheme.onSecondary.withValues(alpha: 0.3),
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
-                  color: colorScheme.primary,
-                  width: 2,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: kIsWeb ? 12 : 8),
-          OutlinedButton.icon(
-            onPressed: _isLoadingLocation ? null : _useMyLocation,
-            icon: _isLoadingLocation
-                ? SizedBox(
-                    width: kIsWeb ? 18 : 16,
-                    height: kIsWeb ? 18 : 16,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: colorScheme.primary,
-                    ),
-                  )
-                : Icon(
-                    Icons.my_location,
-                    size: kIsWeb ? 20 : 18,
-                  ),
-            label: Text(
-              _isLoadingLocation ? 'Getting location...' : 'Use my location',
-              style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium),
-            ),
-          ),
-        ],
+        ),
       ],
     );
   }
@@ -154,21 +102,18 @@ class _PickupLocationFieldState extends ConsumerState<PickupLocationField> {
 
       if (position == null) {
         if (mounted) {
-          _showError('Unable to get your location. Please enable location services.');
+          _showError(
+            'Unable to get your location. Please enable location services.',
+          );
         }
         return;
       }
 
       // Reverse geocode to get address
-      final address = kIsWeb
-          ? await locationService.getAddressFromOsmCoordinates(
-              position.latitude,
-              position.longitude,
-            )
-          : await locationService.getAddressFromCoordinates(
-              position.latitude,
-              position.longitude,
-            );
+      final address = await locationService.getAddressFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
 
       if (address == null) {
         if (mounted) {
@@ -178,11 +123,9 @@ class _PickupLocationFieldState extends ConsumerState<PickupLocationField> {
       }
 
       // Update form with location data
-      ref.read(rentFormProvider.notifier).setLocation(
-            position.latitude,
-            position.longitude,
-            address,
-          );
+      ref
+          .read(rentFormProvider.notifier)
+          .setLocation(position.latitude, position.longitude, address);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -208,40 +151,6 @@ class _PickupLocationFieldState extends ConsumerState<PickupLocationField> {
       SnackBar(
         content: Text(message),
         backgroundColor: Theme.of(context).colorScheme.error,
-      ),
-    );
-  }
-
-  Widget _buildWebLocationDisplay({
-    required ColorScheme colorScheme,
-    required TextTheme textTheme,
-    required String address,
-  }) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: colorScheme.onSecondary.withValues(alpha: 0.3),
-        ),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Icons.location_on,
-            color: colorScheme.primary,
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              address,
-              style: textTheme.bodyLarge?.copyWith(
-                color: colorScheme.onSecondary,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

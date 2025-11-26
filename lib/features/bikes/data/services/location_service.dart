@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -52,43 +51,6 @@ class LocationService {
 
   /// Reverse geocode coordinates to human-readable address
   Future<String?> getAddressFromCoordinates(
-    double latitude,
-    double longitude,
-  ) async {
-    try {
-      final placemarks = await placemarkFromCoordinates(latitude, longitude);
-
-      if (placemarks.isEmpty) return null;
-
-      final placemark = placemarks.first;
-
-      // Build formatted address from placemark components
-      final parts = <String>[];
-
-      if (placemark.street?.isNotEmpty ?? false) {
-        parts.add(placemark.street!);
-      }
-
-      if (placemark.subLocality?.isNotEmpty ?? false) {
-        parts.add(placemark.subLocality!);
-      }
-
-      if (placemark.locality?.isNotEmpty ?? false) {
-        parts.add(placemark.locality!);
-      }
-
-      if (placemark.administrativeArea?.isNotEmpty ?? false) {
-        parts.add(placemark.administrativeArea!);
-      }
-
-      return parts.isNotEmpty ? parts.join(', ') : null;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  /// Reverse geocode coordinates using OSM (Nominatim) for web platform
-  Future<String?> getAddressFromOsmCoordinates(
     double latitude,
     double longitude,
   ) async {
