@@ -94,7 +94,7 @@ class BikeSummaryCard extends StatelessWidget {
               child: Image.network(
                 bike.photoUrl,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Icon(
+                errorBuilder: (_, _, _) => Icon(
                   Icons.two_wheeler,
                   size: imageSize * 0.5,
                   color: colorScheme.primary,

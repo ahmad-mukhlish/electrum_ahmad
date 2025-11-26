@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -81,6 +82,42 @@ class LocationService {
       }
 
       return parts.isNotEmpty ? parts.join(', ') : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// Reverse geocode coordinates using OSM (Nominatim) for web platform
+  Future<String?> getAddressFromOsmCoordinates(
+    double latitude,
+    double longitude,
+  ) async {
+    try {
+      final dio = Dio(
+        BaseOptions(
+          baseUrl: 'https://nominatim.openstreetmap.org',
+          headers: {
+            'User-Agent': 'electrum-ahmad-app',
+          },
+        ),
+      );
+
+      final response = await dio.get<Map<String, dynamic>>(
+        '/reverse',
+        queryParameters: {
+          'format': 'jsonv2',
+          'lat': latitude,
+          'lon': longitude,
+        },
+      );
+
+      final address = response.data?['display_name'] as String?;
+
+      if (address == null || address.isEmpty) {
+        return null;
+      }
+
+      return address;
     } catch (e) {
       return null;
     }

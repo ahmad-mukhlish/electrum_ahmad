@@ -18,49 +18,53 @@ class RentFormContentWeb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 900),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          BikeSummaryCard(bike: bike),
+          const SizedBox(height: 32),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BikeSummaryCard(bike: bike),
-              const SizedBox(height: 32),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 3,
+              Expanded(
+                flex: 3,
+                child: Card(
+                  elevation: 2,
+                  color: colorScheme.onPrimary,
+                  child: const Padding(
+                    padding: EdgeInsets.all(24),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const RentalPeriodFields(),
-                        const SizedBox(height: 24),
-                        const PickupLocationField(),
-                        const SizedBox(height: 24),
-                        const ContactFields(),
+                        RentalPeriodFields(),
+                        SizedBox(height: 24),
+                        PickupLocationField(),
+                        SizedBox(height: 24),
+                        ContactFields(),
                       ],
                     ),
                   ),
-                  const SizedBox(width: 32),
-                  Expanded(
-                    flex: 2,
-                    child: PaymentSummaryCard(bike: bike),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 48),
-              Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 400),
-                  child: SubmitButton(bike: bike),
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(width: 32),
+              Expanded(
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    PaymentSummaryCard(bike: bike),
+                    const SizedBox(height: 24),
+                    SubmitButton(bike: bike),
+                  ],
+                ),
+              ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quickalert/quickalert.dart';
 
-import '../../../../core/widgets/header_web.dart';
 import '../../../../core/widgets/primary_app_bar.dart';
 import '../../domain/entities/bike.dart';
 import '../viewmodel/notifiers/rent_submit_provider.dart';
@@ -39,10 +38,9 @@ class BikeRentingFormScreen extends ConsumerWidget {
       backgroundColor: colorScheme.onPrimary,
       appBar: kIsWeb
           ? null
-          : const PrimaryAppBar(title: "I'm interested to rent"),
+          : const PrimaryAppBar(title: "Rent the bike"),
       body: Column(
         children: [
-          if (kIsWeb) const HeaderWeb(title: "I'm interested to rent"),
           Expanded(
             child: kIsWeb
                 ? RentFormContentWeb(bike: bike)

@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/entities/bike.dart';
 
 class BikeHeroSection extends StatelessWidget {
-  const BikeHeroSection({
-    super.key,
-    required this.bike,
-  });
+  const BikeHeroSection({super.key, required this.bike});
 
   final Bike bike;
 
@@ -36,22 +33,26 @@ class BikeHeroSection extends StatelessWidget {
               children: [
                 Text(
                   bike.model,
-                  style: (kIsWeb
-                          ? textTheme.displayMedium
-                          : textTheme.headlineLarge)
-                      ?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: colorScheme.onSecondary,
-                  ),
+                  style:
+                      (kIsWeb
+                              ? textTheme.displayMedium
+                              : textTheme.headlineLarge)
+                          ?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.onSecondary,
+                          ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: kIsWeb ? 12 : 8),
                 Text(
                   _getBikeSubtitle(),
-                  style: (kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge)
-                      ?.copyWith(
-                    color: colorScheme.onSecondary.withValues(alpha: 0.7),
-                  ),
+                  style:
+                      (kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge)
+                          ?.copyWith(
+                            color: colorScheme.onSecondary.withValues(
+                              alpha: 0.7,
+                            ),
+                          ),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -76,7 +77,7 @@ class BikeHeroSection extends StatelessWidget {
           : Image.network(
               bike.photoUrl,
               fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => Icon(
+              errorBuilder: (_, _, _) => Icon(
                 Icons.two_wheeler,
                 size: kIsWeb ? 120 : 80,
                 color: colorScheme.primary,
@@ -87,7 +88,7 @@ class BikeHeroSection extends StatelessWidget {
                   child: CircularProgressIndicator(
                     value: loadingProgress.expectedTotalBytes != null
                         ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
+                              loadingProgress.expectedTotalBytes!
                         : null,
                   ),
                 );

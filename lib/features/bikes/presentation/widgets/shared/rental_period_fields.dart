@@ -108,6 +108,9 @@ class RentalPeriodFields extends ConsumerWidget {
       initialDate: now,
       firstDate: now,
       lastDate: lastDate,
+      initialEntryMode: kIsWeb
+          ? DatePickerEntryMode.calendarOnly
+          : DatePickerEntryMode.calendar,
     );
 
     if (picked != null) {
@@ -129,6 +132,9 @@ class RentalPeriodFields extends ConsumerWidget {
       initialDate: initialDate,
       firstDate: firstDate,
       lastDate: DateTime(now.year + 1),
+      initialEntryMode: kIsWeb
+          ? DatePickerEntryMode.calendarOnly
+          : DatePickerEntryMode.calendar,
     );
 
     if (picked != null) {
