@@ -1,6 +1,7 @@
 import 'package:electrum_ahmad/core/utils/color_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'core/routing/routing.dart';
@@ -10,15 +11,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -30,17 +25,25 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp.router(
       title: 'Electrum Ahmad',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: hexToColor("#006A71"),
-          primary: hexToColor("#48A6A7"),
-          secondary: hexToColor("#F2EFE7"),
-          tertiary: hexToColor("#008080"),
-          onPrimary: hexToColor("#fffbf7"),
-          onSecondary: hexToColor("#003333"),
-        ),
-      ),
+      theme: _buildTheme(),
       routerConfig: router,
     );
   }
+}
+
+ThemeData _buildTheme() {
+  final ThemeData baseTheme = ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: hexToColor("#006A71"),
+      primary: hexToColor("#48A6A7"),
+      secondary: hexToColor("#F2EFE7"),
+      tertiary: hexToColor("#008080"),
+      onPrimary: hexToColor("#fffbf7"),
+      onSecondary: hexToColor("#003333"),
+    ),
+  );
+
+  return baseTheme.copyWith(
+    textTheme: GoogleFonts.rubikTextTheme(baseTheme.textTheme),
+  );
 }

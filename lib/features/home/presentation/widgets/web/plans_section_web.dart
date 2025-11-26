@@ -23,8 +23,6 @@ class PlansSectionWeb extends HookConsumerWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context),
-
             const _PeriodToggleSection(),
             const SizedBox(height: 24),
             Row(
@@ -57,19 +55,6 @@ class PlansSectionWeb extends HookConsumerWidget {
         });
         return const SizedBox.shrink();
       },
-    );
-  }
-
-  Widget _buildSectionTitle(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Text(
-        'Plans',
-        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.onSecondary,
-        ),
-      ),
     );
   }
 

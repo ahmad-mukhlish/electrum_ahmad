@@ -10,7 +10,9 @@ class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.1),
+      backgroundColor: kIsWeb
+          ? Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.1)
+          : Theme.of(context).colorScheme.secondary,
       body: kIsWeb ? const AuthScreenWeb() : const AuthScreenMobile(),
     );
   }

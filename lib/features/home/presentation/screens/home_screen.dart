@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
+import '../../../../core/widgets/primary_app_bar.dart';
 import '../widgets/mobile/home_content_mobile.dart';
 import '../widgets/web/home_content_web.dart';
 
@@ -11,22 +12,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
-      appBar: kIsWeb ? null : _buildAppBar(context),
+      appBar: kIsWeb ? null : const PrimaryAppBar(title: 'For you'),
       body: kIsWeb ? const HomeContentWeb() : const HomeContentMobile(),
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.onPrimary,
-      title: Text(
-        textAlign: TextAlign.start,
-        'For you',
-        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.onSecondary,
-        ),
-      ),
     );
   }
 }

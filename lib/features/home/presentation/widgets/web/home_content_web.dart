@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/widgets/header_web.dart';
 import 'plans_section_web.dart';
 import '../shared/promotions_carousel.dart';
 
@@ -17,19 +18,11 @@ class HomeContentWeb extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: Text(
-                "Promotions",
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSecondary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            const HeaderWeb(title: 'For You'),
             const SizedBox(height: 16),
             PromotionsCarousel(isWeb: true, height: carouselHeight),
             const SizedBox(height: 24),
+            const HeaderWeb(title: 'Plans'),
             const PlansSectionWeb(),
             const SizedBox(height: 32),
           ],

@@ -59,7 +59,7 @@ class AuthForm extends HookConsumerWidget {
           ),
           textTheme,
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: kIsWeb ? 24 : 16),
         _buildToggleLink(colorScheme, textTheme, isRegisterMode),
       ],
     );
@@ -100,7 +100,7 @@ class AuthForm extends HookConsumerWidget {
     TextTheme textTheme,
     bool isRegister,
   ) {
-    final titleStyle = kIsWeb ? textTheme.displayMedium : textTheme.bodyLarge;
+    final titleStyle = kIsWeb ? textTheme.displayMedium : textTheme.headlineSmall;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -126,7 +126,7 @@ class AuthForm extends HookConsumerWidget {
   Widget _buildSubtitle(ColorScheme colorScheme, TextTheme textTheme) {
     final subtitleStyle = kIsWeb
         ? textTheme.headlineLarge
-        : textTheme.bodyMedium;
+        : textTheme.bodyLarge;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -291,15 +291,21 @@ class AuthForm extends HookConsumerWidget {
       style: FilledButton.styleFrom(
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
-        padding: const EdgeInsets.symmetric(vertical: 24),
+        padding: const EdgeInsets.symmetric(vertical: kIsWeb ? 24 : 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: authState.when(
         data: (_) => Text(
           isRegister ? 'Sign up' : 'Sign in',
-          style: textTheme.headlineSmall?.copyWith(
-            color: colorScheme.onPrimary,
-          ),
+          style: kIsWeb
+              ? textTheme.headlineSmall?.copyWith(
+                  color: colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                )
+              : textTheme.bodyLarge?.copyWith(
+                  color: colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
         ),
         loading: () => const SizedBox(
           height: 20,
@@ -321,16 +327,21 @@ class AuthForm extends HookConsumerWidget {
       children: [
         Text(
           isRegisterMode.value ? "Already have an account? " : "No account? ",
-          style: textTheme.headlineSmall,
+          style: kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge,
         ),
         GestureDetector(
           onTap: () => isRegisterMode.value = !isRegisterMode.value,
           child: Text(
             isRegisterMode.value ? 'Sign in' : 'Sign up',
-            style: textTheme.headlineSmall?.copyWith(
-              color: colorScheme.primary,
-              fontWeight: FontWeight.w600,
-            ),
+            style: kIsWeb
+                ? textTheme.headlineSmall?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  )
+                : textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
           ),
         ),
       ],

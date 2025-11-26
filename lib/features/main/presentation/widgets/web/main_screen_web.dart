@@ -65,7 +65,7 @@ class MainScreenWeb extends HookConsumerWidget {
             style: SideMenuStyle(
               displayMode: SideMenuDisplayMode.auto,
               showHamburger: true,
-              hoverColor: colorScheme.primaryContainer,
+              hoverColor: colorScheme.secondary,
               selectedColor: colorScheme.primary,
               selectedTitleTextStyle: TextStyle(color: colorScheme.onPrimary),
               selectedIconColor: colorScheme.onPrimary,
@@ -80,7 +80,7 @@ class MainScreenWeb extends HookConsumerWidget {
                 const SizedBox(height: 24),
                 Text(
                   'Electrum ⚡',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         color: colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
