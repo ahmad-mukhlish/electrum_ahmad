@@ -76,41 +76,38 @@ GoRouter router(Ref ref) {
             pageBuilder: (context, state) => NoTransitionPage(
               child: const BikesScreen(),
             ),
-            routes: [
-              GoRoute(
-                path: ':bikeId',
-                builder: (context, state) {
-                  final bikeId = state.pathParameters['bikeId']!;
-                  return BikeDetailScreen(bikeId: bikeId);
-                },
-                routes: [
-                  GoRoute(
-                    path: 'interest',
-                    builder: (context, state) {
-                      final bike = state.extra as Bike;
-                      return BikeRentingFormScreen(bike: bike);
-                    },
-                  ),
-                ],
-              ),
-            ],
           ),
           GoRoute(
             path: '/profile',
             pageBuilder: (context, state) => NoTransitionPage(
               child: const ProfileScreen(),
             ),
-            routes: [
-              GoRoute(
-                path: 'rent/:rentId',
-                builder: (context, state) {
-                  final rent = state.extra as Rent;
-                  return RentDetailScreen(rent: rent);
-                },
-              ),
-            ],
           ),
         ],
+      ),
+      // Detail routes outside ShellRoute - no navbar/sidebar
+      GoRoute(
+        path: '/bikes/:bikeId',
+        builder: (context, state) {
+          final bikeId = state.pathParameters['bikeId']!;
+          return BikeDetailScreen(bikeId: bikeId);
+        },
+        routes: [
+          GoRoute(
+            path: 'interest',
+            builder: (context, state) {
+              final bike = state.extra as Bike;
+              return BikeRentingFormScreen(bike: bike);
+            },
+          ),
+        ],
+      ),
+      GoRoute(
+        path: '/profile/rent/:rentId',
+        builder: (context, state) {
+          final rent = state.extra as Rent;
+          return RentDetailScreen(rent: rent);
+        },
       ),
     ],
   );
