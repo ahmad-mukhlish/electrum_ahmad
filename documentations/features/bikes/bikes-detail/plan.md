@@ -33,7 +33,7 @@ lib/features/bikes/
             ├── bike_hero_section.dart         # 🆕 Hero image section
             ├── bike_specs_row.dart            # 🆕 Specs chips
             ├── bike_description_section.dart  # 🆕 Description/features
-            ├── bike_pickup_areas.dart         # 🆕 Pickup location chips
+            ├── bike_service_center_areas.dart # 🆕 Service center chips
             └── bike_cta_button.dart           # 🆕 CTA button
 ```
 
@@ -96,7 +96,7 @@ lib/features/bikes/
 - SingleChildScrollView for vertical scrolling
 - Column layout with all sections stacked
 - 16px padding around content
-- Sections: Hero → Specs → Description → Pickup Areas → CTA
+      - Sections: Hero → Specs → Description → Service Center Areas → CTA
 - Spacing: 24px between major sections
 - Full-width CTA button at bottom
 
@@ -159,16 +159,16 @@ lib/features/bikes/
 - Title (bold) + description (muted)
 - Responsive spacing
 
-### 8. Pickup Areas (`bike_pickup_areas.dart`)
+### 8. Service Center Areas (`bike_service_center_areas.dart`)
 
-**Purpose:** Display available pickup locations
+**Purpose:** Display available service center locations
 
 **Layout:**
-- Section title: "Available Pickup Areas"
+- Section title: "Available Service Center Areas"
 - Wrap layout for area chips
 - Each chip: location icon + area name
 - Chip styling: tertiary color, rounded borders
-- Hidden if pickupAreas list is empty
+- Hidden if serviceCenterAreas list is empty
 
 ### 9. CTA Button (`bike_cta_button.dart`)
 
@@ -228,7 +228,7 @@ lib/features/bikes/
 1. Create `bike_hero_section.dart`
 2. Create `bike_specs_row.dart`
 3. Create `bike_description_section.dart`
-4. Create `bike_pickup_areas.dart`
+4. Create `bike_service_center_areas.dart`
 5. Create `bike_cta_button.dart`
 
 ### Phase 4: Layout Widgets

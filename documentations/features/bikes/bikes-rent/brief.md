@@ -8,7 +8,7 @@
 - The screen receives the **full `Bike` model** as navigation data
   (for convenience), including:
     - `id`, `model`, `photoUrl`, `rangeKm`, `isAvailable`,
-      `pricePerDay`, `pickupAreas`, etc.
+      `pricePerDay`, `serviceCenterAreas`, etc.
 - User fills rental period, pickup location, and contact details.
 - The app calculates total payment and stores it together with the
   submission in Firestore using a dedicated **`Rent`** model.

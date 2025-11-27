@@ -15,7 +15,7 @@ abstract class Bike with _$Bike {
     required int rangeKm,
     required bool isAvailable,
     required int pricePerDay,
-    @Default([]) List<String> pickupAreas,
+    @Default([]) List<String> serviceCenterAreas,
   }) = _Bike;
 }
 
@@ -28,6 +28,6 @@ extension BikeMapper on Bike {
         rangeKm: rangeKm,
         isAvailable: isAvailable,
         pricePerDay: pricePerDay,
-        pickupAreas: pickupAreas,
+        serviceCenterAreas: serviceCenterAreas,
       );
 }

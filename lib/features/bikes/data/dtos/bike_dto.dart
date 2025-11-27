@@ -16,8 +16,8 @@ class BikeDto {
   final bool? isAvailable;
   @JsonKey(name: 'price-per-day')
   final int? pricePerDay;
-  @JsonKey(name: 'pickup-areas')
-  final List<String>? pickupAreas;
+  @JsonKey(name: 'service-center-areas')
+  final List<String>? serviceCenterAreas;
 
   BikeDto({
     this.id,
@@ -26,7 +26,7 @@ class BikeDto {
     this.rangeKm,
     this.isAvailable,
     this.pricePerDay,
-    this.pickupAreas,
+    this.serviceCenterAreas,
   });
 
   factory BikeDto.fromJson(Map<String, dynamic> json) =>
@@ -45,6 +45,6 @@ extension BikeDtoMapper on BikeDto {
         rangeKm: rangeKm ?? 0,
         isAvailable: isAvailable ?? false,
         pricePerDay: pricePerDay ?? 0,
-        pickupAreas: pickupAreas ?? [],
+        serviceCenterAreas: serviceCenterAreas ?? [],
       );
 }

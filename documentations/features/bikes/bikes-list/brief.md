@@ -6,10 +6,10 @@
     - `id` (String), `model` (String), `photoUrl` (String),
     - `rangeKm` (int), `isAvailable` (bool),
     - `pricePerDay` (int),
-    - `pickupAreas` (List<String>, optional).
+    - `serviceCenterAreas` (List<String>, optional).
 - Create `BikeDto` for Firestore mapping:
     - `id`, `model`, `photo-url`, `range-km`, `is-available`,
-    - `price-per-day`, `pickup-areas`.
+    - `price-per-day`, `service-center-areas`.
 - Create **bike state** for UI:
     - wraps the entity and any UI-only flags if needed
 - The card layout should follow the **car list references**:

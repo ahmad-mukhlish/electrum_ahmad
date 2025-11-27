@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Bike {
 
- String get id; String get model; String get photoUrl; int get rangeKm; bool get isAvailable; int get pricePerDay; List<String> get pickupAreas;
+ String get id; String get model; String get photoUrl; int get rangeKm; bool get isAvailable; int get pricePerDay; List<String> get serviceCenterAreas;
 /// Create a copy of Bike
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $BikeCopyWith<Bike> get copyWith => _$BikeCopyWithImpl<Bike>(this as Bike, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Bike&&(identical(other.id, id) || other.id == id)&&(identical(other.model, model) || other.model == model)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.rangeKm, rangeKm) || other.rangeKm == rangeKm)&&(identical(other.isAvailable, isAvailable) || other.isAvailable == isAvailable)&&(identical(other.pricePerDay, pricePerDay) || other.pricePerDay == pricePerDay)&&const DeepCollectionEquality().equals(other.pickupAreas, pickupAreas));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Bike&&(identical(other.id, id) || other.id == id)&&(identical(other.model, model) || other.model == model)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.rangeKm, rangeKm) || other.rangeKm == rangeKm)&&(identical(other.isAvailable, isAvailable) || other.isAvailable == isAvailable)&&(identical(other.pricePerDay, pricePerDay) || other.pricePerDay == pricePerDay)&&const DeepCollectionEquality().equals(other.serviceCenterAreas, serviceCenterAreas));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,model,photoUrl,rangeKm,isAvailable,pricePerDay,const DeepCollectionEquality().hash(pickupAreas));
+int get hashCode => Object.hash(runtimeType,id,model,photoUrl,rangeKm,isAvailable,pricePerDay,const DeepCollectionEquality().hash(serviceCenterAreas));
 
 @override
 String toString() {
-  return 'Bike(id: $id, model: $model, photoUrl: $photoUrl, rangeKm: $rangeKm, isAvailable: $isAvailable, pricePerDay: $pricePerDay, pickupAreas: $pickupAreas)';
+  return 'Bike(id: $id, model: $model, photoUrl: $photoUrl, rangeKm: $rangeKm, isAvailable: $isAvailable, pricePerDay: $pricePerDay, serviceCenterAreas: $serviceCenterAreas)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $BikeCopyWith<$Res>  {
   factory $BikeCopyWith(Bike value, $Res Function(Bike) _then) = _$BikeCopyWithImpl;
 @useResult
 $Res call({
- String id, String model, String photoUrl, int rangeKm, bool isAvailable, int pricePerDay, List<String> pickupAreas
+ String id, String model, String photoUrl, int rangeKm, bool isAvailable, int pricePerDay, List<String> serviceCenterAreas
 });
 
 
@@ -62,7 +62,7 @@ class _$BikeCopyWithImpl<$Res>
 
 /// Create a copy of Bike
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? model = null,Object? photoUrl = null,Object? rangeKm = null,Object? isAvailable = null,Object? pricePerDay = null,Object? pickupAreas = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? model = null,Object? photoUrl = null,Object? rangeKm = null,Object? isAvailable = null,Object? pricePerDay = null,Object? serviceCenterAreas = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
@@ -70,7 +70,7 @@ as String,photoUrl: null == photoUrl ? _self.photoUrl : photoUrl // ignore: cast
 as String,rangeKm: null == rangeKm ? _self.rangeKm : rangeKm // ignore: cast_nullable_to_non_nullable
 as int,isAvailable: null == isAvailable ? _self.isAvailable : isAvailable // ignore: cast_nullable_to_non_nullable
 as bool,pricePerDay: null == pricePerDay ? _self.pricePerDay : pricePerDay // ignore: cast_nullable_to_non_nullable
-as int,pickupAreas: null == pickupAreas ? _self.pickupAreas : pickupAreas // ignore: cast_nullable_to_non_nullable
+as int,serviceCenterAreas: null == serviceCenterAreas ? _self.serviceCenterAreas : serviceCenterAreas // ignore: cast_nullable_to_non_nullable
 as List<String>,
   ));
 }
@@ -156,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String model,  String photoUrl,  int rangeKm,  bool isAvailable,  int pricePerDay,  List<String> pickupAreas)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String model,  String photoUrl,  int rangeKm,  bool isAvailable,  int pricePerDay,  List<String> serviceCenterAreas)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Bike() when $default != null:
-return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvailable,_that.pricePerDay,_that.pickupAreas);case _:
+return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvailable,_that.pricePerDay,_that.serviceCenterAreas);case _:
   return orElse();
 
 }
@@ -177,10 +177,10 @@ return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvaila
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String model,  String photoUrl,  int rangeKm,  bool isAvailable,  int pricePerDay,  List<String> pickupAreas)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String model,  String photoUrl,  int rangeKm,  bool isAvailable,  int pricePerDay,  List<String> serviceCenterAreas)  $default,) {final _that = this;
 switch (_that) {
 case _Bike():
-return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvailable,_that.pricePerDay,_that.pickupAreas);case _:
+return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvailable,_that.pricePerDay,_that.serviceCenterAreas);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +197,10 @@ return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvaila
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String model,  String photoUrl,  int rangeKm,  bool isAvailable,  int pricePerDay,  List<String> pickupAreas)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String model,  String photoUrl,  int rangeKm,  bool isAvailable,  int pricePerDay,  List<String> serviceCenterAreas)?  $default,) {final _that = this;
 switch (_that) {
 case _Bike() when $default != null:
-return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvailable,_that.pricePerDay,_that.pickupAreas);case _:
+return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvailable,_that.pricePerDay,_that.serviceCenterAreas);case _:
   return null;
 
 }
@@ -212,7 +212,7 @@ return $default(_that.id,_that.model,_that.photoUrl,_that.rangeKm,_that.isAvaila
 
 
 class _Bike extends Bike {
-  const _Bike({required this.id, required this.model, required this.photoUrl, required this.rangeKm, required this.isAvailable, required this.pricePerDay, final  List<String> pickupAreas = const []}): _pickupAreas = pickupAreas,super._();
+  const _Bike({required this.id, required this.model, required this.photoUrl, required this.rangeKm, required this.isAvailable, required this.pricePerDay, final  List<String> serviceCenterAreas = const []}): _serviceCenterAreas = serviceCenterAreas,super._();
   
 
 @override final  String id;
@@ -221,11 +221,11 @@ class _Bike extends Bike {
 @override final  int rangeKm;
 @override final  bool isAvailable;
 @override final  int pricePerDay;
- final  List<String> _pickupAreas;
-@override@JsonKey() List<String> get pickupAreas {
-  if (_pickupAreas is EqualUnmodifiableListView) return _pickupAreas;
+ final  List<String> _serviceCenterAreas;
+@override@JsonKey() List<String> get serviceCenterAreas {
+  if (_serviceCenterAreas is EqualUnmodifiableListView) return _serviceCenterAreas;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_pickupAreas);
+  return EqualUnmodifiableListView(_serviceCenterAreas);
 }
 
 
@@ -239,16 +239,16 @@ _$BikeCopyWith<_Bike> get copyWith => __$BikeCopyWithImpl<_Bike>(this, _$identit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Bike&&(identical(other.id, id) || other.id == id)&&(identical(other.model, model) || other.model == model)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.rangeKm, rangeKm) || other.rangeKm == rangeKm)&&(identical(other.isAvailable, isAvailable) || other.isAvailable == isAvailable)&&(identical(other.pricePerDay, pricePerDay) || other.pricePerDay == pricePerDay)&&const DeepCollectionEquality().equals(other._pickupAreas, _pickupAreas));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Bike&&(identical(other.id, id) || other.id == id)&&(identical(other.model, model) || other.model == model)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.rangeKm, rangeKm) || other.rangeKm == rangeKm)&&(identical(other.isAvailable, isAvailable) || other.isAvailable == isAvailable)&&(identical(other.pricePerDay, pricePerDay) || other.pricePerDay == pricePerDay)&&const DeepCollectionEquality().equals(other._serviceCenterAreas, _serviceCenterAreas));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,model,photoUrl,rangeKm,isAvailable,pricePerDay,const DeepCollectionEquality().hash(_pickupAreas));
+int get hashCode => Object.hash(runtimeType,id,model,photoUrl,rangeKm,isAvailable,pricePerDay,const DeepCollectionEquality().hash(_serviceCenterAreas));
 
 @override
 String toString() {
-  return 'Bike(id: $id, model: $model, photoUrl: $photoUrl, rangeKm: $rangeKm, isAvailable: $isAvailable, pricePerDay: $pricePerDay, pickupAreas: $pickupAreas)';
+  return 'Bike(id: $id, model: $model, photoUrl: $photoUrl, rangeKm: $rangeKm, isAvailable: $isAvailable, pricePerDay: $pricePerDay, serviceCenterAreas: $serviceCenterAreas)';
 }
 
 
@@ -259,7 +259,7 @@ abstract mixin class _$BikeCopyWith<$Res> implements $BikeCopyWith<$Res> {
   factory _$BikeCopyWith(_Bike value, $Res Function(_Bike) _then) = __$BikeCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String model, String photoUrl, int rangeKm, bool isAvailable, int pricePerDay, List<String> pickupAreas
+ String id, String model, String photoUrl, int rangeKm, bool isAvailable, int pricePerDay, List<String> serviceCenterAreas
 });
 
 
@@ -276,7 +276,7 @@ class __$BikeCopyWithImpl<$Res>
 
 /// Create a copy of Bike
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? model = null,Object? photoUrl = null,Object? rangeKm = null,Object? isAvailable = null,Object? pricePerDay = null,Object? pickupAreas = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? model = null,Object? photoUrl = null,Object? rangeKm = null,Object? isAvailable = null,Object? pricePerDay = null,Object? serviceCenterAreas = null,}) {
   return _then(_Bike(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
@@ -284,7 +284,7 @@ as String,photoUrl: null == photoUrl ? _self.photoUrl : photoUrl // ignore: cast
 as String,rangeKm: null == rangeKm ? _self.rangeKm : rangeKm // ignore: cast_nullable_to_non_nullable
 as int,isAvailable: null == isAvailable ? _self.isAvailable : isAvailable // ignore: cast_nullable_to_non_nullable
 as bool,pricePerDay: null == pricePerDay ? _self.pricePerDay : pricePerDay // ignore: cast_nullable_to_non_nullable
-as int,pickupAreas: null == pickupAreas ? _self._pickupAreas : pickupAreas // ignore: cast_nullable_to_non_nullable
+as int,serviceCenterAreas: null == serviceCenterAreas ? _self._serviceCenterAreas : serviceCenterAreas // ignore: cast_nullable_to_non_nullable
 as List<String>,
   ));
 }

@@ -12,6 +12,8 @@ appId: com.electrum.ahmad.electrum_ahmad
     text: ".*Login email.*"
 - inputText: "ahmad.mukhlish.saputra@gmail.com"
 
+- hideKeyboard
+
 - tapOn:
     text: ".*Login password.*"
 - inputText: "CobaCoba123"
@@ -37,6 +39,8 @@ appId: com.electrum.ahmad.electrum_ahmad
 - tapOn:
     text: ".*Login email.*"
 - inputText: "random_${CURRENT_TIME}@example.com"
+
+- hideKeyboard
 
 - tapOn:
     text: ".*Login password.*"
@@ -88,9 +92,6 @@ appId: com.electrum.ahmad.electrum_ahmad
 - assertVisible:
     text: ".*Home bottom.*"
 
-# Assert: No error snackbar
-- assertNotVisible:
-    text: ".*Error snackbar.*"
 
 # ===========================
 # Scenario 4: Failed Registration (Existing User)

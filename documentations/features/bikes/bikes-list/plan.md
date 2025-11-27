@@ -17,7 +17,7 @@ Create a bikes list feature with Firestore integration that displays available e
   - `int rangeKm`
   - `bool isAvailable`
   - `int pricePerDay`
-  - `List<String> pickupAreas` (default: empty list)
+  - `List<String> serviceCenterAreas` (default: empty list)
 - Use `abstract` modifier (Freezed v3.0.0+)
 - Include private constructor `const Bike._()` for custom methods
 
@@ -42,10 +42,10 @@ Create a bikes list feature with Firestore integration that displays available e
   - `@JsonKey(name: 'range-km') int? rangeKm`
   - `@JsonKey(name: 'is-available') bool? isAvailable`
   - `@JsonKey(name: 'price-per-day') int? pricePerDay`
-  - `@JsonKey(name: 'pickup-areas') List<String>? pickupAreas`
+  - `@JsonKey(name: 'service-center-areas') List<String>? serviceCenterAreas`
 - Add `fromJson` and `toJson` methods
 - Create extension `BikeDtoMapper` with `toEntity()` method
-  - Provide defaults: empty string for strings, 0 for ints, false for bool, empty list for pickupAreas
+  - Provide defaults: empty string for strings, 0 for ints, false for bool, empty list for serviceCenterAreas
 - Create extension `BikeMapper` in bike.dart entity with `toDto()` method
 
 #### Datasource: BikesFirestoreDatasource

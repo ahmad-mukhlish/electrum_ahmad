@@ -88,7 +88,7 @@ class AuthForm extends HookConsumerWidget {
           SnackbarHelper.showError(
             context,
             error.toString(),
-            duration: const Duration(seconds: 1),
+            duration: const Duration(seconds: 3),
             semanticsLabel: 'Error snackbar',
           );
         },

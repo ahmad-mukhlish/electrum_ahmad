@@ -33,7 +33,7 @@
     - starting price: `from Rp <pricePerDay> / day`.
 - Below specs, show:
     - optional description / bullet list (can be static for the test),
-    - list of `pickupAreas` if available (chips or simple text).
+    - list of `serviceCenterAreas` if available (chips or simple text).
 - Primary CTA:
     - button label: `I'm interested to rent`,
     - disabled if `isAvailable == false`,

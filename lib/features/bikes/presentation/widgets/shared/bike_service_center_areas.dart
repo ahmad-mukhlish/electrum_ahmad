@@ -1,20 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class BikePickupAreas extends StatelessWidget {
-  const BikePickupAreas({
+class BikeServiceCenterAreas extends StatelessWidget {
+  const BikeServiceCenterAreas({
     super.key,
-    required this.pickupAreas,
+    required this.serviceCenterAreas,
   });
 
-  final List<String> pickupAreas;
+  final List<String> serviceCenterAreas;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    if (pickupAreas.isEmpty) {
+    if (serviceCenterAreas.isEmpty) {
       return const SizedBox.shrink();
     }
 
@@ -22,7 +22,7 @@ class BikePickupAreas extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Available Pickup Areas',
+          'Available Service Center Areas',
           style: (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
               ?.copyWith(
             fontWeight: FontWeight.bold,
@@ -33,7 +33,8 @@ class BikePickupAreas extends StatelessWidget {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: pickupAreas.map((area) => _buildAreaChip(context, area)).toList(),
+          children:
+              serviceCenterAreas.map((area) => _buildAreaChip(context, area)).toList(),
         ),
       ],
     );
