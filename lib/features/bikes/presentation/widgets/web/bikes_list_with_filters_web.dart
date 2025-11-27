@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 import '../shared/bike_card.dart';
 import 'bikes_filter_panel.dart';
@@ -28,7 +29,10 @@ class BikesListWithFiltersWeb extends ConsumerWidget {
     }
 
     if (filterState.error != null) {
-      _showErrorSnackbar(context, filterState.error!);
+      SnackbarHelper.showError(
+        context,
+        'Error loading bikes: ${filterState.error!}',
+      );
       return const SizedBox.shrink();
     }
 
@@ -134,19 +138,4 @@ class BikesListWithFiltersWeb extends ConsumerWidget {
   Widget _buildLoadingState() => const Center(
         child: CircularProgressIndicator(),
       );
-
-  void _showErrorSnackbar(BuildContext context, String error) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error loading bikes: $error'),
-            backgroundColor: colorScheme.error,
-          ),
-        );
-      }
-    });
-  }
 }

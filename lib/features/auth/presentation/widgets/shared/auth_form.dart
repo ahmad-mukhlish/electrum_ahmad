@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifiers/auth_notifier.dart';
 
 class AuthForm extends HookConsumerWidget {
@@ -84,15 +85,11 @@ class AuthForm extends HookConsumerWidget {
     ref.listen(authProvider, (_, next) {
       next.whenOrNull(
         error: (error, _) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: const Duration(seconds: 1),
-              content: Semantics(
-                label: "Error snackbar",
-                child: Text(error.toString()),
-              ),
-              backgroundColor: Colors.red,
-            ),
+          SnackbarHelper.showError(
+            context,
+            error.toString(),
+            duration: const Duration(seconds: 1),
+            semanticsLabel: 'Error snackbar',
           );
         },
       );
@@ -321,10 +318,13 @@ class AuthForm extends HookConsumerWidget {
                     fontWeight: FontWeight.bold,
                   ),
           ),
-          loading: () => const SizedBox(
+          loading: () => SizedBox(
             height: 20,
             width: 20,
-            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: colorScheme.onPrimary,
+            ),
           ),
           error: (_, _) => Text(isRegister ? 'Sign up' : 'Sign in'),
         ),

@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifier/promotion/promotions_provider.dart';
 import 'promotion_card.dart';
 
@@ -45,17 +46,10 @@ class PromotionsCarousel extends HookConsumerWidget {
       },
       loading: () => _buildLoadingState(),
       error: (error, _) {
-        // Show error snackbar and hide carousel
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(error.toString()),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        });
+        SnackbarHelper.showError(
+          context,
+          error.toString(),
+        );
         return const SizedBox.shrink();
       },
     );

@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:electrum_ahmad/features/rents/data/repositories/location/location_repository_impl.dart';
+import 'package:electrum_ahmad/core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifiers/form/rent_form_provider.dart';
 
 class PickupLocationField extends HookConsumerWidget {
@@ -36,7 +37,7 @@ class PickupLocationField extends HookConsumerWidget {
 
         if (resolved == null) {
           if (context.mounted) {
-            _showError(
+            SnackbarHelper.showError(
               context,
               'Unable to get your location. Please enable location services.',
             );
@@ -62,7 +63,10 @@ class PickupLocationField extends HookConsumerWidget {
         }
       } catch (e) {
         if (context.mounted) {
-          _showError(context, 'Failed to get location. Please try again.');
+          SnackbarHelper.showError(
+            context,
+            'Failed to get location. Please try again.',
+          );
         }
       } finally {
         isLoading.value = false;
@@ -89,15 +93,6 @@ class PickupLocationField extends HookConsumerWidget {
           isWeb: false,
         ),
       ],
-    );
-  }
-
-  void _showError(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Theme.of(context).colorScheme.error,
-      ),
     );
   }
 

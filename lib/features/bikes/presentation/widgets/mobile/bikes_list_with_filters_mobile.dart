@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 import '../shared/bike_card.dart';
 import 'active_filters_chips.dart';
@@ -29,24 +30,21 @@ class BikesListWithFiltersMobile extends ConsumerWidget {
         ),
         const ActiveFiltersChips(),
         const SizedBox(height: 8),
-        Expanded(
-          child: _buildContent(context, ref, filterState),
-        ),
+        Expanded(child: _buildContent(context, ref, filterState)),
       ],
     );
   }
 
-  Widget _buildContent(
-    BuildContext context,
-    WidgetRef ref,
-    filterState,
-  ) {
+  Widget _buildContent(BuildContext context, WidgetRef ref, filterState) {
     if (filterState.isLoading) {
       return _buildLoadingState();
     }
 
     if (filterState.error != null) {
-      _showErrorSnackbar(context, filterState.error!);
+      SnackbarHelper.showError(
+        context,
+        'Error loading bikes: ${filterState.error!}',
+      );
       return const SizedBox.shrink();
     }
 
@@ -98,9 +96,7 @@ class BikesListWithFiltersMobile extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              hasFilters
-                  ? 'No bikes match your search'
-                  : 'No bikes available',
+              hasFilters ? 'No bikes match your search' : 'No bikes available',
               style: textTheme.titleLarge?.copyWith(
                 color: colorScheme.onSecondary.withValues(alpha: 0.7),
               ),
@@ -136,22 +132,6 @@ class BikesListWithFiltersMobile extends ConsumerWidget {
     );
   }
 
-  Widget _buildLoadingState() => const Center(
-        child: CircularProgressIndicator(),
-      );
-
-  void _showErrorSnackbar(BuildContext context, String error) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error loading bikes: $error'),
-            backgroundColor: colorScheme.error,
-          ),
-        );
-      }
-    });
-  }
+  Widget _buildLoadingState() =>
+      const Center(child: CircularProgressIndicator());
 }

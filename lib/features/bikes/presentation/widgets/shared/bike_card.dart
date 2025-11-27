@@ -26,7 +26,7 @@ class BikeCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-             Expanded(child: _buildImage(colorScheme)),
+             kIsWeb? Expanded(child: _buildImage(colorScheme)) : Flexible(child: _buildImage(colorScheme)),
             _buildContent(context, colorScheme),
           ],
         ),
@@ -36,6 +36,7 @@ class BikeCard extends StatelessWidget {
 
   Widget _buildImage(ColorScheme colorScheme) {
     return CachedNetworkImage(
+      height: kIsWeb ? null : 220,
       imageUrl: bike.photoUrl,
       fit: BoxFit.cover,
       errorWidget: (_, _, _) => Container(

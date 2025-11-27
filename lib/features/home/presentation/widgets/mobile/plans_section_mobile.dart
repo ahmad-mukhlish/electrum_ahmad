@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/color_helper.dart';
+import '../../../../../core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifier/plan/plans_state_provider.dart';
 import '../shared/plan_card.dart';
 import 'period_toggle_section.dart';
@@ -44,17 +45,10 @@ class PlansSectionMobile extends HookConsumerWidget {
       },
       loading: () => _buildLoadingState(),
       error: (error, _) {
-        // Show error snackbar and hide section
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(error.toString()),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        });
+        SnackbarHelper.showError(
+          context,
+          error.toString(),
+        );
         return const SizedBox.shrink();
       },
     );
