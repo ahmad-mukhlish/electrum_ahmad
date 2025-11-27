@@ -49,7 +49,7 @@ Integrate Firebase Authentication with the existing auth feature to enable real 
 - These become the single source for Firebase instances
 
 #### 2.2 Create Firebase Auth Datasource
-**File**: `lib/features/auth/data/datasources/auth_firebase_datasource.dart`
+**File**: `lib/features/auth/data/datasources/firestore/auth_firebase_datasource.dart`
 - Implement `signInWithEmailAndPassword(email, password)` → returns UserDto
 - Implement `signUpWithEmailAndPassword(email, password, displayName)` → returns UserDto
 - Implement `signOut()`
@@ -62,7 +62,7 @@ Integrate Firebase Authentication with the existing auth feature to enable real 
   - `weak-password` → "Password too weak"
 
 #### 2.3 Enhance Local Datasource
-**File**: `lib/features/auth/data/datasources/auth_local_datasource.dart`
+**File**: `lib/features/auth/data/datasources/local/auth_local_datasource.dart`
 - Add `saveUser(UserDto)` to persist user JSON
 - Add `getUser()` to retrieve UserDto
 - Add `clearUser()` to remove user data
@@ -211,13 +211,13 @@ App starts → AuthNotifier.build()
 1. `lib/features/auth/domain/entities/user.dart` - Domain user entity
 2. `lib/features/auth/data/dtos/user_dto.dart` - Data transfer object with JSON
 3. `lib/core/services/firebase/firebase_service.dart` - Firebase instance providers
-4. `lib/features/auth/data/datasources/auth_firebase_datasource.dart` - Firebase auth operations
+4. `lib/features/auth/data/datasources/firestore/auth_firebase_datasource.dart` - Firebase auth operations
 5. `lib/features/auth/presentation/widgets/shared/register_form.dart` - Registration form widget
 6. `lib/features/auth/presentation/screens/register_screen.dart` - Registration screen
 
 ## Files to Modify
 
-1. `lib/features/auth/data/datasources/auth_local_datasource.dart` - Add user persistence methods
+1. `lib/features/auth/data/datasources/local/auth_local_datasource.dart` - Add user persistence methods
 2. `lib/features/auth/domain/repositories/auth_repository.dart` - Add register/getUser methods, remove isLoggedIn
 3. `lib/features/auth/data/repositories/auth_repository_impl.dart` - Integrate Firebase datasource, remove isLoggedIn
 4. `lib/features/auth/presentation/viewmodel/notifiers/auth_notifier.dart` - Change state to User?

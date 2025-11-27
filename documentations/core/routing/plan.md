@@ -29,7 +29,7 @@ Implement go_router with Riverpod-based authentication to handle routing between
 ### 2. Create Auth Data Layer
 
 **Files:**
-- `lib/features/auth/data/datasources/auth_local_datasource.dart`
+- `lib/features/auth/data/datasources/local/auth_local_datasource.dart`
   - Uses generic `LocalDbService` to save/retrieve auth state
   - Defines key: `'isLoggedIn'`
   - Methods: `saveLoginState(bool)`, `getLoginState()`, `clearLoginState()`
@@ -101,7 +101,7 @@ Implement go_router with Riverpod-based authentication to handle routing between
 | File                                                                 | Action | Description                               |
 |----------------------------------------------------------------------|--------|-------------------------------------------|
 | `core/services/local_db/local_db_service.dart`                                | Create | SharedPreferences wrapper                 |
-| `features/auth/data/datasources/auth_local_datasource.dart`          | Create | Local data source for auth state          |
+| `features/auth/data/datasources/local/auth_local_datasource.dart`          | Create | Local data source for auth state          |
 | `features/auth/data/repositories/auth_repository_impl.dart`          | Create | Auth repository implementation            |
 | `features/auth/presentation/viewmodel/notifiers/auth_notifier.dart`  | Create | Riverpod auth state notifier              |
 | `core/routing/routing.dart`                                          | Create | GoRouter configuration with auth redirect |

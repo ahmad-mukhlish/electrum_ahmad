@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../core/services/firebase/firebase_service.dart';
-import '../dtos/user_dto.dart';
+import '../../../../../core/services/firebase/firebase_service.dart';
+import '../../dtos/user_dto.dart';
 
 part 'auth_firebase_datasource.g.dart';
 

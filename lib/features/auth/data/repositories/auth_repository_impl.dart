@@ -2,8 +2,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/auth_firebase_datasource.dart';
-import '../datasources/auth_local_datasource.dart';
+import '../datasources/firestore/auth_firebase_datasource.dart';
+import '../datasources/local/auth_local_datasource.dart';
 import '../dtos/user_dto.dart';
 
 part 'auth_repository_impl.g.dart';
