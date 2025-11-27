@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
+import '../../viewmodel/states/price_bucket.dart';
+import '../../viewmodel/states/range_bucket.dart';
 import '../shared/availability_toggle.dart';
 import '../shared/price_bucket_selector.dart';
 import '../shared/range_bucket_selector.dart';
@@ -53,29 +55,27 @@ class FilterPanelWeb extends ConsumerWidget {
             const SizedBox(height: 16),
             _buildDivider(colorScheme),
             const SizedBox(height: 24),
-            _buildSectionTitle('Availability', textTheme, colorScheme),
-            AvailabilityToggle(
+            _buildAvailabilitySection(
+              textTheme: textTheme,
+              colorScheme: colorScheme,
               value: showAvailableOnly,
-              onChanged: (value) =>
-                  ref.read(bikeFilterProvider.notifier).setShowAvailableOnly(value),
+              onChanged: (value) => ref
+                  .read(bikeFilterProvider.notifier)
+                  .setShowAvailableOnly(value),
             ),
-            const SizedBox(height: 8),
-            _buildDivider(colorScheme),
             const SizedBox(height: 24),
-            _buildSectionTitle('Price Range', textTheme, colorScheme),
-            const SizedBox(height: 12),
-            PriceBucketSelector(
-              selectedBucket: selectedPriceBucket,
+            _buildPriceSection(
+              textTheme: textTheme,
+              colorScheme: colorScheme,
+              selectedPriceBucket: selectedPriceBucket,
               onChanged: (bucket) =>
                   ref.read(bikeFilterProvider.notifier).setPriceBucket(bucket),
             ),
             const SizedBox(height: 24),
-            _buildDivider(colorScheme),
-            const SizedBox(height: 24),
-            _buildSectionTitle('Range (km)', textTheme, colorScheme),
-            const SizedBox(height: 12),
-            RangeBucketSelector(
-              selectedBucket: selectedRangeBucket,
+            _buildRangeSection(
+              textTheme: textTheme,
+              colorScheme: colorScheme,
+              selectedRangeBucket: selectedRangeBucket,
               onChanged: (bucket) =>
                   ref.read(bikeFilterProvider.notifier).setRangeBucket(bucket),
             ),
@@ -94,64 +94,117 @@ class FilterPanelWeb extends ConsumerWidget {
   }
 
   Widget _buildHeader(TextTheme textTheme, ColorScheme colorScheme) => Text(
-        'Filters',
-        style: textTheme.headlineSmall?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: colorScheme.onSecondary,
-        ),
-      );
+    'Filters',
+    style: textTheme.headlineSmall?.copyWith(
+      fontWeight: FontWeight.bold,
+      color: colorScheme.onSecondary,
+    ),
+  );
 
   Widget _buildSectionTitle(
     String title,
     TextTheme textTheme,
     ColorScheme colorScheme,
-  ) =>
-      Text(
-        title,
-        style: textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w600,
-          color: colorScheme.onSecondary,
-        ),
+  ) => Text(
+    title,
+    style: textTheme.titleMedium?.copyWith(
+      fontWeight: FontWeight.w600,
+      color: colorScheme.onSecondary,
+    ),
+  );
+
+  Widget _buildDivider(ColorScheme colorScheme) =>
+      Divider(color: colorScheme.onSecondary.withValues(alpha: 0.1), height: 1);
+
+  Widget _buildAvailabilitySection({
+    required TextTheme textTheme,
+    required ColorScheme colorScheme,
+    required bool value,
+    required ValueChanged<bool> onChanged,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle('Availability', textTheme, colorScheme),
+          const SizedBox(height: 8),
+          AvailabilityToggle(
+            value: value,
+            onChanged: onChanged,
+          ),
+          const SizedBox(height: 8),
+          _buildDivider(colorScheme),
+        ],
       );
 
-  Widget _buildDivider(ColorScheme colorScheme) => Divider(
-        color: colorScheme.onSecondary.withValues(alpha: 0.1),
-        height: 1,
+  Widget _buildPriceSection({
+    required TextTheme textTheme,
+    required ColorScheme colorScheme,
+    required PriceBucket? selectedPriceBucket,
+    required ValueChanged<PriceBucket?> onChanged,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle('Price Range', textTheme, colorScheme),
+          const SizedBox(height: 12),
+          PriceBucketSelector(
+            selectedBucket: selectedPriceBucket,
+            onChanged: onChanged,
+          ),
+          const SizedBox(height: 24),
+          _buildDivider(colorScheme),
+        ],
+      );
+
+  Widget _buildRangeSection({
+    required TextTheme textTheme,
+    required ColorScheme colorScheme,
+    required RangeBucket? selectedRangeBucket,
+    required ValueChanged<RangeBucket?> onChanged,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle('Range (km)', textTheme, colorScheme),
+          const SizedBox(height: 12),
+          RangeBucketSelector(
+            selectedBucket: selectedRangeBucket,
+            onChanged: onChanged,
+          ),
+        ],
       );
 
   Widget _buildResultsCount(
     int count,
     TextTheme textTheme,
     ColorScheme colorScheme,
-  ) =>
-      Text(
-        'Showing $count ${count == 1 ? 'bike' : 'bikes'}',
-        style: textTheme.bodyMedium?.copyWith(
-          color: colorScheme.onSecondary.withValues(alpha: 0.7),
-        ),
-      );
+  ) => Text(
+    'Showing $count ${count == 1 ? 'bike' : 'bikes'}',
+    style: textTheme.bodyLarge?.copyWith(
+      color: colorScheme.onSecondary,
+    ),
+  );
 
   Widget _buildResetButton(
     BuildContext context,
     WidgetRef ref,
     ColorScheme colorScheme,
     TextTheme textTheme,
-  ) =>
-      SizedBox(
-        width: double.infinity,
-        child: OutlinedButton(
-          onPressed: () => ref.read(bikeFilterProvider.notifier).resetFilters(),
-          style: OutlinedButton.styleFrom(
-            side: BorderSide(color: colorScheme.primary),
-            padding: const EdgeInsets.symmetric(vertical: 14),
-          ),
-          child: Text(
-            'Reset filters',
-            style: textTheme.bodyLarge?.copyWith(
-              color: colorScheme.primary,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+  ) => SizedBox(
+    width: double.infinity,
+    child: OutlinedButton(
+      onPressed: () => ref.read(bikeFilterProvider.notifier).resetFilters(),
+      style: OutlinedButton.styleFrom(
+        side: BorderSide(color: colorScheme.primary),
+        padding: const EdgeInsets.symmetric(vertical: 14),
+      ),
+      child: Text(
+        'Reset filters',
+        style: textTheme.bodyLarge?.copyWith(
+          color: colorScheme.primary,
+          fontWeight: FontWeight.w600,
         ),
-      );
+      ),
+    ),
+  );
 }
