@@ -84,4 +84,40 @@ class LocationService {
       return null;
     }
   }
+
+  Future<ResolvedLocation?> resolveCurrentLocation() async {
+    try {
+      final position = await getCurrentPosition();
+      if (position == null) return null;
+
+      final address = await getAddressFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+
+      if (address == null || address.isEmpty) {
+        return null;
+      }
+
+      return ResolvedLocation(
+        latitude: position.latitude,
+        longitude: position.longitude,
+        address: address,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+}
+
+class ResolvedLocation {
+  ResolvedLocation({
+    required this.latitude,
+    required this.longitude,
+    required this.address,
+  });
+
+  final double latitude;
+  final double longitude;
+  final String address;
 }

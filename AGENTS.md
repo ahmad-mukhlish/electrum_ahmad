@@ -115,6 +115,7 @@ flutter build ios    # Build iOS
   - Duplicates information (code will be written during implementation anyway)
   - Violates the purpose of planning (plans are for strategy, not implementation)
   - Instead: describe WHAT needs to be done, not HOW (no code examples, no full implementations)
+- Never use `setState()` manually; prefer hooks and Riverpod for state.
 - Using `HookConsumerWidget` instead of `ConsumerStatefulWidget` for less boilerplate
 - When more than 2 lines, create a named function instead of nameless function / lambda
 - **Pass only what you need**: Extract minimal data before passing to methods (e.g., pass `String` instead of `TextEditingController`, pass `ColorScheme` instead of `BuildContext`)

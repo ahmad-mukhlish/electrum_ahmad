@@ -53,10 +53,11 @@ class BikeRentingFormScreen extends ConsumerWidget {
 
   void _showSuccessAlert(BuildContext context) {
     QuickAlert.show(
+      width: 400,
       context: context,
       type: QuickAlertType.success,
       title: 'Request Sent!',
-      text: "We've received your rental request. We'll contact you soon.",
+      text: "We've received your rental request. \nWe'll contact you soon.",
       confirmBtnText: 'OK',
       onConfirmBtnTap: () async {
         // Close the alert first
