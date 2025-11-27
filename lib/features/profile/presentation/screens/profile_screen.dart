@@ -3,9 +3,12 @@ import 'package:electrum_ahmad/core/widgets/primary_app_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../auth/presentation/viewmodel/notifiers/auth_notifier.dart';
+import '../../../bikes/domain/entities/rent.dart';
+import '../../../bikes/presentation/viewmodel/notifiers/rent_history_notifier.dart';
+import '../../../bikes/presentation/widgets/shared/rent_detail_view.dart';
+import '../../../bikes/presentation/widgets/shared/rent_history_list.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -57,7 +60,11 @@ class ProfileScreen extends ConsumerWidget {
                         colorScheme: colorScheme,
                       ),
                       const SizedBox(height: 24),
-                      Expanded(child: Center(child: _buildProfileAnimation())),
+                      _buildRentHistorySection(
+                        context,
+                        ref,
+                        colorScheme,
+                      ),
                       const SizedBox(height: 24),
                       Center(child: _buildLogoutButton(ref, colorScheme, context)),
                       const SizedBox(height: 16),
@@ -137,10 +144,128 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildProfileAnimation() {
-    return Lottie.network(
-      'https://lottie.host/ff05cfb6-cad9-49c8-a51a-591f26782267/Wdvz5uRSSD.json',
-      repeat: true,
+  Widget _buildRentHistorySection(
+    BuildContext context,
+    WidgetRef ref,
+    ColorScheme colorScheme,
+  ) {
+    final textTheme = Theme.of(context).textTheme;
+    final rentHistoryAsync = ref.watch(rentHistoryProvider);
+
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Rent History',
+            style: kIsWeb
+                ? textTheme.headlineLarge?.copyWith(
+                    color: colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  )
+                : textTheme.titleLarge?.copyWith(
+                    color: colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
+          ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: rentHistoryAsync.when(
+              data: (rents) => RentHistoryList(
+                rents: rents,
+                onRentTap: (rent) => _showRentDetail(context, rent),
+              ),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (error, stack) => _buildErrorState(
+                context,
+                ref,
+                colorScheme,
+                textTheme,
+                error,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildErrorState(
+    BuildContext context,
+    WidgetRef ref,
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+    Object error,
+  ) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.error_outline,
+            size: kIsWeb ? 80 : 60,
+            color: colorScheme.error,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Failed to load rent history',
+            style: kIsWeb
+                ? textTheme.headlineSmall?.copyWith(
+                    color: colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  )
+                : textTheme.titleMedium?.copyWith(
+                    color: colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 48 : 24),
+            child: Text(
+              error.toString(),
+              style: kIsWeb
+                  ? textTheme.bodyLarge?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    )
+                  : textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: () => ref.invalidate(rentHistoryProvider),
+            icon: const Icon(Icons.refresh),
+            label: const Text('Retry'),
+            style: FilledButton.styleFrom(
+              backgroundColor: colorScheme.primary,
+              foregroundColor: colorScheme.onPrimary,
+              padding: EdgeInsets.symmetric(
+                horizontal: kIsWeb ? 32 : 24,
+                vertical: kIsWeb ? 16 : 12,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showRentDetail(BuildContext context, Rent rent) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.9,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        builder: (context, scrollController) => RentDetailView(rent: rent),
+      ),
     );
   }
 

@@ -24,6 +24,8 @@ class RentSubmit extends _$RentSubmit {
       final rent = Rent(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         bikeId: bike.id,
+        bikeModel: bike.model,
+        photoUrl: bike.photoUrl,
         fromDate: formState.fromDate!,
         toDate: formState.toDate!,
         pickupText: formState.pickupText,
@@ -36,6 +38,7 @@ class RentSubmit extends _$RentSubmit {
         pricePerDay: bike.pricePerDay,
         totalAmount: formState.totalAmount(bike.pricePerDay),
         createdAt: DateTime.now(),
+        status: 'pending',
       );
 
       await repository.createRent(rent);

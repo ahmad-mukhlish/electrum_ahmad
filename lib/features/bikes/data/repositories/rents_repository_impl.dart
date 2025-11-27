@@ -26,4 +26,14 @@ class RentsRepositoryImpl implements RentsRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<Rent>> getUserRents(String userEmail) async {
+    try {
+      final rentDtos = await _datasource.getUserRents(userEmail);
+      return rentDtos.map((dto) => dto.toEntity()).toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

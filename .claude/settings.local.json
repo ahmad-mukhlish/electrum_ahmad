@@ -12,7 +12,8 @@
       "Bash(dart pub get:*)",
       "Bash(tree:*)",
       "Skill(flutter-developer)",
-      "Skill(riverpod-state-management)"
+      "Skill(riverpod-state-management)",
+      "Bash(flutter pub get)"
     ],
     "deny": [],
     "ask": []
