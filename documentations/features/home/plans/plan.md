@@ -40,7 +40,7 @@ Create a plans feature with Firestore integration that displays subscription pla
 ### 2. Data Layer
 
 #### DTO: PlanDto
-**Location**: `lib/features/home/data/dtos/plan_dto.dart`
+**Location**: `lib/features/home/data/dtos/plans/plan_dto.dart`
 
 - Create json_serializable DTO with nullable fields:
   - `int? id`

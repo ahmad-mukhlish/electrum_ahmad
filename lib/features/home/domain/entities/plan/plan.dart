@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../data/dtos/plan_dto.dart';
+import '../../../data/dtos/plans/plan_dto.dart';
 
 part 'plan.freezed.dart';
 

@@ -1,4 +1,4 @@
-import 'package:electrum_ahmad/features/home/data/dtos/plan_dto.dart';
+import 'package:electrum_ahmad/features/home/data/dtos/plans/plan_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/entities/plan/plan.dart';

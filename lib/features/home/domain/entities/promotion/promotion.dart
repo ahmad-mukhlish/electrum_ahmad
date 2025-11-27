@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../data/dtos/promotion_dto.dart';
+import '../../../data/dtos/promotions/promotion_dto.dart';
 
 part 'promotion.freezed.dart';
 

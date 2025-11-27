@@ -20,7 +20,7 @@ Create a promotions feature with Firestore integration that displays an auto-scr
 ### 2. Data Layer
 
 #### DTO: PromotionDto
-**Location**: `lib/features/home/data/dtos/promotion_dto.dart`
+**Location**: `lib/features/home/data/dtos/promotions/promotion_dto.dart`
 
 - Create Freezed DTO with JSON serialization:
   - `String title`

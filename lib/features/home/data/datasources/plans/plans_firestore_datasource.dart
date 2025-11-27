@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../core/services/firebase/firebase_service.dart';
-import '../../dtos/plan_dto.dart';
+import '../../dtos/plans/plan_dto.dart';
 
 part 'plans_firestore_datasource.g.dart';
 

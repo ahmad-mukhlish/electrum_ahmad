@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/entities/promotion/promotion.dart';
 import '../../domain/repositories/promotions_repository.dart';
 import '../datasources/promotions/promotions_firestore_datasource.dart';
-import '../dtos/promotion_dto.dart';
+import '../dtos/promotions/promotion_dto.dart';
 
 part 'promotions_repository_impl.g.dart';
 
