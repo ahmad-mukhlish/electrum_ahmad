@@ -1,4 +1,4 @@
-appId: com.electrum.app
+appId: com.electrum.ahmad.electrum_ahmad
 ---
 # Mobile Auth Tests
 # Orchestrates all mobile authentication test scenarios
@@ -155,7 +155,7 @@ appId: com.electrum.app
 
 # Navigate to Profile
 - tapOn:
-    text: "Profile"
+    text: ".*Profile.*"
 
 - waitForAnimationToEnd
 

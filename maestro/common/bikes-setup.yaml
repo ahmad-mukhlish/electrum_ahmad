@@ -1,4 +1,4 @@
-appId: com.electrum.app
+appId: com.electrum.ahmad.electrum_ahmad
 ---
 # Bikes Setup Flow
 # Purpose: Navigate to Bike screen from a clean state
@@ -7,7 +7,7 @@ appId: com.electrum.app
 - runFlow: setup-home.yaml
 
 # Step 2: Navigate to Bike screen via Bikes menu item
-- tapOn: "Bikes"
+- tapOn: ".*Bikes.*"
 
 # Step 3: Wait for Bike screen to load
 - waitForAnimationToEnd

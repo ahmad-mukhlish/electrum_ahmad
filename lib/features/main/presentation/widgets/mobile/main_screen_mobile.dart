@@ -29,21 +29,30 @@ class MainScreenMobile extends ConsumerWidget {
           unselectedItemColor: colorScheme.onSurfaceVariant,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(selectedIndex == 0
-                  ? Icons.home
-                  : Icons.home_outlined),
+              icon: Semantics(
+                label: "Home",
+                child: Icon(selectedIndex == 0
+                    ? Icons.home
+                    : Icons.home_outlined),
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(selectedIndex == 1
-                  ? Icons.motorcycle
-                  : Icons.motorcycle_outlined),
+              icon: Semantics(
+                label: 'Bikes',
+                child: Icon(selectedIndex == 1
+                    ? Icons.motorcycle
+                    : Icons.motorcycle_outlined),
+              ),
               label: 'Bikes',
             ),
             BottomNavigationBarItem(
-              icon: Icon(selectedIndex == 2
-                  ? Icons.person
-                  : Icons.person_outline),
+              icon: Semantics(
+                label: 'Profile',
+                child: Icon(selectedIndex == 2
+                    ? Icons.person
+                    : Icons.person_outline),
+              ),
               label: 'Profile',
             ),
           ],

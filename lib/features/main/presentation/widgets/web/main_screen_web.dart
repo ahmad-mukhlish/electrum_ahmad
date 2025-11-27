@@ -93,6 +93,7 @@ class MainScreenWeb extends HookConsumerWidget {
               ),
               items: [
                 SideMenuItem(
+                  trailing: Semantics(label: 'Home',),
                   title: 'Home',
                   onTap: (index, _) => onNavigate(context, index),
                   icon: Icon(selectedIndex == 0
@@ -100,6 +101,7 @@ class MainScreenWeb extends HookConsumerWidget {
                       : Icons.home_outlined),
                 ),
                 SideMenuItem(
+                  trailing: Semantics(label: 'Bike',),
                   title: 'Bikes',
                   onTap: (index, _) => onNavigate(context, index),
                   icon: Icon(selectedIndex == 1
@@ -107,6 +109,7 @@ class MainScreenWeb extends HookConsumerWidget {
                       : Icons.motorcycle_outlined),
                 ),
                 SideMenuItem(
+                  trailing: Semantics(label: 'Profile',),
                   title: 'Profile',
                   onTap: (index, _) => onNavigate(context, index),
                   icon: Icon(selectedIndex == 2

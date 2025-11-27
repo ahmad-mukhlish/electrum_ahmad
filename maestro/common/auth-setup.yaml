@@ -1,4 +1,4 @@
-appId: com.electrum.app
+appId: com.electrum.ahmad.electrum_ahmad
 ---
 # Auth Setup Flow
 # Purpose: Ensure the app starts from the login screen
@@ -20,7 +20,7 @@ appId: com.electrum.app
     commands:
       # User is logged in on mobile - need to logout
       - tapOn:
-          text: "Profile"
+          text: ".*Profile.*"
       - waitForAnimationToEnd
       - tapOn:
           text: ".*Logout button.*"
