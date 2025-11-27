@@ -1,0 +1,117 @@
+appId: com.electrum.app
+---
+# Web Bike Screen Tests
+# Tests bike screen functionality on web platform
+
+# ===========================
+# Entry and Basic Navigation
+# ===========================
+
+# Setup: Navigate to bike screen
+- runFlow: ../../common/bikes-setup.yaml
+
+# Assert: Bikes list is visible
+- runFlow: ../../common/bikes-assert-list.yaml
+
+# ===========================
+# Search Flow - Valid Search
+# ===========================
+
+# Scroll to ensure bike cards are visible
+- scrollUntilVisible:
+    element:
+      text: ".*Bike card.*"
+
+# Search for "H1"
+- tapOn:
+    text: ".*Bike search.*"
+- inputText: "H1"
+- pressKey: Enter
+- waitForAnimationToEnd
+
+# Assert: Bike cards still visible (filtered results)
+- assertVisible:
+    text: ".*Bike card.*"
+
+# ===========================
+# Search Flow - Invalid Search (Empty State)
+# ===========================
+
+# Clear search and search for nonsense
+- tapOn:
+    text: ".*Bike search.*"
+- eraseText
+- inputText: "testesttestste"
+- pressKey: Enter
+- waitForAnimationToEnd
+
+# Assert: Empty state visible
+- runFlow: ../../common/bikes-assert-empty.yaml
+
+# Reset from empty state
+- tapOn:
+    text: ".*Empty reset.*"
+- waitForAnimationToEnd
+
+# Assert: Bikes list returns
+- runFlow: ../../common/bikes-assert-list.yaml
+
+# ===========================
+# Filter: Available Only
+# ===========================
+
+# Click Available Only checkbox (web sidebar)
+- tapOn:
+    text: ".*Filter available.*"
+- waitForAnimationToEnd
+
+# Assert: Bikes list visible
+- runFlow: ../../common/bikes-assert-list.yaml
+
+# ===========================
+# Filter: Price Range - Premium
+# ===========================
+
+# Click Premium price option (web sidebar)
+- tapOn:
+    text: ".*Filter premium.*"
+- waitForAnimationToEnd
+
+# Assert: Bikes list visible
+- runFlow: ../../common/bikes-assert-list.yaml
+
+# ===========================
+# Filter: Price Range - Deluxe (Empty Result)
+# ===========================
+
+# Click Deluxe price option (web sidebar)
+- tapOn:
+    text: ".*Filter deluxe.*"
+- waitForAnimationToEnd
+
+# Assert: Empty state visible
+- runFlow: ../../common/bikes-assert-empty.yaml
+
+# ===========================
+# Filter: Reset Button
+# ===========================
+
+# Click Reset button at bottom of sidebar
+- tapOn:
+    text: ".*Filter reset.*"
+- waitForAnimationToEnd
+
+# Assert: Bikes list visible (all bikes)
+- runFlow: ../../common/bikes-assert-list.yaml
+
+# ===========================
+# Filter: Range Km - Long Range
+# ===========================
+
+# Click Long Range option (web sidebar)
+- tapOn:
+    text: ".*Filter long.*"
+- waitForAnimationToEnd
+
+# Assert: Bikes list visible
+- runFlow: ../../common/bikes-assert-list.yaml

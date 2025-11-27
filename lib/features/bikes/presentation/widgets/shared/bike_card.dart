@@ -15,20 +15,23 @@ class BikeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Card(
-      elevation: 2,
-      color: colorScheme.onPrimary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onTap,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-             kIsWeb? Expanded(child: _buildImage(colorScheme)) : Flexible(child: _buildImage(colorScheme)),
-            _buildContent(context, colorScheme),
-          ],
+    return Semantics(
+      label: "Bike card",
+      child: Card(
+        elevation: 2,
+        color: colorScheme.onPrimary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+               kIsWeb? Expanded(child: _buildImage(colorScheme)) : Flexible(child: _buildImage(colorScheme)),
+              _buildContent(context, colorScheme),
+            ],
+          ),
         ),
       ),
     );

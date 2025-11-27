@@ -15,18 +15,21 @@ class AvailabilityToggle extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    return CheckboxListTile(
-      value: value,
-      onChanged: (newValue) => onChanged(newValue ?? false),
-      title: Text(
-        'Available only',
-        style: textTheme.bodyLarge?.copyWith(
-          color: colorScheme.onSecondary,
+    return Semantics(
+      label: "Filter available",
+      child: CheckboxListTile(
+        value: value,
+        onChanged: (newValue) => onChanged(newValue ?? false),
+        title: Text(
+          'Available only',
+          style: textTheme.bodyLarge?.copyWith(
+            color: colorScheme.onSecondary,
+          ),
         ),
+        controlAffinity: ListTileControlAffinity.leading,
+        activeColor: colorScheme.primary,
+        contentPadding: EdgeInsets.zero,
       ),
-      controlAffinity: ListTileControlAffinity.leading,
-      activeColor: colorScheme.primary,
-      contentPadding: EdgeInsets.zero,
     );
   }
 }

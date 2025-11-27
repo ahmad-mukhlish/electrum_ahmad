@@ -25,6 +25,11 @@ class PriceBucketSelector extends StatelessWidget {
               value: bucket,
               label: bucket.label,
               description: bucket.description,
+              semanticLabel: bucket == PriceBucket.premium
+                  ? "Filter premium"
+                  : bucket == PriceBucket.deluxe
+                      ? "Filter deluxe"
+                      : null,
             ),
           )
           .toList(),

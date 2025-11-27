@@ -24,41 +24,44 @@ class BikesSearchWeb extends HookConsumerWidget {
       return null;
     }, [searchQuery, controller]);
 
-    return TextField(
-      controller: controller,
-      onChanged: (value) =>
-          ref.read(bikeFilterProvider.notifier).setSearchQuery(value),
-      style: textTheme.bodyLarge?.copyWith(color: colorScheme.onSecondary),
-      decoration: InputDecoration(
-        hintText: 'Search your next ride',
-        hintStyle: textTheme.bodyLarge?.copyWith(
-          color: colorScheme.onSecondary.withValues(alpha: 0.5),
-        ),
-        prefixIcon: Icon(Icons.search, color: colorScheme.primary, size: 24),
-        suffixIcon: searchQuery.isNotEmpty
-            ? IconButton(
-                icon: Icon(Icons.clear, color: colorScheme.onSecondary),
-                onPressed: () {
-                  controller.clear();
-                  ref.read(bikeFilterProvider.notifier).setSearchQuery('');
-                },
-              )
-            : null,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(
-            color: colorScheme.onSecondary.withValues(alpha: 0.3),
+    return Semantics(
+      label: "Bike search",
+      child: TextField(
+        controller: controller,
+        onChanged: (value) =>
+            ref.read(bikeFilterProvider.notifier).setSearchQuery(value),
+        style: textTheme.bodyLarge?.copyWith(color: colorScheme.onSecondary),
+        decoration: InputDecoration(
+          hintText: 'Search your next ride',
+          hintStyle: textTheme.bodyLarge?.copyWith(
+            color: colorScheme.onSecondary.withValues(alpha: 0.5),
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(
-            color: colorScheme.onSecondary.withValues(alpha: 0.3),
+          prefixIcon: Icon(Icons.search, color: colorScheme.primary, size: 24),
+          suffixIcon: searchQuery.isNotEmpty
+              ? IconButton(
+                  icon: Icon(Icons.clear, color: colorScheme.onSecondary),
+                  onPressed: () {
+                    controller.clear();
+                    ref.read(bikeFilterProvider.notifier).setSearchQuery('');
+                  },
+                )
+              : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: colorScheme.onSecondary.withValues(alpha: 0.3),
+            ),
           ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: colorScheme.primary, width: 2),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: colorScheme.onSecondary.withValues(alpha: 0.3),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: colorScheme.primary, width: 2),
+          ),
         ),
       ),
     );

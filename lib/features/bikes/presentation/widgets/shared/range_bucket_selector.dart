@@ -25,6 +25,7 @@ class RangeBucketSelector extends StatelessWidget {
               value: bucket,
               label: bucket.label,
               description: bucket.description,
+              semanticLabel: bucket == RangeBucket.long ? "Filter long" : null,
             ),
           )
           .toList(),

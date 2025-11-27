@@ -192,17 +192,20 @@ class FilterPanelWeb extends ConsumerWidget {
     TextTheme textTheme,
   ) => SizedBox(
     width: double.infinity,
-    child: OutlinedButton(
-      onPressed: () => ref.read(bikeFilterProvider.notifier).resetFilters(),
-      style: OutlinedButton.styleFrom(
-        side: BorderSide(color: colorScheme.primary),
-        padding: const EdgeInsets.symmetric(vertical: 14),
-      ),
-      child: Text(
-        'Reset filters',
-        style: textTheme.bodyLarge?.copyWith(
-          color: colorScheme.primary,
-          fontWeight: FontWeight.w600,
+    child: Semantics(
+      label: "Filter reset",
+      child: OutlinedButton(
+        onPressed: () => ref.read(bikeFilterProvider.notifier).resetFilters(),
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: colorScheme.primary),
+          padding: const EdgeInsets.symmetric(vertical: 14),
+        ),
+        child: Text(
+          'Reset filters',
+          style: textTheme.bodyLarge?.copyWith(
+            color: colorScheme.primary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     ),

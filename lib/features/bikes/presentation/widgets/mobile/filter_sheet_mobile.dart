@@ -184,44 +184,50 @@ class FilterSheetMobile extends HookConsumerWidget {
       Row(
         children: [
           Expanded(
-            child: OutlinedButton(
-              onPressed: () {
-                ref.read(bikeFilterProvider.notifier).resetFilters();
-                Navigator.of(context).pop();
-              },
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(color: colorScheme.primary),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-              ),
-              child: Text(
-                'Reset',
-                style: textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.primary,
-                  fontWeight: FontWeight.w600,
+            child: Semantics(
+              label: "Filter reset",
+              child: OutlinedButton(
+                onPressed: () {
+                  ref.read(bikeFilterProvider.notifier).resetFilters();
+                  Navigator.of(context).pop();
+                },
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: colorScheme.primary),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                ),
+                child: Text(
+                  'Reset',
+                  style: textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: FilledButton(
-              onPressed: () {
-                ref.read(bikeFilterProvider.notifier).applyFilters(
-                      showAvailableOnly: showAvailable,
-                      priceBucket: priceBucket,
-                      rangeBucket: rangeBucket,
-                    );
-                Navigator.of(context).pop();
-              },
-              style: FilledButton.styleFrom(
-                backgroundColor: colorScheme.primary,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-              ),
-              child: Text(
-                'Apply',
-                style: textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onPrimary,
-                  fontWeight: FontWeight.w600,
+            child: Semantics(
+              label: "Filter apply",
+              child: FilledButton(
+                onPressed: () {
+                  ref.read(bikeFilterProvider.notifier).applyFilters(
+                        showAvailableOnly: showAvailable,
+                        priceBucket: priceBucket,
+                        rangeBucket: rangeBucket,
+                      );
+                  Navigator.of(context).pop();
+                },
+                style: FilledButton.styleFrom(
+                  backgroundColor: colorScheme.primary,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                ),
+                child: Text(
+                  'Apply',
+                  style: textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.onPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

@@ -35,9 +35,12 @@ class MainScreenMobile extends ConsumerWidget {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(selectedIndex == 1
-                  ? Icons.motorcycle
-                  : Icons.motorcycle_outlined),
+              icon: Semantics(
+                label: "Bike menu",
+                child: Icon(selectedIndex == 1
+                    ? Icons.motorcycle
+                    : Icons.motorcycle_outlined),
+              ),
               label: 'Bikes',
             ),
             BottomNavigationBarItem(

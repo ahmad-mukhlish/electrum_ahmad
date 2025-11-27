@@ -102,9 +102,12 @@ class MainScreenWeb extends HookConsumerWidget {
                 SideMenuItem(
                   title: 'Bikes',
                   onTap: (index, _) => onNavigate(context, index),
-                  icon: Icon(selectedIndex == 1
-                      ? Icons.motorcycle
-                      : Icons.motorcycle_outlined),
+                  icon: Semantics(
+                    label: "Bike menu",
+                    child: Icon(selectedIndex == 1
+                        ? Icons.motorcycle
+                        : Icons.motorcycle_outlined),
+                  ),
                 ),
                 SideMenuItem(
                   title: 'Profile',

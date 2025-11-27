@@ -47,22 +47,25 @@ class BikesFiltersWeb extends ConsumerWidget {
     }
 
     return Center(
-      child: GridView.builder(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 24),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: _getCrossAxisCount(context),
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 0.85,
+      child: Semantics(
+        label: "Bike section",
+        child: GridView.builder(
+          padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 24),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: _getCrossAxisCount(context),
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 0.85,
+          ),
+          itemCount: filteredBikes.length,
+          itemBuilder: (context, index) {
+            final bike = filteredBikes[index];
+            return BikeCard(
+              bike: bike,
+              onTap: () => context.go('/bikes/${bike.id}'),
+            );
+          },
         ),
-        itemCount: filteredBikes.length,
-        itemBuilder: (context, index) {
-          final bike = filteredBikes[index];
-          return BikeCard(
-            bike: bike,
-            onTap: () => context.go('/bikes/${bike.id}'),
-          );
-        },
       ),
     );
   }
@@ -82,54 +85,60 @@ class BikesFiltersWeb extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(48),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              hasFilters ? Icons.search_off : Icons.two_wheeler,
-              size: 120,
-              color: colorScheme.primary.withValues(alpha: 0.5),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              hasFilters
-                  ? 'No bikes match your search'
-                  : 'No bikes available',
-              style: textTheme.headlineMedium?.copyWith(
-                color: colorScheme.onSecondary.withValues(alpha: 0.7),
-              ),
-            ),
-            if (hasFilters) ...[
-              const SizedBox(height: 12),
-              Text(
-                'Try adjusting your filters',
-                style: textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onSecondary.withValues(alpha: 0.6),
-                ),
+    return Semantics(
+      label: "Bike empty",
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(48),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                hasFilters ? Icons.search_off : Icons.two_wheeler,
+                size: 120,
+                color: colorScheme.primary.withValues(alpha: 0.5),
               ),
               const SizedBox(height: 24),
-              OutlinedButton(
-                onPressed: onReset,
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: colorScheme.primary),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 18,
-                    horizontal: 32,
-                  ),
-                ),
-                child: Text(
-                  'Reset filters',
-                  style: textTheme.bodyLarge?.copyWith(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.w600,
-                  ),
+              Text(
+                hasFilters
+                    ? 'No bikes match your search'
+                    : 'No bikes available',
+                style: textTheme.headlineMedium?.copyWith(
+                  color: colorScheme.onSecondary.withValues(alpha: 0.7),
                 ),
               ),
+              if (hasFilters) ...[
+                const SizedBox(height: 12),
+                Text(
+                  'Try adjusting your filters',
+                  style: textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.onSecondary.withValues(alpha: 0.6),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Semantics(
+                  label: "Empty reset",
+                  child: OutlinedButton(
+                    onPressed: onReset,
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: colorScheme.primary),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 18,
+                        horizontal: 32,
+                      ),
+                    ),
+                    child: Text(
+                      'Reset filters',
+                      style: textTheme.bodyLarge?.copyWith(
+                        color: colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 appId: com.electrum.app
 ---
 # Master Test Orchestrator
-# Entry point to run all tests (auth + home screen)
+# Entry point to run all tests (auth + home + bikes)
 
 # ===========================
 # Auth Tests
@@ -25,3 +25,13 @@ appId: com.electrum.app
 
 # Run web home screen tests
 - runFlow: web/flows/home-flow-web.yaml
+
+# ===========================
+# Bike Screen Tests
+# ===========================
+
+# Run mobile bike screen tests
+- runFlow: mobile/flows/bikes-flow-mobile.yaml
+
+# Run web bike screen tests
+- runFlow: web/flows/bikes-flow-web.yaml

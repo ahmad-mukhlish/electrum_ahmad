@@ -1,0 +1,22 @@
+appId: com.electrum.app
+---
+# Bikes Setup Flow
+# Purpose: Navigate to Bike screen from a clean state
+
+# Step 1: Ensure user is logged in and at home screen
+- runFlow: setup-home.yaml
+
+# Step 2: Navigate to Bike screen via Bike menu
+- tapOn:
+    text: ".*Bike menu.*"
+
+# Step 3: Wait for Bike screen to load
+- waitForAnimationToEnd
+
+# Step 4: Assert Bike screen is visible
+- assertVisible:
+    text: ".*Bike screen.*"
+
+# Step 5: Assert Bike section (list container) is visible
+- assertVisible:
+    text: ".*Bike section.*"

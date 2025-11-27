@@ -16,18 +16,21 @@ class BikesScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: colorScheme.onPrimary,
       appBar: kIsWeb ? null : const PrimaryAppBar(title: 'Bikes'),
-      body: Column(
-        children: [
-          if (kIsWeb) Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24, top: 24),
-            child: const HeaderWeb(title: 'Bikes'),
-          ),
-          Expanded(
-            child: kIsWeb
-                ? const BikesFiltersWeb()
-                : const BikesFiltersMobile(),
-          ),
-        ],
+      body: Semantics(
+        label: "Bike screen",
+        child: Column(
+          children: [
+            if (kIsWeb) Padding(
+              padding: const EdgeInsets.only(left: 24.0, right: 24, top: 24),
+              child: const HeaderWeb(title: 'Bikes'),
+            ),
+            Expanded(
+              child: kIsWeb
+                  ? const BikesFiltersWeb()
+                  : const BikesFiltersMobile(),
+            ),
+          ],
+        ),
       ),
     );
   }

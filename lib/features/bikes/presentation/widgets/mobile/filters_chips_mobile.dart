@@ -26,6 +26,7 @@ class FiltersChipsMobile extends ConsumerWidget {
           colorScheme,
           textTheme,
           label: 'Available only',
+          semanticLabel: 'Chip available',
           onDelete: () =>
               ref.read(bikeFilterProvider.notifier).setShowAvailableOnly(false),
         ),
@@ -40,6 +41,7 @@ class FiltersChipsMobile extends ConsumerWidget {
           colorScheme,
           textTheme,
           label: 'Price: ${filterState.selectedPriceBucket!.label}',
+          semanticLabel: 'Chip premium',
           onDelete: () =>
               ref.read(bikeFilterProvider.notifier).setPriceBucket(null),
         ),
@@ -54,6 +56,7 @@ class FiltersChipsMobile extends ConsumerWidget {
           colorScheme,
           textTheme,
           label: 'Range: ${filterState.selectedRangeBucket!.label}',
+          semanticLabel: 'Chip range',
           onDelete: () =>
               ref.read(bikeFilterProvider.notifier).setRangeBucket(null),
         ),
@@ -75,23 +78,27 @@ class FiltersChipsMobile extends ConsumerWidget {
     ColorScheme colorScheme,
     TextTheme textTheme, {
     required String label,
+    required String semanticLabel,
     required VoidCallback onDelete,
   }) =>
-      Chip(
-        label: Text(
-          label,
-          style: textTheme.bodySmall?.copyWith(
-            color: colorScheme.onPrimary,
-            fontWeight: FontWeight.w500,
+      Semantics(
+        label: semanticLabel,
+        child: Chip(
+          label: Text(
+            label,
+            style: textTheme.bodySmall?.copyWith(
+              color: colorScheme.onPrimary,
+              fontWeight: FontWeight.w500,
+            ),
           ),
+          deleteIcon: Icon(
+            Icons.close,
+            size: 18,
+            color: colorScheme.onPrimary,
+          ),
+          onDeleted: onDelete,
+          backgroundColor: colorScheme.primary,
+          side: BorderSide.none,
         ),
-        deleteIcon: Icon(
-          Icons.close,
-          size: 18,
-          color: colorScheme.onPrimary,
-        ),
-        onDeleted: onDelete,
-        backgroundColor: colorScheme.primary,
-        side: BorderSide.none,
       );
 }

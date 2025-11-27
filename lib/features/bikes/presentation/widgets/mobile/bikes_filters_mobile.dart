@@ -58,19 +58,22 @@ class BikesFiltersMobile extends ConsumerWidget {
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      itemCount: filteredBikes.length,
-      itemBuilder: (context, index) {
-        final bike = filteredBikes[index];
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: BikeCard(
-            bike: bike,
-            onTap: () => context.go('/bikes/${bike.id}'),
-          ),
-        );
-      },
+    return Semantics(
+      label: "Bike section",
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        itemCount: filteredBikes.length,
+        itemBuilder: (context, index) {
+          final bike = filteredBikes[index];
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: BikeCard(
+              bike: bike,
+              onTap: () => context.go('/bikes/${bike.id}'),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -82,51 +85,57 @@ class BikesFiltersMobile extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              hasFilters ? Icons.search_off : Icons.two_wheeler,
-              size: 80,
-              color: colorScheme.primary.withValues(alpha: 0.5),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              hasFilters ? 'No bikes match your search' : 'No bikes available',
-              style: textTheme.titleLarge?.copyWith(
-                color: colorScheme.onSecondary.withValues(alpha: 0.7),
+    return Semantics(
+      label: "Bike empty",
+      child: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                hasFilters ? Icons.search_off : Icons.two_wheeler,
+                size: 80,
+                color: colorScheme.primary.withValues(alpha: 0.5),
               ),
-              textAlign: TextAlign.center,
-            ),
-            if (hasFilters) ...[
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               Text(
-                'Try adjusting your filters',
-                style: textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSecondary.withValues(alpha: 0.6),
+                hasFilters ? 'No bikes match your search' : 'No bikes available',
+                style: textTheme.titleLarge?.copyWith(
+                  color: colorScheme.onSecondary.withValues(alpha: 0.7),
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16),
-              OutlinedButton(
-                onPressed: onReset,
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: colorScheme.primary),
-                ),
-                child: Text(
-                  'Reset filters',
+              if (hasFilters) ...[
+                const SizedBox(height: 8),
+                Text(
+                  'Try adjusting your filters',
                   style: textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.w600,
+                    color: colorScheme.onSecondary.withValues(alpha: 0.6),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                Semantics(
+                  label: "Empty reset",
+                  child: OutlinedButton(
+                    onPressed: onReset,
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: colorScheme.primary),
+                    ),
+                    child: Text(
+                      'Reset filters',
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

@@ -1,0 +1,12 @@
+appId: com.electrum.app
+---
+# Bikes Assert Empty Flow
+# Purpose: Reusable assertion that empty state is showing
+
+# Assert Bike empty (empty state widget) is visible
+- assertVisible:
+    text: ".*Bike empty.*"
+
+# Assert Bike card is NOT visible
+- assertNotVisible:
+    text: ".*Bike card.*"

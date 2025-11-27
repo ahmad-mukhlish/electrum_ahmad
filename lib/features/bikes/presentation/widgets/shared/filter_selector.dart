@@ -41,7 +41,7 @@ class FilterSelector<T> extends StatelessWidget {
   }) {
     final isSelected = selected == option.value;
 
-    return InkWell(
+    final child = InkWell(
       onTap: () => isSelected ? onChanged(null) : onChanged(option.value),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
@@ -61,6 +61,10 @@ class FilterSelector<T> extends StatelessWidget {
         ),
       ),
     );
+
+    return option.semanticLabel != null
+        ? Semantics(label: option.semanticLabel, child: child)
+        : child;
   }
 
   Widget _buildSelectionIndicator(
