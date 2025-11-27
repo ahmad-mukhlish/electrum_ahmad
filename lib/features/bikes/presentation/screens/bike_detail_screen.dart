@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../viewmodel/notifiers/bike_detail_provider.dart';
+import '../viewmodel/notifiers/detail/bike_detail_provider.dart';
 import '../widgets/mobile/bike_detail_content_mobile.dart';
 import '../widgets/web/bike_detail_content_web.dart';
 

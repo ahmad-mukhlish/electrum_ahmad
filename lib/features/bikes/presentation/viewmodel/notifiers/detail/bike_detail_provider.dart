@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../data/repositories/bikes_repository_impl.dart';
-import '../../../domain/entities/bike.dart';
+import '../../../../data/repositories/bikes_repository_impl.dart';
+import '../../../../domain/entities/bike.dart';
 
 part 'bike_detail_provider.g.dart';
 

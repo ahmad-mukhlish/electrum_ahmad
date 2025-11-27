@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../viewmodel/notifiers/bikes_provider.dart';
+import '../../viewmodel/notifiers/stream/bikes_provider.dart';
 import '../shared/bike_card.dart';
 
 class BikesListWeb extends ConsumerWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../viewmodel/notifiers/bike_filter_provider.dart';
+import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 import '../shared/bike_card.dart';
 import 'active_filters_chips.dart';
 import 'bikes_filter_button.dart';

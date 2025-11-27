@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../viewmodel/notifiers/bike_filter_provider.dart';
+import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 import '../../viewmodel/states/filter_buckets.dart';
 import '../shared/availability_toggle.dart';
 import '../shared/price_bucket_selector.dart';
