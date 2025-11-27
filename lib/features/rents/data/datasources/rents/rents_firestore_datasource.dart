@@ -26,4 +26,23 @@ class RentsFirestoreDatasource {
       rethrow;
     }
   }
+
+  /// Fetch rents for a specific user by contactEmail
+  /// Query Firestore 'rents' collection filtered by user email
+  /// Returns list ordered by createdAt descending (most recent first)
+  Future<List<RentDto>> getUserRents(String userEmail) async {
+    try {
+      final collection = _firestore.collection('rents');
+      final querySnapshot = await collection
+          .where('contact-email', isEqualTo: userEmail)
+          .orderBy('created-at', descending: true)
+          .get();
+
+      return querySnapshot.docs
+          .map((doc) => RentDto.fromJson({...doc.data(), 'id': doc.id}))
+          .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

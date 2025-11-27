@@ -10,6 +10,10 @@ class RentDto {
   final String? id;
   @JsonKey(name: 'bike-id')
   final String? bikeId;
+  @JsonKey(name: 'bike-model')
+  final String? bikeModel;
+  @JsonKey(name: 'photo-url')
+  final String? photoUrl;
   @JsonKey(
     name: 'from-date',
     fromJson: _timestampFromJson,
@@ -46,6 +50,7 @@ class RentDto {
     toJson: _timestampToJson,
   )
   final Timestamp? createdAt;
+  final String? status;
 
   static Timestamp? _timestampFromJson(dynamic json) {
     if (json == null) return null;
@@ -58,6 +63,8 @@ class RentDto {
   RentDto({
     this.id,
     this.bikeId,
+    this.bikeModel,
+    this.photoUrl,
     this.fromDate,
     this.toDate,
     this.pickupText,
@@ -70,6 +77,7 @@ class RentDto {
     this.pricePerDay,
     this.totalAmount,
     this.createdAt,
+    this.status,
   });
 
   factory RentDto.fromJson(Map<String, dynamic> json) =>
@@ -84,6 +92,8 @@ extension RentDtoMapper on RentDto {
   Rent toEntity() => Rent(
         id: id ?? '',
         bikeId: bikeId ?? '',
+        bikeModel: bikeModel ?? '',
+        photoUrl: photoUrl,
         fromDate: fromDate?.toDate() ?? DateTime.now(),
         toDate: toDate?.toDate() ?? DateTime.now(),
         pickupText: pickupText ?? '',
@@ -96,5 +106,6 @@ extension RentDtoMapper on RentDto {
         pricePerDay: pricePerDay ?? 0,
         totalAmount: totalAmount ?? 0,
         createdAt: createdAt?.toDate() ?? DateTime.now(),
+        status: status ?? 'pending',
       );
 }

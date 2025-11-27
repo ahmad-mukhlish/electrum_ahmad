@@ -12,6 +12,8 @@ abstract class Rent with _$Rent {
   const factory Rent({
     required String id,
     required String bikeId,
+    required String bikeModel,
+    String? photoUrl,
     required DateTime fromDate,
     required DateTime toDate,
     required String pickupText,
@@ -24,6 +26,7 @@ abstract class Rent with _$Rent {
     required int pricePerDay,
     required int totalAmount,
     required DateTime createdAt,
+    @Default('pending') String status,
   }) = _Rent;
 }
 
@@ -32,6 +35,8 @@ extension RentMapper on Rent {
   RentDto toDto() => RentDto(
         id: id,
         bikeId: bikeId,
+        bikeModel: bikeModel,
+        photoUrl: photoUrl,
         fromDate: Timestamp.fromDate(fromDate),
         toDate: Timestamp.fromDate(toDate),
         pickupText: pickupText,
@@ -44,5 +49,6 @@ extension RentMapper on Rent {
         pricePerDay: pricePerDay,
         totalAmount: totalAmount,
         createdAt: Timestamp.fromDate(createdAt),
+        status: status,
       );
 }

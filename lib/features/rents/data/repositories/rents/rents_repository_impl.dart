@@ -1,3 +1,4 @@
+import 'package:electrum_ahmad/features/bikes/data/dtos/rent_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../domain/entities/rent/rent.dart';
@@ -22,6 +23,16 @@ class RentsRepositoryImpl implements RentsRepository {
     try {
       final rentDto = rent.toDto();
       await _datasource.createRent(rentDto);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Rent>> getUserRents(String userEmail) async {
+    try {
+      final rentDtos = await _datasource.getUserRents(userEmail);
+      return rentDtos.map((dto) => dto.toEntity()).toList();
     } catch (e) {
       rethrow;
     }
