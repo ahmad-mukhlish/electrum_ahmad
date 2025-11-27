@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../auth/presentation/viewmodel/notifiers/auth_notifier.dart';
-import '../../../data/repositories/rents_repository_impl.dart';
-import '../../../domain/entities/rent.dart';
+import '../../../../../auth/presentation/viewmodel/notifiers/auth_notifier.dart';
+import '../../../../data/repositories/rents/rents_repository_impl.dart';
+import '../../../../domain/entities/rent/rent.dart';
 
 part 'rent_history_notifier.g.dart';
 

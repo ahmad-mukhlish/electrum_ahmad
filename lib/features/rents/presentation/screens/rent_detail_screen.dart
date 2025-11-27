@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/widgets/header_web.dart';
 import '../../../../core/widgets/primary_app_bar.dart';
-import '../../domain/entities/rent.dart';
+import '../../domain/entities/rent/rent.dart';
 import '../viewmodel/states/rent_history_item_state.dart';
 
 class RentDetailScreen extends StatelessWidget {

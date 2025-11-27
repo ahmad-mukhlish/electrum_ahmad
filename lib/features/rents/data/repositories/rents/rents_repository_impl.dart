@@ -1,9 +1,9 @@
-import 'package:electrum_ahmad/features/bikes/data/dtos/rent_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../domain/entities/rent/rent.dart';
 import '../../../domain/repositories/rents_repository.dart';
 import '../../datasources/rents/rents_firestore_datasource.dart';
+import '../../dtos/rents/rent_dto.dart';
 
 part 'rents_repository_impl.g.dart';
 

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/price_formatter.dart';
-import '../../../domain/entities/rent.dart';
+import '../../../domain/entities/rent/rent.dart';
 
 part 'rent_history_item_state.freezed.dart';
 

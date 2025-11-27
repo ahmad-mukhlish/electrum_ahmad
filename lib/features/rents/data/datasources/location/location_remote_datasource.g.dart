@@ -10,8 +10,7 @@ part of 'location_remote_datasource.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(locationRemoteDatasource)
-const locationRemoteDatasourceProvider =
-    LocationRemoteDatasourceProvider._();
+const locationRemoteDatasourceProvider = LocationRemoteDatasourceProvider._();
 
 final class LocationRemoteDatasourceProvider
     extends
@@ -50,12 +49,10 @@ final class LocationRemoteDatasourceProvider
   Override overrideWithValue(LocationRemoteDatasource value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<LocationRemoteDatasource>(
-        value,
-      ),
+      providerOverride: $SyncValueProvider<LocationRemoteDatasource>(value),
     );
   }
 }
 
 String _$locationRemoteDatasourceHash() =>
-    r'da007d795c599058ba1c220fe7478a385f02fb2a';
+    r'3d0415012bd922cc31b1043df1e56adf50ea5c25';

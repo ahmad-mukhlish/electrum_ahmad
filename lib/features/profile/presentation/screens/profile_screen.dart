@@ -6,9 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../auth/presentation/viewmodel/notifiers/auth_notifier.dart';
-import '../../../bikes/domain/entities/rent.dart';
-import '../../../bikes/presentation/viewmodel/notifiers/rent_history_notifier.dart';
-import '../../../bikes/presentation/widgets/shared/rent_history_list.dart';
+import '../../../rents/domain/entities/rent/rent.dart';
+import '../../../rents/presentation/viewmodel/notifiers/history/rent_history_notifier.dart';
+import '../../../rents/presentation/widgets/shared/rent_history_list.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -173,7 +173,7 @@ class ProfileScreen extends ConsumerWidget {
             child: rentHistoryAsync.when(
               data: (rents) => RentHistoryList(
                 rents: rents,
-                onRentTap: (rent) => _showRentDetail(context, rent),
+                onRentTap: (Rent rent) => _showRentDetail(context, rent),
               ),
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (error, stack) => _buildErrorState(

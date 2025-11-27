@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/rent.dart';
+import '../../../domain/entities/rent/rent.dart';
 import '../../viewmodel/states/rent_history_item_state.dart';
 import 'rent_history_card.dart';
 
