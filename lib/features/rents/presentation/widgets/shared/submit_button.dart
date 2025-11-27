@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../bikes/domain/entities/bike.dart';
-import '../../viewmodel/notifiers/rent_form_provider.dart';
-import '../../viewmodel/notifiers/rent_submit_provider.dart';
+import '../../viewmodel/notifiers/form/rent_form_provider.dart';
+import '../../viewmodel/notifiers/submit/rent_submit_provider.dart';
 
 class SubmitButton extends ConsumerWidget {
   const SubmitButton({

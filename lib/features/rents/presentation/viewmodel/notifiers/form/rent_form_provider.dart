@@ -1,7 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../auth/presentation/viewmodel/notifiers/auth_notifier.dart';
-import '../states/rent_form_state.dart';
+import 'package:electrum_ahmad/features/auth/presentation/viewmodel/notifiers/auth_notifier.dart';
+
+import '../../states/rent_form_state.dart';
 
 part 'rent_form_provider.g.dart';
 

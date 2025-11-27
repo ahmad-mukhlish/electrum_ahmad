@@ -38,8 +38,8 @@ lib/features/bikes/
 └── presentation/
     ├── viewmodel/
     │   ├── notifiers/
-    │   │   ├── rent_form_provider.dart        # 🆕 Form state management
-    │   │   └── rent_submit_provider.dart      # 🆕 Submit AsyncNotifier
+    │   │   ├── form/rent_form_provider.dart        # 🆕 Form state management
+    │   │   └── submit/rent_submit_provider.dart      # 🆕 Submit AsyncNotifier
     │   └── states/
     │       └── rent_form_state.dart           # 🆕 Freezed form state
     ├── screens/

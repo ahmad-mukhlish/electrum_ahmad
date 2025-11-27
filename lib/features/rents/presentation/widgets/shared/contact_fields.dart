@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../viewmodel/notifiers/rent_form_provider.dart';
+import '../../viewmodel/notifiers/form/rent_form_provider.dart';
 
 class ContactFields extends ConsumerWidget {
   const ContactFields({super.key});

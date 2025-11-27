@@ -6,7 +6,7 @@ import 'package:quickalert/quickalert.dart';
 
 import '../../../../core/widgets/primary_app_bar.dart';
 import '../../../bikes/domain/entities/bike.dart';
-import '../viewmodel/notifiers/rent_submit_provider.dart';
+import '../viewmodel/notifiers/submit/rent_submit_provider.dart';
 import '../widgets/mobile/rent_form_content_mobile.dart';
 import '../widgets/web/rent_form_content_web.dart';
 

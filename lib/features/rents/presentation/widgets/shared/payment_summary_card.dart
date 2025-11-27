@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/utils/price_formatter.dart';
 import '../../../../bikes/domain/entities/bike.dart';
-import '../../viewmodel/notifiers/rent_form_provider.dart';
+import '../../viewmodel/notifiers/form/rent_form_provider.dart';
 
 class PaymentSummaryCard extends ConsumerWidget {
   const PaymentSummaryCard({

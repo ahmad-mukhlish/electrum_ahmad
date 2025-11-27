@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../viewmodel/notifiers/rent_form_provider.dart';
+import '../../viewmodel/notifiers/form/rent_form_provider.dart';
 
 class RentalPeriodFields extends ConsumerWidget {
   const RentalPeriodFields({super.key});
