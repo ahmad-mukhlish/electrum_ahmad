@@ -1,25 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../core/services/api/api_service.dart';
-import '../dtos/reverse_geocoding_response_dto.dart';
+import '../../../../../core/services/api/api_service.dart';
+import '../../dtos/reverse_geocoding_response_dto.dart';
 
-part 'location_geocoding_remote_datasource.g.dart';
+part 'location_remote_datasource.g.dart';
 
 const _nominatimBaseUrl = 'https://nominatim.openstreetmap.org';
 const _reversePath = '$_nominatimBaseUrl/reverse';
 const _userAgentHeader = 'electrum-ahmad-app';
 
 @riverpod
-LocationGeocodingRemoteDatasource locationGeocodingRemoteDatasource(
-  Ref ref,
-) =>
-    LocationGeocodingRemoteDatasource(
+LocationRemoteDatasource locationRemoteDatasource(Ref ref) =>
+    LocationRemoteDatasource(
       apiService: ref.watch(apiServiceProvider),
     );
 
-class LocationGeocodingRemoteDatasource {
-  LocationGeocodingRemoteDatasource({required ApiService apiService})
+class LocationRemoteDatasource {
+  LocationRemoteDatasource({required ApiService apiService})
       : _apiService = apiService;
 
   final ApiService _apiService;

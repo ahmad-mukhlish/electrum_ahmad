@@ -78,7 +78,7 @@ Create a bikes list feature with Firestore integration that displays available e
     - Call datasource method
     - Map DTOs to entities using `toEntity()`
     - Wrap in try-catch with rethrow
-- Follow existing pattern from `promotions_repository_impl.dart`
+- Follow existing pattern from `data/repositories/promotions/promotions_repository_impl.dart`
 
 ### 3. Presentation Layer
 

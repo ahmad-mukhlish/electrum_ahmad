@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../data/repositories/promotions_repository_impl.dart';
+import '../../../../data/repositories/promotions/promotions_repository_impl.dart';
 import '../../../../domain/entities/promotion/promotion.dart';
 
 part 'promotions_provider.g.dart';

@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/services/location/location_service.dart';
 import '../../domain/entities/resolved_location.dart';
 import '../../domain/repositories/location_repository.dart';
-import '../datasources/location_geocoding_remote_datasource.dart';
+import '../datasources/location/location_remote_datasource.dart';
 import '../dtos/reverse_geocoding_response_dto.dart';
 
 part 'location_repository_impl.g.dart';
@@ -12,18 +12,18 @@ part 'location_repository_impl.g.dart';
 @riverpod
 LocationRepository locationRepository(Ref ref) => LocationRepositoryImpl(
       platformService: ref.watch(locationServiceProvider),
-      geocodingDatasource: ref.watch(locationGeocodingRemoteDatasourceProvider),
+      locationDatasource: ref.watch(locationRemoteDatasourceProvider),
     );
 
 class LocationRepositoryImpl implements LocationRepository {
   LocationRepositoryImpl({
     required LocationService platformService,
-    required LocationGeocodingRemoteDatasource geocodingDatasource,
+    required LocationRemoteDatasource locationDatasource,
   })  : _locationService = platformService,
-        _geocodingDatasource = geocodingDatasource;
+        _locationDatasource = locationDatasource;
 
   final LocationService _locationService;
-  final LocationGeocodingRemoteDatasource _geocodingDatasource;
+  final LocationRemoteDatasource _locationDatasource;
 
   @override
   Future<bool> requestPermission() async {
@@ -59,7 +59,7 @@ class LocationRepositoryImpl implements LocationRepository {
       );
 
       final reverseGeocodeResult =
-          await _geocodingDatasource.reverseGeocode(
+          await _locationDatasource.reverseGeocode(
         latitude: position.latitude,
         longitude: position.longitude,
       );

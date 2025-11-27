@@ -50,7 +50,7 @@ Create a promotions feature with Firestore integration that displays an auto-scr
   - Method `Stream<List<Promotion>> getPromotions()`
 
 #### Repository Implementation
-**Location**: `lib/features/home/data/repositories/promotions_repository_impl.dart`
+**Location**: `lib/features/home/data/repositories/promotions/promotions_repository_impl.dart`
 
 - Create Riverpod provider that injects datasource
 - Implement `PromotionsRepository` interface:

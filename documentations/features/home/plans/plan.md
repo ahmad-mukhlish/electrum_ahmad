@@ -78,7 +78,7 @@ Create a plans feature with Firestore integration that displays subscription pla
   - Method `Stream<List<Plan>> getPlans()`
 
 #### Repository Implementation
-**Location**: `lib/features/home/data/repositories/plans_repository_impl.dart`
+**Location**: `lib/features/home/data/repositories/plans/plans_repository_impl.dart`
 
 - Create Riverpod provider that injects datasource
 - Implement `PlansRepository` interface:

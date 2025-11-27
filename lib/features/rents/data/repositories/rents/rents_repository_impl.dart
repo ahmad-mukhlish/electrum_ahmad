@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../domain/entities/rent.dart';
-import '../../domain/repositories/rents_repository.dart';
-import '../datasources/rents_firestore_datasource.dart';
+import '../../../domain/entities/rent.dart';
+import '../../../domain/repositories/rents_repository.dart';
+import '../../datasources/rents/rents_firestore_datasource.dart';
 
 part 'rents_repository_impl.g.dart';
 

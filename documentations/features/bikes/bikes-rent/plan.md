@@ -29,9 +29,9 @@ lib/features/bikes/
 │   ├── dtos/
 │   │   └── rent_dto.dart                      # 🆕 JSON serializable DTO
 │   ├── datasources/
-│   │   └── rents_firestore_datasource.dart    # 🆕 Firestore operations
+│   │   └── rents/rents_firestore_datasource.dart    # 🆕 Firestore operations
 │   ├── repositories/
-│   │   └── rents_repository_impl.dart         # 🆕 Repository implementation
+│   │   └── rents/rents_repository_impl.dart         # 🆕 Repository implementation
 │   └── services/
 │       ├── location_service.dart              # 🆕 Geolocation + geocoding
 │       └── user_profile_service.dart          # 🆕 Local storage for contact info

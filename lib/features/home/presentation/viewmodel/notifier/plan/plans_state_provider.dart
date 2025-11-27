@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../data/repositories/plans_repository_impl.dart';
+import '../../../../data/repositories/plans/plans_repository_impl.dart';
 import '../../states/plan_state.dart';
 
 part 'plans_state_provider.g.dart';
