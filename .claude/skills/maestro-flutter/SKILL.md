@@ -63,6 +63,7 @@ Once connected, you'll have access to:
 
 ### In Flutter Code:
 All testable widgets MUST be wrapped with `Semantics` widget and given a `label`:
+use max 2 words for semantics for simplictiy
 
 ```dart
 Semantics(
