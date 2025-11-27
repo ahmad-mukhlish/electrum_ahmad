@@ -42,23 +42,23 @@ class FilterSheetMobile extends HookConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildSectionTitle('Availability', textTheme, colorScheme),
-                      const SizedBox(height: 8),
-                      AvailabilityToggle(
+                      _buildAvailabilitySection(
+                        textTheme: textTheme,
+                        colorScheme: colorScheme,
                         value: showAvailable.value,
                         onChanged: (value) => showAvailable.value = value,
                       ),
                       const SizedBox(height: 24),
-                      _buildSectionTitle('Price Range', textTheme, colorScheme),
-                      const SizedBox(height: 8),
-                      PriceBucketSelector(
+                      _buildPriceSection(
+                        textTheme: textTheme,
+                        colorScheme: colorScheme,
                         selectedBucket: priceBucket.value,
                         onChanged: (value) => priceBucket.value = value,
                       ),
                       const SizedBox(height: 24),
-                      _buildSectionTitle('Range (km)', textTheme, colorScheme),
-                      const SizedBox(height: 8),
-                      RangeBucketSelector(
+                      _buildRangeSection(
+                        textTheme: textTheme,
+                        colorScheme: colorScheme,
                         selectedBucket: rangeBucket.value,
                         onChanged: (value) => rangeBucket.value = value,
                       ),
@@ -116,6 +116,60 @@ class FilterSheetMobile extends HookConsumerWidget {
           fontWeight: FontWeight.w600,
           color: colorScheme.onSecondary,
         ),
+      );
+
+  Widget _buildAvailabilitySection({
+    required TextTheme textTheme,
+    required ColorScheme colorScheme,
+    required bool value,
+    required ValueChanged<bool> onChanged,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle('Availability', textTheme, colorScheme),
+          const SizedBox(height: 8),
+          AvailabilityToggle(
+            value: value,
+            onChanged: onChanged,
+          ),
+        ],
+      );
+
+  Widget _buildPriceSection({
+    required TextTheme textTheme,
+    required ColorScheme colorScheme,
+    required PriceBucket? selectedBucket,
+    required ValueChanged<PriceBucket?> onChanged,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle('Price Range', textTheme, colorScheme),
+          const SizedBox(height: 8),
+          PriceBucketSelector(
+            selectedBucket: selectedBucket,
+            onChanged: onChanged,
+          ),
+        ],
+      );
+
+  Widget _buildRangeSection({
+    required TextTheme textTheme,
+    required ColorScheme colorScheme,
+    required RangeBucket? selectedBucket,
+    required ValueChanged<RangeBucket?> onChanged,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle('Range (km)', textTheme, colorScheme),
+          const SizedBox(height: 8),
+          RangeBucketSelector(
+            selectedBucket: selectedBucket,
+            onChanged: onChanged,
+          ),
+        ],
       );
 
   Widget _buildActions(

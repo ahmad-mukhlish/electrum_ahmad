@@ -20,24 +20,25 @@ class FilterButtonMobile extends ConsumerWidget {
           (state.selectedRangeBucket != null ? 1 : 0)),
     );
 
-    return OutlinedButton.icon(
+    return FilledButton.icon(
       onPressed: () => _showFilterSheet(context),
-      icon: Icon(Icons.tune, color: colorScheme.primary),
+      icon: Icon(Icons.tune, color: colorScheme.onPrimary),
       label: Text(
         activeCount > 0 ? 'Filter ($activeCount)' : 'Filter',
         style: textTheme.bodyMedium?.copyWith(
-          color: colorScheme.onSecondary,
+          color: colorScheme.onPrimary,
           fontWeight: FontWeight.w600,
         ),
       ),
-      style: OutlinedButton.styleFrom(
-        side: BorderSide(
-          color: activeCount > 0
-              ? colorScheme.primary
-              : colorScheme.onSecondary.withValues(alpha: 0.3),
-          width: activeCount > 0 ? 2 : 1,
-        ),
+      style: FilledButton.styleFrom(
+        backgroundColor: activeCount > 0
+            ? colorScheme.primary
+            : colorScheme.onSecondary,
+        foregroundColor: colorScheme.onPrimary,
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
     );
   }

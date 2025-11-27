@@ -30,7 +30,7 @@ class BikesSearchMobile extends HookConsumerWidget {
           ref.read(bikeFilterProvider.notifier).setSearchQuery(value),
       style: textTheme.bodyMedium?.copyWith(color: colorScheme.onSecondary),
       decoration: InputDecoration(
-        hintText: 'Search your next ride',
+        hintText: 'Search your ride',
         hintStyle: textTheme.bodyMedium?.copyWith(
           color: colorScheme.onSecondary.withValues(alpha: 0.5),
         ),

@@ -18,20 +18,6 @@ class FiltersChipsMobile extends ConsumerWidget {
 
     final chips = <Widget>[];
 
-    // Search query chip
-    if (filterState.searchQuery.isNotEmpty) {
-      chips.add(
-        _buildChip(
-          context,
-          colorScheme,
-          textTheme,
-          label: 'Search: "${filterState.searchQuery}"',
-          onDelete: () =>
-              ref.read(bikeFilterProvider.notifier).setSearchQuery(''),
-        ),
-      );
-    }
-
     // Availability chip
     if (filterState.showAvailableOnly) {
       chips.add(
@@ -79,7 +65,6 @@ class FiltersChipsMobile extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       child: Wrap(
         spacing: 8,
-        runSpacing: 8,
         children: chips,
       ),
     );
@@ -108,6 +93,5 @@ class FiltersChipsMobile extends ConsumerWidget {
         onDeleted: onDelete,
         backgroundColor: colorScheme.primary,
         side: BorderSide.none,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       );
 }

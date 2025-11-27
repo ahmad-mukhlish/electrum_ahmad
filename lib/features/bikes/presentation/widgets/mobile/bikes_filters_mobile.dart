@@ -19,12 +19,12 @@ class BikesFiltersMobile extends ConsumerWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
-          child: Column(
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+          child: Row(
             children: [
-              const BikesSearchMobile(),
-              const SizedBox(height: 12),
-              const FilterButtonMobile(),
+              Expanded(child: SizedBox(height: 48, child: BikesSearchMobile())),
+              SizedBox(width: 8),
+              SizedBox(height: 48, child: FilterButtonMobile()),
             ],
           ),
         ),
