@@ -31,7 +31,7 @@ Create a promotions feature with Firestore integration that displays an auto-scr
 - Create extension `PromotionX` with `toDto()` method
 
 #### Datasource: PromotionsFirestoreDatasource
-**Location**: `lib/features/home/data/datasources/promotions_firestore_datasource.dart`
+**Location**: `lib/features/home/data/datasources/promotions/promotions_firestore_datasource.dart`
 
 - Create Riverpod provider that injects `FirebaseFirestore` from `core/services/firebase/firebase_service.dart`
 - Implement datasource class with:
