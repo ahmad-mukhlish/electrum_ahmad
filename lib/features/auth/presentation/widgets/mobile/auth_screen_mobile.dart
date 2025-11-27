@@ -14,12 +14,15 @@ class AuthScreenMobile extends StatelessWidget {
         child: Column(
           children: [
             // Image section - portrait crop at top
-            SizedBox(
-              height: screenHeight * 0.3,
-              width: double.infinity,
-              child: Image.asset(
-                'assets/images/login.png',
-                fit: BoxFit.cover,
+            Semantics(
+              label: "Login image",
+              child: SizedBox(
+                height: screenHeight * 0.3,
+                width: double.infinity,
+                child: Image.asset(
+                  'assets/images/login.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             // Form section

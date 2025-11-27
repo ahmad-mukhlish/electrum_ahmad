@@ -1,0 +1,10 @@
+appId: com.electrum.app
+---
+# Master Auth Test Orchestrator
+# Entry point to run all authentication tests
+
+# Run mobile auth tests
+- runFlow: mobile/auth-mobile.yaml
+
+# Run web auth tests
+- runFlow: web/auth-web.yaml

@@ -37,13 +37,14 @@ class AuthForm extends HookConsumerWidget {
           _buildNameField(textTheme, colorScheme, nameController),
           const SizedBox(height: 16),
         ],
-        _buildEmailField(textTheme, emailController, colorScheme),
+        _buildEmailField(textTheme, emailController, colorScheme, isRegisterMode.value),
         const SizedBox(height: 16),
         _buildPasswordField(
           textTheme,
           colorScheme,
           passwordController,
           obscurePassword,
+          isRegisterMode.value,
         ),
         const SizedBox(height: 24),
         _buildActionButton(
@@ -86,7 +87,10 @@ class AuthForm extends HookConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               duration: const Duration(seconds: 1),
-              content: Text(error.toString()),
+              content: Semantics(
+                label: "Error snackbar",
+                child: Text(error.toString()),
+              ),
               backgroundColor: Colors.red,
             ),
           );
@@ -192,6 +196,7 @@ class AuthForm extends HookConsumerWidget {
     TextTheme textTheme,
     TextEditingController controller,
     ColorScheme colorScheme,
+    bool isRegisterMode,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,22 +209,25 @@ class AuthForm extends HookConsumerWidget {
           ),
         ),
         const SizedBox(height: 8),
-        TextField(
-          style: textTheme.bodyLarge?.copyWith(
-            color: colorScheme.onSecondary,
-            fontWeight: FontWeight.w500,
-          ),
-          controller: controller,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            hintStyle: textTheme.bodyLarge?.copyWith(
+        Semantics(
+          label: isRegisterMode ? "Register email" : "Login email",
+          child: TextField(
+            style: textTheme.bodyLarge?.copyWith(
               color: colorScheme.onSecondary,
+              fontWeight: FontWeight.w500,
             ),
-            hintText: 'Example@email.com',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 14,
+            controller: controller,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              hintStyle: textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onSecondary,
+              ),
+              hintText: 'Example@email.com',
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
             ),
           ),
         ),
@@ -232,6 +240,7 @@ class AuthForm extends HookConsumerWidget {
     ColorScheme colorScheme,
     TextEditingController controller,
     ValueNotifier<bool> obscurePassword,
+    bool isRegisterMode,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -244,31 +253,34 @@ class AuthForm extends HookConsumerWidget {
           ),
         ),
         const SizedBox(height: 8),
-        TextField(
-          style: textTheme.bodyLarge?.copyWith(
-            color: colorScheme.onSecondary,
-            fontWeight: FontWeight.w500,
-          ),
-          controller: controller,
-          obscureText: obscurePassword.value,
-          decoration: InputDecoration(
-            hintStyle: textTheme.bodyLarge?.copyWith(
+        Semantics(
+          label: isRegisterMode ? "Register password" : "Login password",
+          child: TextField(
+            style: textTheme.bodyLarge?.copyWith(
               color: colorScheme.onSecondary,
+              fontWeight: FontWeight.w500,
             ),
-            hintText: 'Insert your password',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 14,
-            ),
-            suffixIcon: IconButton(
-              icon: Icon(
-                obscurePassword.value ? Icons.visibility_off : Icons.visibility,
+            controller: controller,
+            obscureText: obscurePassword.value,
+            decoration: InputDecoration(
+              hintStyle: textTheme.bodyLarge?.copyWith(
                 color: colorScheme.onSecondary,
               ),
-              onPressed: () {
-                obscurePassword.value = !obscurePassword.value;
-              },
+              hintText: 'Insert your password',
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  obscurePassword.value ? Icons.visibility_off : Icons.visibility,
+                  color: colorScheme.onSecondary,
+                ),
+                onPressed: () {
+                  obscurePassword.value = !obscurePassword.value;
+                },
+              ),
             ),
           ),
         ),
@@ -283,36 +295,39 @@ class AuthForm extends HookConsumerWidget {
     VoidCallback onAction,
     TextTheme textTheme,
   ) {
-    return FilledButton(
-      onPressed: authState.maybeWhen(
-        loading: () => null,
-        orElse: () => onAction,
-      ),
-      style: FilledButton.styleFrom(
-        backgroundColor: colorScheme.primary,
-        foregroundColor: colorScheme.onPrimary,
-        padding: const EdgeInsets.symmetric(vertical: kIsWeb ? 24 : 16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-      child: authState.when(
-        data: (_) => Text(
-          isRegister ? 'Sign up' : 'Sign in',
-          style: kIsWeb
-              ? textTheme.headlineSmall?.copyWith(
-                  color: colorScheme.onPrimary,
-                  fontWeight: FontWeight.bold,
-                )
-              : textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onPrimary,
-                  fontWeight: FontWeight.bold,
-                ),
+    return Semantics(
+      label: isRegister ? "Register button" : "Login button",
+      child: FilledButton(
+        onPressed: authState.maybeWhen(
+          loading: () => null,
+          orElse: () => onAction,
         ),
-        loading: () => const SizedBox(
-          height: 20,
-          width: 20,
-          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+        style: FilledButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          padding: const EdgeInsets.symmetric(vertical: kIsWeb ? 24 : 16),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        error: (_, _) => Text(isRegister ? 'Sign up' : 'Sign in'),
+        child: authState.when(
+          data: (_) => Text(
+            isRegister ? 'Sign up' : 'Sign in',
+            style: kIsWeb
+                ? textTheme.headlineSmall?.copyWith(
+                    color: colorScheme.onPrimary,
+                    fontWeight: FontWeight.bold,
+                  )
+                : textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.onPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
+          ),
+          loading: () => const SizedBox(
+            height: 20,
+            width: 20,
+            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+          ),
+          error: (_, _) => Text(isRegister ? 'Sign up' : 'Sign in'),
+        ),
       ),
     );
   }
@@ -329,19 +344,22 @@ class AuthForm extends HookConsumerWidget {
           isRegisterMode.value ? "Already have an account? " : "No account? ",
           style: kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge,
         ),
-        GestureDetector(
-          onTap: () => isRegisterMode.value = !isRegisterMode.value,
-          child: Text(
-            isRegisterMode.value ? 'Sign in' : 'Sign up',
-            style: kIsWeb
-                ? textTheme.headlineSmall?.copyWith(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.w600,
-                  )
-                : textTheme.bodyLarge?.copyWith(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.w600,
-                  ),
+        Semantics(
+          label: isRegisterMode.value ? "Register signin" : "Login signup",
+          child: GestureDetector(
+            onTap: () => isRegisterMode.value = !isRegisterMode.value,
+            child: Text(
+              isRegisterMode.value ? 'Sign in' : 'Sign up',
+              style: kIsWeb
+                  ? textTheme.headlineSmall?.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.w600,
+                    )
+                  : textTheme.bodyLarge?.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
+            ),
           ),
         ),
       ],

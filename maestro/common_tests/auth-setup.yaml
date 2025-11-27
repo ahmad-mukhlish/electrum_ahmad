@@ -1,0 +1,50 @@
+appId: com.electrum.app
+---
+# Auth Setup Flow
+# Purpose: Ensure the app starts from the login screen
+# Handles both logged-in and logged-out states
+
+# Step 1: Launch the app
+- launchApp
+
+# Step 2: Wait for app to stabilize
+- waitForAnimationToEnd
+
+# Step 3: Check if user is already logged in
+# If "Home bottom" is visible, user is logged in on mobile
+# If "Home sidebar" is visible, user is logged in on web
+- runFlow:
+    when:
+      visible:
+        text: ".*Home bottom.*"
+    commands:
+      # User is logged in on mobile - need to logout
+      - tapOn:
+          text: "Profile"
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*Logout button.*"
+      - waitForAnimationToEnd
+
+- runFlow:
+    when:
+      visible:
+        text: ".*Home sidebar.*"
+    commands:
+      # User is logged in on web - need to logout
+      - tapOn:
+          text: "Profile"
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*Logout button.*"
+      - waitForAnimationToEnd
+
+# Step 4: Verify we're on the login screen
+- assertVisible:
+    text: ".*Login image.*"
+- assertVisible:
+    text: ".*Login email.*"
+- assertVisible:
+    text: ".*Login password.*"
+- assertVisible:
+    text: ".*Login button.*"

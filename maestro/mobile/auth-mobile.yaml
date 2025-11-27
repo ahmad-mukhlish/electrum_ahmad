@@ -1,0 +1,180 @@
+appId: com.electrum.app
+---
+# Mobile Auth Tests
+# Orchestrates all mobile authentication test scenarios
+
+# ===========================
+# Scenario 1: Successful Login (Seeded User)
+# ===========================
+- runFlow: ../common_tests/auth-setup.yaml
+
+- tapOn:
+    text: ".*Login email.*"
+- inputText: "ahmad.mukhlish.saputra@gmail.com"
+
+- tapOn:
+    text: ".*Login password.*"
+- inputText: "CobaCoba123"
+
+- tapOn:
+    text: ".*Login button.*"
+
+- waitForAnimationToEnd
+
+# Assert: Successfully logged in (home screen visible)
+- assertVisible:
+    text: ".*Home bottom.*"
+
+# Assert: No error snackbar
+- assertNotVisible:
+    text: ".*Error snackbar.*"
+
+# ===========================
+# Scenario 2: Failed Login (Random Credentials)
+# ===========================
+- runFlow: ../common_tests/auth-setup.yaml
+
+- tapOn:
+    text: ".*Login email.*"
+- inputText: "random_${CURRENT_TIME}@example.com"
+
+- tapOn:
+    text: ".*Login password.*"
+- inputText: "RandomPassword123"
+
+- tapOn:
+    text: ".*Login button.*"
+
+- waitForAnimationToEnd
+
+# Assert: Error snackbar is visible
+- assertVisible:
+    text: ".*Error snackbar.*"
+
+# Assert: Still on login screen
+- assertVisible:
+    text: ".*Login button.*"
+
+# Assert: Home navigation NOT visible
+- assertNotVisible:
+    text: ".*Home bottom.*"
+
+# ===========================
+# Scenario 3: Successful Registration (Random Credentials)
+# ===========================
+- runFlow: ../common_tests/auth-setup.yaml
+
+# Navigate to register screen
+- tapOn:
+    text: ".*Login signup.*"
+
+- waitForAnimationToEnd
+
+# Fill registration form with random credentials
+- tapOn:
+    text: ".*Register email.*"
+- inputText: "test_${CURRENT_TIME}@example.com"
+
+- tapOn:
+    text: ".*Register password.*"
+- inputText: "TestPassword123"
+
+- tapOn:
+    text: ".*Register button.*"
+
+- waitForAnimationToEnd
+
+# Assert: Successfully registered and logged in
+- assertVisible:
+    text: ".*Home bottom.*"
+
+# Assert: No error snackbar
+- assertNotVisible:
+    text: ".*Error snackbar.*"
+
+# ===========================
+# Scenario 4: Failed Registration (Existing User)
+# ===========================
+- runFlow: ../common_tests/auth-setup.yaml
+
+# Navigate to register screen
+- tapOn:
+    text: ".*Login signup.*"
+
+- waitForAnimationToEnd
+
+# Try to register with existing credentials
+- tapOn:
+    text: ".*Register email.*"
+- inputText: "ahmad.mukhlish.saputra@gmail.com"
+
+- tapOn:
+    text: ".*Register password.*"
+- inputText: "CobaCoba123"
+
+- tapOn:
+    text: ".*Register button.*"
+
+- waitForAnimationToEnd
+
+# Assert: Error snackbar is visible
+- assertVisible:
+    text: ".*Error snackbar.*"
+
+# Assert: Still on register screen
+- assertVisible:
+    text: ".*Register button.*"
+
+# Assert: Home navigation NOT visible
+- assertNotVisible:
+    text: ".*Home bottom.*"
+
+# ===========================
+# Scenario 5: Logout Flow
+# ===========================
+
+# First, login if not already logged in
+- runFlow: ../common_tests/auth-setup.yaml
+
+- tapOn:
+    text: ".*Login email.*"
+- inputText: "ahmad.mukhlish.saputra@gmail.com"
+
+- tapOn:
+    text: ".*Login password.*"
+- inputText: "CobaCoba123"
+
+- tapOn:
+    text: ".*Login button.*"
+
+- waitForAnimationToEnd
+
+# Assert: Successfully logged in
+- assertVisible:
+    text: ".*Home bottom.*"
+
+# Navigate to Profile
+- tapOn:
+    text: "Profile"
+
+- waitForAnimationToEnd
+
+# Tap logout button
+- tapOn:
+    text: ".*Logout button.*"
+
+- waitForAnimationToEnd
+
+# Assert: Back to login screen
+- assertVisible:
+    text: ".*Login image.*"
+- assertVisible:
+    text: ".*Login email.*"
+- assertVisible:
+    text: ".*Login password.*"
+- assertVisible:
+    text: ".*Login button.*"
+
+# Assert: Home navigation NOT visible
+- assertNotVisible:
+    text: ".*Home bottom.*"

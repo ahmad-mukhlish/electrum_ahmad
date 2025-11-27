@@ -60,58 +60,61 @@ class MainScreenWeb extends HookConsumerWidget {
     return Scaffold(
       body: Row(
         children: [
-          SideMenu(
-            controller: sideMenuController,
-            style: SideMenuStyle(
-              displayMode: SideMenuDisplayMode.auto,
-              showHamburger: true,
-              hoverColor: colorScheme.secondary,
-              selectedColor: colorScheme.primary,
-              selectedTitleTextStyle: TextStyle(color: colorScheme.onPrimary),
-              selectedIconColor: colorScheme.onPrimary,
-              unselectedIconColor: colorScheme.onSurfaceVariant,
-              unselectedTitleTextStyle: TextStyle(
-                color: colorScheme.onSurfaceVariant,
-              ),
-              backgroundColor: colorScheme.secondary.withValues(alpha: 0.1),
-            ),
-            title: Column(
-              children: [
-                const SizedBox(height: 24),
-                Text(
-                  'Electrum ⚡',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
+          Semantics(
+            label: "Home sidebar",
+            child: SideMenu(
+              controller: sideMenuController,
+              style: SideMenuStyle(
+                displayMode: SideMenuDisplayMode.auto,
+                showHamburger: true,
+                hoverColor: colorScheme.secondary,
+                selectedColor: colorScheme.primary,
+                selectedTitleTextStyle: TextStyle(color: colorScheme.onPrimary),
+                selectedIconColor: colorScheme.onPrimary,
+                unselectedIconColor: colorScheme.onSurfaceVariant,
+                unselectedTitleTextStyle: TextStyle(
+                  color: colorScheme.onSurfaceVariant,
                 ),
-                const SizedBox(height: 16),
-                Divider(color: colorScheme.outlineVariant),
+                backgroundColor: colorScheme.secondary.withValues(alpha: 0.1),
+              ),
+              title: Column(
+                children: [
+                  const SizedBox(height: 24),
+                  Text(
+                    'Electrum ⚡',
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const SizedBox(height: 16),
+                  Divider(color: colorScheme.outlineVariant),
+                ],
+              ),
+              items: [
+                SideMenuItem(
+                  title: 'Home',
+                  onTap: (index, _) => onNavigate(context, index),
+                  icon: Icon(selectedIndex == 0
+                      ? Icons.home
+                      : Icons.home_outlined),
+                ),
+                SideMenuItem(
+                  title: 'Bikes',
+                  onTap: (index, _) => onNavigate(context, index),
+                  icon: Icon(selectedIndex == 1
+                      ? Icons.motorcycle
+                      : Icons.motorcycle_outlined),
+                ),
+                SideMenuItem(
+                  title: 'Profile',
+                  onTap: (index, _) => onNavigate(context, index),
+                  icon: Icon(selectedIndex == 2
+                      ? Icons.person
+                      : Icons.person_outline),
+                ),
               ],
             ),
-            items: [
-              SideMenuItem(
-                title: 'Home',
-                onTap: (index, _) => onNavigate(context, index),
-                icon: Icon(selectedIndex == 0
-                    ? Icons.home
-                    : Icons.home_outlined),
-              ),
-              SideMenuItem(
-                title: 'Bikes',
-                onTap: (index, _) => onNavigate(context, index),
-                icon: Icon(selectedIndex == 1
-                    ? Icons.motorcycle
-                    : Icons.motorcycle_outlined),
-              ),
-              SideMenuItem(
-                title: 'Profile',
-                onTap: (index, _) => onNavigate(context, index),
-                icon: Icon(selectedIndex == 2
-                    ? Icons.person
-                    : Icons.person_outline),
-              ),
-            ],
           ),
           Expanded(child: body),
         ],

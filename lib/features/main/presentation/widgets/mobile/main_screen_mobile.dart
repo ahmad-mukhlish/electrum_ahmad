@@ -20,31 +20,34 @@ class MainScreenMobile extends ConsumerWidget {
 
     return Scaffold(
       body: body,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: (index) => onNavigate(context, index),
-        selectedItemColor: colorScheme.primary,
-        unselectedItemColor: colorScheme.onSurfaceVariant,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(selectedIndex == 0
-                ? Icons.home
-                : Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(selectedIndex == 1
-                ? Icons.motorcycle
-                : Icons.motorcycle_outlined),
-            label: 'Bikes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(selectedIndex == 2
-                ? Icons.person
-                : Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
+      bottomNavigationBar: Semantics(
+        label: "Home bottom",
+        child: BottomNavigationBar(
+          currentIndex: selectedIndex,
+          onTap: (index) => onNavigate(context, index),
+          selectedItemColor: colorScheme.primary,
+          unselectedItemColor: colorScheme.onSurfaceVariant,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(selectedIndex == 0
+                  ? Icons.home
+                  : Icons.home_outlined),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(selectedIndex == 1
+                  ? Icons.motorcycle
+                  : Icons.motorcycle_outlined),
+              label: 'Bikes',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(selectedIndex == 2
+                  ? Icons.person
+                  : Icons.person_outline),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -124,20 +124,23 @@ class ProfileScreen extends ConsumerWidget {
   Widget _buildLogoutButton(WidgetRef ref, ColorScheme colorScheme, BuildContext context) {
     return SizedBox(
       width: kIsWeb ? MediaQuery.of(context).size.width * 0.5 : double.infinity,
-      child: FilledButton.icon(
-        onPressed: () => ref.read(authProvider.notifier).logout(),
-        style: FilledButton.styleFrom(
-          backgroundColor: colorScheme.error,
-          foregroundColor: colorScheme.onError,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        icon: const Icon(Icons.logout, size: kIsWeb ? 24 : 16,),
-        label: const Text(
-          'Logout',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: kIsWeb ? 32 : 16,
+      child: Semantics(
+        label: "Logout button",
+        child: FilledButton.icon(
+          onPressed: () => ref.read(authProvider.notifier).logout(),
+          style: FilledButton.styleFrom(
+            backgroundColor: colorScheme.error,
+            foregroundColor: colorScheme.onError,
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          icon: const Icon(Icons.logout, size: kIsWeb ? 24 : 16,),
+          label: const Text(
+            'Logout',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: kIsWeb ? 32 : 16,
+            ),
           ),
         ),
       ),

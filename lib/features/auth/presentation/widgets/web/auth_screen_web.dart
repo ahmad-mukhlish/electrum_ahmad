@@ -31,10 +31,13 @@ class AuthScreenWeb extends StatelessWidget {
         // Right side - Image
         Flexible(
           flex: 3,
-          child: Image.asset(
-            'assets/images/login.png',
-            fit: BoxFit.fill,
-            height: double.infinity,
+          child: Semantics(
+            label: "Login image",
+            child: Image.asset(
+              'assets/images/login.png',
+              fit: BoxFit.fill,
+              height: double.infinity,
+            ),
           ),
         ),
       ],
