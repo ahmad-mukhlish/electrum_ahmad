@@ -1,3 +1,4 @@
+import 'package:electrum_ahmad/features/bikes/data/dtos/rent_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/entities/rent.dart';

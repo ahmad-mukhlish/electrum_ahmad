@@ -3,11 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../domain/entities/rent.dart';
-import '../../viewmodel/states/rent_history_item_state.dart';
+import '../../../../core/widgets/header_web.dart';
+import '../../../../core/widgets/primary_app_bar.dart';
+import '../../domain/entities/rent.dart';
+import '../viewmodel/states/rent_history_item_state.dart';
 
-class RentDetailView extends StatelessWidget {
-  const RentDetailView({
+class RentDetailScreen extends StatelessWidget {
+  const RentDetailScreen({
     super.key,
     required this.rent,
   });
@@ -20,16 +22,17 @@ class RentDetailView extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final rentState = RentHistoryItemState.fromEntity(rent);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+    return Scaffold(
+      backgroundColor: colorScheme.surface,
+      appBar: kIsWeb ? null : PrimaryAppBar(title: 'Rent Details'),
+      body: Column(
         children: [
-          _buildHandle(colorScheme),
-          Flexible(
+          if (kIsWeb)
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: HeaderWeb(title: 'Rent Details'),
+            ),
+          Expanded(
             child: SingleChildScrollView(
               padding: EdgeInsets.all(kIsWeb ? 32 : 24),
               child: Column(
@@ -53,18 +56,6 @@ class RentDetailView extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHandle(ColorScheme colorScheme) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 12),
-      width: 40,
-      height: 4,
-      decoration: BoxDecoration(
-        color: colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
-        borderRadius: BorderRadius.circular(2),
       ),
     );
   }
@@ -132,7 +123,7 @@ class RentDetailView extends StatelessWidget {
   Widget _buildPhoto(ColorScheme colorScheme) {
     if (rent.photoUrl == null) return const SizedBox.shrink();
 
-    return ClipRRectWidget(
+    return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: CachedNetworkImage(
         imageUrl: rent.photoUrl!,
@@ -473,21 +464,4 @@ class RentDetailView extends StatelessWidget {
     final dateFormat = DateFormat('dd MMMM yyyy');
     return dateFormat.format(dateTime);
   }
-}
-
-class ClipRRectWidget extends StatelessWidget {
-  const ClipRRectWidget({
-    super.key,
-    required this.borderRadius,
-    required this.child,
-  });
-
-  final BorderRadius borderRadius;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) => ClipRRect(
-        borderRadius: borderRadius,
-        child: child,
-      );
 }

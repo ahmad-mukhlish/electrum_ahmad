@@ -9,6 +9,8 @@ part of 'rent_dto.dart';
 RentDto _$RentDtoFromJson(Map<String, dynamic> json) => RentDto(
   id: json['id'] as String?,
   bikeId: json['bike-id'] as String?,
+  bikeModel: json['bike-model'] as String?,
+  photoUrl: json['photo-url'] as String?,
   fromDate: RentDto._timestampFromJson(json['from-date']),
   toDate: RentDto._timestampFromJson(json['to-date']),
   pickupText: json['pickup-text'] as String?,
@@ -21,11 +23,14 @@ RentDto _$RentDtoFromJson(Map<String, dynamic> json) => RentDto(
   pricePerDay: (json['price-per-day'] as num?)?.toInt(),
   totalAmount: (json['total-amount'] as num?)?.toInt(),
   createdAt: RentDto._timestampFromJson(json['created-at']),
+  status: json['status'] as String?,
 );
 
 Map<String, dynamic> _$RentDtoToJson(RentDto instance) => <String, dynamic>{
   'id': instance.id,
   'bike-id': instance.bikeId,
+  'bike-model': instance.bikeModel,
+  'photo-url': instance.photoUrl,
   'from-date': RentDto._timestampToJson(instance.fromDate),
   'to-date': RentDto._timestampToJson(instance.toDate),
   'pickup-text': instance.pickupText,
@@ -38,4 +43,5 @@ Map<String, dynamic> _$RentDtoToJson(RentDto instance) => <String, dynamic>{
   'price-per-day': instance.pricePerDay,
   'total-amount': instance.totalAmount,
   'created-at': RentDto._timestampToJson(instance.createdAt),
+  'status': instance.status,
 };

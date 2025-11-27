@@ -2,12 +2,12 @@ import 'package:electrum_ahmad/core/widgets/header_web.dart';
 import 'package:electrum_ahmad/core/widgets/primary_app_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../auth/presentation/viewmodel/notifiers/auth_notifier.dart';
 import '../../../bikes/domain/entities/rent.dart';
 import '../../../bikes/presentation/viewmodel/notifiers/rent_history_notifier.dart';
-import '../../../bikes/presentation/widgets/shared/rent_detail_view.dart';
 import '../../../bikes/presentation/widgets/shared/rent_history_list.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -256,17 +256,7 @@ class ProfileScreen extends ConsumerWidget {
   }
 
   void _showRentDetail(BuildContext context, Rent rent) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.9,
-        minChildSize: 0.5,
-        maxChildSize: 0.95,
-        builder: (context, scrollController) => RentDetailView(rent: rent),
-      ),
-    );
+    context.go('/profile/rent/${rent.id}', extra: rent);
   }
 
   Widget _buildMadeWithLove(BuildContext context, ColorScheme colorScheme) {

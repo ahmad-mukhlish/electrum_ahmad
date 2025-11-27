@@ -52,7 +52,7 @@ dependencies:
   quickalert: ^1.1.0
   geolocator: ^14.0.2
   flutter_osm_plugin: ^1.1.4
-  cached_network_image: ^3.4.2
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
