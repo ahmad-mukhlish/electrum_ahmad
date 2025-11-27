@@ -20,22 +20,25 @@ class PromotionCard extends StatelessWidget {
         ? colorScheme.onSecondary
         : colorScheme.onPrimary;
 
-    return Card(
-      elevation: 4,
-      color: backgroundColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTitle(textTheme, textColor),
-            const SizedBox(height: 12),
-            _buildShortCopy(textTheme, textColor),
-            const SizedBox(height: 16),
-            _buildValidity(textTheme, textColor),
-          ],
+    return Semantics(
+      label: "Promo card",
+      child: Card(
+        elevation: 4,
+        color: backgroundColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildTitle(textTheme, textColor),
+              const SizedBox(height: 12),
+              _buildShortCopy(textTheme, textColor),
+              const SizedBox(height: 16),
+              _buildValidity(textTheme, textColor),
+            ],
+          ),
         ),
       ),
     );

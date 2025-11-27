@@ -19,26 +19,29 @@ class PlanCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Card(
-      elevation: 4,
-      color: backgroundColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildHeader(textTheme, colorScheme),
-            _buildTagline(textTheme, colorScheme),
-            PlanPricing(planState: planState),
-            const SizedBox(height: 4),
-            _buildBestFor(textTheme, colorScheme),
-            const SizedBox(height: 8),
-            _buildSubscribeButton(colorScheme),
-            const SizedBox(height: 16),
-            _buildTerms(textTheme, colorScheme),
-          ],
+    return Semantics(
+      label: "Plan card",
+      child: Card(
+        elevation: 4,
+        color: backgroundColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildHeader(textTheme, colorScheme),
+              _buildTagline(textTheme, colorScheme),
+              PlanPricing(planState: planState),
+              const SizedBox(height: 4),
+              _buildBestFor(textTheme, colorScheme),
+              const SizedBox(height: 8),
+              _buildSubscribeButton(colorScheme),
+              const SizedBox(height: 16),
+              _buildTerms(textTheme, colorScheme),
+            ],
+          ),
         ),
       ),
     );

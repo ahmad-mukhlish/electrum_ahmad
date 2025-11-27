@@ -1,10 +1,27 @@
 appId: com.electrum.app
 ---
-# Master Auth Test Orchestrator
-# Entry point to run all authentication tests
+# Master Test Orchestrator
+# Entry point to run all tests (auth + home screen)
+
+# ===========================
+# Auth Tests
+# ===========================
 
 # Run mobile auth tests
 - runFlow: mobile/auth-mobile.yaml
 
 # Run web auth tests
 - runFlow: web/auth-web.yaml
+
+# ===========================
+# Home Screen Tests
+# ===========================
+
+# Setup home screen (shared for mobile and web)
+- runFlow: common_tests/setup-home.yaml
+
+# Run mobile home screen tests
+- runFlow: mobile/screen_tests/home-screen-test.yaml
+
+# Run web home screen tests
+- runFlow: web/screen_tests/home-screen-test.yaml

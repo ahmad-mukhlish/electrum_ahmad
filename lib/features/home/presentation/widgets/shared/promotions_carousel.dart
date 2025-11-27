@@ -26,18 +26,21 @@ class PromotionsCarousel extends HookConsumerWidget {
           return const SizedBox.shrink();
         }
 
-        return CarouselSlider.builder(
-          itemCount: promotions.length,
-          itemBuilder: (context, index, realIndex) {
-            final promotion = promotions[index];
-            final backgroundColor = _getBackgroundColor(colorScheme, index);
+        return Semantics(
+          label: "Promo section",
+          child: CarouselSlider.builder(
+            itemCount: promotions.length,
+            itemBuilder: (context, index, realIndex) {
+              final promotion = promotions[index];
+              final backgroundColor = _getBackgroundColor(colorScheme, index);
 
-            return PromotionCard(
-              promotion: promotion,
-              backgroundColor: backgroundColor,
-            );
-          },
-          options: _buildCarouselOptions(promotions.length),
+              return PromotionCard(
+                promotion: promotion,
+                backgroundColor: backgroundColor,
+              );
+            },
+            options: _buildCarouselOptions(promotions.length),
+          ),
         );
       },
       loading: () => _buildLoadingState(),

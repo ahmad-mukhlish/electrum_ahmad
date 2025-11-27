@@ -12,20 +12,23 @@ class HomeContentWeb extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final carouselHeight = _calculateCarouselHeight(screenHeight);
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-            const SizedBox(height: 16),
-            const HeaderWeb(title: 'For You'),
-            const SizedBox(height: 16),
-            PromotionsCarousel(isWeb: true, height: carouselHeight),
-            const SizedBox(height: 24),
-            const HeaderWeb(title: 'Plans'),
-            const PlansSectionWeb(),
-            const SizedBox(height: 32),
-          ],
+    return Semantics(
+      label: "Home screen",
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              const SizedBox(height: 16),
+              const HeaderWeb(title: 'For You'),
+              const SizedBox(height: 16),
+              PromotionsCarousel(isWeb: true, height: carouselHeight),
+              const SizedBox(height: 24),
+              const HeaderWeb(title: 'Plans'),
+              const PlansSectionWeb(),
+              const SizedBox(height: 32),
+            ],
+          ),
         ),
       ),
     );

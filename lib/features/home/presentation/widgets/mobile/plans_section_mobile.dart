@@ -19,24 +19,27 @@ class PlansSectionMobile extends HookConsumerWidget {
           return const SizedBox.shrink();
         }
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSectionTitle(context),
-            const SizedBox(height: 8),
-            const PeriodToggleSection(),
-            const SizedBox(height: 16),
-            ...planStates.map((planState) {
-              final backgroundColor = hexToColor(planState.plan.hexColor);
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: PlanCard(
-                  planState: planState,
-                  backgroundColor: backgroundColor,
-                ),
-              );
-            }),
-          ],
+        return Semantics(
+          label: "Plan section",
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildSectionTitle(context),
+              const SizedBox(height: 8),
+              const PeriodToggleSection(),
+              const SizedBox(height: 16),
+              ...planStates.map((planState) {
+                final backgroundColor = hexToColor(planState.plan.hexColor);
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: PlanCard(
+                    planState: planState,
+                    backgroundColor: backgroundColor,
+                  ),
+                );
+              }),
+            ],
+          ),
         );
       },
       loading: () => _buildLoadingState(),

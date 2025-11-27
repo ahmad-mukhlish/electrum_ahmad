@@ -20,24 +20,27 @@ class PlansSectionWeb extends HookConsumerWidget {
           return const SizedBox.shrink();
         }
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const _PeriodToggleSection(),
-            const SizedBox(height: 24),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: planStates.map((planState) {
-                final backgroundColor = hexToColor(planState.plan.hexColor);
-                return Expanded(
-                  child: PlanCard(
-                    planState: planState,
-                    backgroundColor: backgroundColor,
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
+        return Semantics(
+          label: "Plan section",
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _PeriodToggleSection(),
+              const SizedBox(height: 24),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: planStates.map((planState) {
+                  final backgroundColor = hexToColor(planState.plan.hexColor);
+                  return Expanded(
+                    child: PlanCard(
+                      planState: planState,
+                      backgroundColor: backgroundColor,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         );
       },
       loading: () => _buildLoadingState(),
