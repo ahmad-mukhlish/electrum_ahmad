@@ -128,10 +128,6 @@ flutter build ios    # Build iOS
 - **Delegate build_runner and flutter analyze to user**: To reduce token usage, avoid running `dart run build_runner build` and `flutter analyze` unless explicitly requested. Instead, remind the user to run these commands manually after code changes that require code generation or when checking for lint issues
 - **One UI class per file**: Never place multiple UI classes/widgets in a single file; keep each UI class in its own file to maintain clarity and reuse
 
-### Deprecation Notes
-
-- `lib/features/bikes/presentation/screens/bike_seeder_screen.dart:46` previously used the deprecated `withOpacity`; use `.withValues` with an explicit `alpha` argument instead.
-
 ### Color Usage
 
 **IMPORTANT**: Always use `Theme.of(context).colorScheme` for colors. Never use `Colors.white`, `Colors.black`, or hardcoded color values.
@@ -511,10 +507,7 @@ lib/
 │   │   │   ├── dtos/bike_dto.dart
 │   │   │   ├── dtos/bike_dto.g.dart
 │   │   │   ├── repositories/bikes_repository_impl.dart
-│   │   │   ├── repositories/bikes_repository_impl.g.dart
-│   │   │   ├── seed_data/bike_seed_data.dart
-│   │   │   ├── services/bike_seeder.dart
-│   │   │   └── services/bike_seeder.g.dart
+│   │   │   └── repositories/bikes_repository_impl.g.dart
 │   │   ├── domain/
 │   │   │   ├── entities/bike.dart
 │   │   │   ├── entities/bike.freezed.dart
@@ -522,7 +515,6 @@ lib/
 │   │   └── presentation/
 │   │       ├── screens/
 │   │       │   ├── bike_detail_screen.dart
-│   │       │   ├── bike_seeder_screen.dart
 │   │       │   └── bikes_screen.dart
 │   │       ├── viewmodel/
 │   │       │   ├── notifiers/detail/bike_detail_provider.dart
