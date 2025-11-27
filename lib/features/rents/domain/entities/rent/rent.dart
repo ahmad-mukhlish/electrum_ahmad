@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../data/dtos/rents/rent_dto.dart';
+import '../../../data/dtos/rents/rent_dto.dart';
 
 part 'rent.freezed.dart';
 

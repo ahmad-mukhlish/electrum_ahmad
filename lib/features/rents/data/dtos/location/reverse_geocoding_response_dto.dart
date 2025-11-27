@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../domain/entities/resolved_location.dart';
+import '../../../domain/entities/location/location.dart';
 
 part 'reverse_geocoding_response_dto.g.dart';
 
@@ -20,7 +20,7 @@ class ReverseGeocodingResponseDto {
 }
 
 extension ReverseGeocodingResponseDtoMapper on ReverseGeocodingResponseDto {
-  ResolvedLocation? toEntity({
+  Location? toEntity({
     required double latitude,
     required double longitude,
   }) {
@@ -29,7 +29,7 @@ extension ReverseGeocodingResponseDtoMapper on ReverseGeocodingResponseDto {
       return null;
     }
 
-    return ResolvedLocation(
+    return Location(
       latitude: latitude,
       longitude: longitude,
       address: resolvedAddress,

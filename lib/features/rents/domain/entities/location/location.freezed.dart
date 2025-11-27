@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'resolved_location.dart';
+part of 'location.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,20 +12,20 @@ part of 'resolved_location.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$ResolvedLocation {
+mixin _$Location {
 
  double get latitude; double get longitude; String get address;
-/// Create a copy of ResolvedLocation
+/// Create a copy of Location
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ResolvedLocationCopyWith<ResolvedLocation> get copyWith => _$ResolvedLocationCopyWithImpl<ResolvedLocation>(this as ResolvedLocation, _$identity);
+$LocationCopyWith<Location> get copyWith => _$LocationCopyWithImpl<Location>(this as Location, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedLocation&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.address, address) || other.address == address));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Location&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.address, address) || other.address == address));
 }
 
 
@@ -34,15 +34,15 @@ int get hashCode => Object.hash(runtimeType,latitude,longitude,address);
 
 @override
 String toString() {
-  return 'ResolvedLocation(latitude: $latitude, longitude: $longitude, address: $address)';
+  return 'Location(latitude: $latitude, longitude: $longitude, address: $address)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ResolvedLocationCopyWith<$Res>  {
-  factory $ResolvedLocationCopyWith(ResolvedLocation value, $Res Function(ResolvedLocation) _then) = _$ResolvedLocationCopyWithImpl;
+abstract mixin class $LocationCopyWith<$Res>  {
+  factory $LocationCopyWith(Location value, $Res Function(Location) _then) = _$LocationCopyWithImpl;
 @useResult
 $Res call({
  double latitude, double longitude, String address
@@ -53,14 +53,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$ResolvedLocationCopyWithImpl<$Res>
-    implements $ResolvedLocationCopyWith<$Res> {
-  _$ResolvedLocationCopyWithImpl(this._self, this._then);
+class _$LocationCopyWithImpl<$Res>
+    implements $LocationCopyWith<$Res> {
+  _$LocationCopyWithImpl(this._self, this._then);
 
-  final ResolvedLocation _self;
-  final $Res Function(ResolvedLocation) _then;
+  final Location _self;
+  final $Res Function(Location) _then;
 
-/// Create a copy of ResolvedLocation
+/// Create a copy of Location
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? latitude = null,Object? longitude = null,Object? address = null,}) {
   return _then(_self.copyWith(
@@ -74,8 +74,8 @@ as String,
 }
 
 
-/// Adds pattern-matching-related methods to [ResolvedLocation].
-extension ResolvedLocationPatterns on ResolvedLocation {
+/// Adds pattern-matching-related methods to [Location].
+extension LocationPatterns on Location {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -88,10 +88,10 @@ extension ResolvedLocationPatterns on ResolvedLocation {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ResolvedLocation value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Location value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _ResolvedLocation() when $default != null:
+case _Location() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -110,10 +110,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ResolvedLocation value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Location value)  $default,){
 final _that = this;
 switch (_that) {
-case _ResolvedLocation():
+case _Location():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -131,10 +131,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ResolvedLocation value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Location value)?  $default,){
 final _that = this;
 switch (_that) {
-case _ResolvedLocation() when $default != null:
+case _Location() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -154,7 +154,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double latitude,  double longitude,  String address)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _ResolvedLocation() when $default != null:
+case _Location() when $default != null:
 return $default(_that.latitude,_that.longitude,_that.address);case _:
   return orElse();
 
@@ -175,7 +175,7 @@ return $default(_that.latitude,_that.longitude,_that.address);case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double latitude,  double longitude,  String address)  $default,) {final _that = this;
 switch (_that) {
-case _ResolvedLocation():
+case _Location():
 return $default(_that.latitude,_that.longitude,_that.address);case _:
   throw StateError('Unexpected subclass');
 
@@ -195,7 +195,7 @@ return $default(_that.latitude,_that.longitude,_that.address);case _:
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double latitude,  double longitude,  String address)?  $default,) {final _that = this;
 switch (_that) {
-case _ResolvedLocation() when $default != null:
+case _Location() when $default != null:
 return $default(_that.latitude,_that.longitude,_that.address);case _:
   return null;
 
@@ -207,25 +207,25 @@ return $default(_that.latitude,_that.longitude,_that.address);case _:
 /// @nodoc
 
 
-class _ResolvedLocation extends ResolvedLocation {
-  const _ResolvedLocation({required this.latitude, required this.longitude, required this.address}): super._();
+class _Location extends Location {
+  const _Location({required this.latitude, required this.longitude, required this.address}): super._();
   
 
 @override final  double latitude;
 @override final  double longitude;
 @override final  String address;
 
-/// Create a copy of ResolvedLocation
+/// Create a copy of Location
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$ResolvedLocationCopyWith<_ResolvedLocation> get copyWith => __$ResolvedLocationCopyWithImpl<_ResolvedLocation>(this, _$identity);
+_$LocationCopyWith<_Location> get copyWith => __$LocationCopyWithImpl<_Location>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedLocation&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.address, address) || other.address == address));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Location&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.address, address) || other.address == address));
 }
 
 
@@ -234,15 +234,15 @@ int get hashCode => Object.hash(runtimeType,latitude,longitude,address);
 
 @override
 String toString() {
-  return 'ResolvedLocation(latitude: $latitude, longitude: $longitude, address: $address)';
+  return 'Location(latitude: $latitude, longitude: $longitude, address: $address)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ResolvedLocationCopyWith<$Res> implements $ResolvedLocationCopyWith<$Res> {
-  factory _$ResolvedLocationCopyWith(_ResolvedLocation value, $Res Function(_ResolvedLocation) _then) = __$ResolvedLocationCopyWithImpl;
+abstract mixin class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
+  factory _$LocationCopyWith(_Location value, $Res Function(_Location) _then) = __$LocationCopyWithImpl;
 @override @useResult
 $Res call({
  double latitude, double longitude, String address
@@ -253,17 +253,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$ResolvedLocationCopyWithImpl<$Res>
-    implements _$ResolvedLocationCopyWith<$Res> {
-  __$ResolvedLocationCopyWithImpl(this._self, this._then);
+class __$LocationCopyWithImpl<$Res>
+    implements _$LocationCopyWith<$Res> {
+  __$LocationCopyWithImpl(this._self, this._then);
 
-  final _ResolvedLocation _self;
-  final $Res Function(_ResolvedLocation) _then;
+  final _Location _self;
+  final $Res Function(_Location) _then;
 
-/// Create a copy of ResolvedLocation
+/// Create a copy of Location
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? latitude = null,Object? longitude = null,Object? address = null,}) {
-  return _then(_ResolvedLocation(
+  return _then(_Location(
 latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as double,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable

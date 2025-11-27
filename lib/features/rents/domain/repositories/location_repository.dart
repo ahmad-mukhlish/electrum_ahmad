@@ -1,7 +1,7 @@
-import '../entities/resolved_location.dart';
+import '../entities/location/location.dart';
 
 abstract class LocationRepository {
   Future<bool> requestPermission();
 
-  Future<ResolvedLocation?> resolveCurrentLocation();
+  Future<Location?> resolveCurrentLocation();
 }

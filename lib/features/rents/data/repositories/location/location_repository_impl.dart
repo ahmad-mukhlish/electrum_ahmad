@@ -2,7 +2,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:electrum_ahmad/core/services/location/location_service.dart';
-import 'package:electrum_ahmad/features/rents/domain/entities/resolved_location.dart';
+import 'package:electrum_ahmad/features/rents/domain/entities/location/location.dart';
 import 'package:electrum_ahmad/features/rents/domain/repositories/location_repository.dart';
 
 import '../../datasources/location/location_remote_datasource.dart';
@@ -47,7 +47,7 @@ class LocationRepositoryImpl implements LocationRepository {
   }
 
   @override
-  Future<ResolvedLocation?> resolveCurrentLocation() async {
+  Future<Location?> resolveCurrentLocation() async {
     try {
       final hasPermission = await requestPermission();
       if (!hasPermission) return null;
