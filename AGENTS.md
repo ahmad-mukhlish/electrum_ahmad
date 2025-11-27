@@ -451,3 +451,213 @@ class MyWidget extends StatelessWidget {
 - Easier to navigate and understand
 - Simpler to modify individual sections
 - Better code reusability within the widget
+
+## Current `lib/` Structure
+
+```
+lib/
+├── core/
+│   ├── routing/
+│   │   ├── routing.dart
+│   │   └── routing.g.dart
+│   ├── services/
+│   │   ├── api/
+│   │   │   ├── api_service.dart
+│   │   │   └── api_service.g.dart
+│   │   ├── firebase/
+│   │   │   ├── firebase_service.dart
+│   │   │   └── firebase_service.g.dart
+│   │   ├── local_db/
+│   │   │   ├── local_db_service.dart
+│   │   │   └── local_db_service.g.dart
+│   │   └── location/
+│   │       ├── location_service.dart
+│   │       └── location_service.g.dart
+│   ├── utils/
+│   │   ├── color_helper.dart
+│   │   └── price_formatter.dart
+│   └── widgets/
+│       ├── header_web.dart
+│       └── primary_app_bar.dart
+├── features/
+│   ├── auth/
+│   │   ├── data/
+│   │   │   ├── datasources/
+│   │   │   │   ├── firestore/auth_firebase_datasource.dart
+│   │   │   │   └── firestore/auth_firebase_datasource.g.dart
+│   │   │   │   ├── local/auth_local_datasource.dart
+│   │   │   │   └── local/auth_local_datasource.g.dart
+│   │   │   ├── dtos/user_dto.dart
+│   │   │   ├── dtos/user_dto.g.dart
+│   │   │   ├── repositories/auth_repository_impl.dart
+│   │   │   └── repositories/auth_repository_impl.g.dart
+│   │   ├── domain/
+│   │   │   ├── entities/user.dart
+│   │   │   ├── entities/user.freezed.dart
+│   │   │   └── repositories/auth_repository.dart
+│   │   └── presentation/
+│   │       ├── screens/auth_screen.dart
+│   │       ├── viewmodel/notifiers/
+│   │       │   ├── auth_notifier.dart
+│   │       │   └── auth_notifier.g.dart
+│   │       └── widgets/
+│   │           ├── mobile/auth_screen_mobile.dart
+│   │           ├── shared/auth_form.dart
+│   │           └── web/auth_screen_web.dart
+│   ├── bikes/
+│   │   ├── data/
+│   │   │   ├── datasources/bikes_firestore_datasource.dart
+│   │   │   ├── datasources/bikes_firestore_datasource.g.dart
+│   │   │   ├── dtos/bike_dto.dart
+│   │   │   ├── dtos/bike_dto.g.dart
+│   │   │   ├── repositories/bikes_repository_impl.dart
+│   │   │   ├── repositories/bikes_repository_impl.g.dart
+│   │   │   ├── seed_data/bike_seed_data.dart
+│   │   │   ├── services/bike_seeder.dart
+│   │   │   └── services/bike_seeder.g.dart
+│   │   ├── domain/
+│   │   │   ├── entities/bike.dart
+│   │   │   ├── entities/bike.freezed.dart
+│   │   │   └── repositories/bikes_repository.dart
+│   │   └── presentation/
+│   │       ├── screens/
+│   │       │   ├── bike_detail_screen.dart
+│   │       │   ├── bike_seeder_screen.dart
+│   │       │   └── bikes_screen.dart
+│   │       ├── viewmodel/
+│   │       │   ├── notifiers/detail/bike_detail_provider.dart
+│   │       │   ├── notifiers/detail/bike_detail_provider.g.dart
+│   │       │   ├── notifiers/filter/bike_filter_provider.dart
+│   │       │   ├── notifiers/filter/bike_filter_provider.g.dart
+│   │       │   ├── notifiers/stream/bikes_provider.dart
+│   │       │   ├── notifiers/stream/bikes_provider.g.dart
+│   │       │   ├── states/bike_filter_state.dart
+│   │       │   ├── states/bike_filter_state.freezed.dart
+│   │       │   └── states/filter_buckets.dart
+│   │       └── widgets/
+│   │           ├── mobile/
+│   │           │   ├── active_filters_chips.dart
+│   │           │   ├── bike_detail_content_mobile.dart
+│   │           │   ├── bikes_filter_button.dart
+│   │           │   ├── bikes_filter_sheet.dart
+│   │           │   ├── bikes_list_mobile.dart
+│   │           │   ├── bikes_list_with_filters_mobile.dart
+│   │           │   └── bikes_search_bar.dart
+│   │           ├── shared/
+│   │           │   ├── availability_toggle.dart
+│   │           │   ├── bike_card.dart
+│   │           │   ├── bike_cta_button.dart
+│   │           │   ├── bike_hero_section.dart
+│   │           │   ├── bike_pickup_areas.dart
+│   │           │   ├── bike_specs_row.dart
+│   │           │   ├── price_bucket_selector.dart
+│   │           │   └── range_bucket_selector.dart
+│   │           └── web/
+│   │               ├── bike_detail_content_web.dart
+│   │               ├── bikes_filter_panel.dart
+│   │               ├── bikes_list_web.dart
+│   │               ├── bikes_list_with_filters_web.dart
+│   │               └── bikes_search_field_web.dart
+│   ├── home/
+│   │   ├── data/
+│   │   │   ├── datasources/
+│   │   │   │   ├── plans/plans_firestore_datasource.dart
+│   │   │   │   ├── plans/plans_firestore_datasource.g.dart
+│   │   │   │   ├── promotions/promotions_firestore_datasource.dart
+│   │   │   │   └── promotions/promotions_firestore_datasource.g.dart
+│   │   │   ├── dtos/plans/plan_dto.dart
+│   │   │   ├── dtos/plans/plan_dto.g.dart
+│   │   │   ├── dtos/promotions/promotion_dto.dart
+│   │   │   ├── dtos/promotions/promotion_dto.g.dart
+│   │   │   ├── repositories/plans/plans_repository_impl.dart
+│   │   │   ├── repositories/plans/plans_repository_impl.g.dart
+│   │   │   ├── repositories/promotions/promotions_repository_impl.dart
+│   │   │   └── repositories/promotions/promotions_repository_impl.g.dart
+│   │   ├── domain/
+│   │   │   ├── entities/plan/plan.dart
+│   │   │   ├── entities/plan/plan.freezed.dart
+│   │   │   ├── entities/plan/plan_period.dart
+│   │   │   ├── entities/promotion/promotion.dart
+│   │   │   ├── entities/promotion/promotion.freezed.dart
+│   │   │   ├── repositories/plans_repository.dart
+│   │   │   └── repositories/promotions_repository.dart
+│   │   └── presentation/
+│   │       ├── screens/home_screen.dart
+│   │       ├── viewmodel/
+│   │       │   ├── notifier/plan/plans_provider.dart
+│   │       │   ├── notifier/plan/plans_state_provider.dart
+│   │       │   ├── notifier/plan/plans_state_provider.g.dart
+│   │       │   ├── notifier/plan/selected_period_provider.dart
+│   │       │   ├── notifier/plan/selected_period_provider.g.dart
+│   │       │   ├── notifier/promotion/promotions_provider.dart
+│   │       │   └── notifier/promotion/promotions_provider.g.dart
+│   │       ├── viewmodel/states/plan_state.dart
+│   │       ├── viewmodel/states/plan_state.freezed.dart
+│   │       └── widgets/
+│   │           ├── mobile/
+│   │           │   ├── home_content_mobile.dart
+│   │           │   ├── period_toggle_section.dart
+│   │           │   └── plans_section_mobile.dart
+│   │           ├── shared/
+│   │           │   ├── period_toggle.dart
+│   │           │   ├── plan_card.dart
+│   │           │   ├── plan_discount_badge.dart
+│   │           │   ├── plan_pricing.dart
+│   │           │   ├── promotion_card.dart
+│   │           │   └── promotions_carousel.dart
+│   │           └── web/
+│   │               ├── home_content_web.dart
+│   │               └── plans_section_web.dart
+│   ├── main/
+│   │   ├── domain/enum/main_nav_destination.dart
+│   │   └── presentation/
+│   │       ├── screens/main_screen.dart
+│   │       ├── viewmodel/notifiers/navigation_notifier.dart
+│   │       ├── viewmodel/notifiers/navigation_notifier.g.dart
+│   │       └── widgets/
+│   │           ├── mobile/main_screen_mobile.dart
+│   │           └── web/main_screen_web.dart
+│   ├── profile/
+│   │   └── presentation/screens/profile_screen.dart
+│   └── rents/
+│       ├── data/
+│       │   ├── datasources/
+│       │   │   ├── location/location_remote_datasource.dart
+│       │   │   ├── location/location_remote_datasource.g.dart
+│       │   │   ├── rents/rents_firestore_datasource.dart
+│       │   │   └── rents/rents_firestore_datasource.g.dart
+│       │   ├── dtos/location/reverse_geocoding_response_dto.dart
+│       │   ├── dtos/location/reverse_geocoding_response_dto.g.dart
+│       │   ├── dtos/rents/rent_dto.dart
+│       │   ├── dtos/rents/rent_dto.g.dart
+│       │   ├── repositories/location/location_repository_impl.dart
+│       │   ├── repositories/location/location_repository_impl.g.dart
+│       │   ├── repositories/rents/rents_repository_impl.dart
+│       │   └── repositories/rents/rents_repository_impl.g.dart
+│       ├── domain/
+│       │   ├── entities/location/location.dart
+│       │   ├── entities/location/location.freezed.dart
+│       │   ├── entities/rent/rent.dart
+│       │   ├── entities/rent/rent.freezed.dart
+│       │   ├── repositories/location_repository.dart
+│       │   └── repositories/rents_repository.dart
+│       └── presentation/
+│           ├── screens/bike_renting_form_screen.dart
+│           ├── viewmodel/notifiers/form/rent_form_provider.dart
+│           ├── viewmodel/notifiers/form/rent_form_provider.g.dart
+│           ├── viewmodel/notifiers/submit/rent_submit_provider.dart
+│           ├── viewmodel/notifiers/submit/rent_submit_provider.g.dart
+│           ├── viewmodel/states/rent_form_state.dart
+│           ├── viewmodel/states/rent_form_state.freezed.dart
+│           └── widgets/
+│               ├── mobile/rent_form_content_mobile.dart
+│               ├── shared/bike_summary_card.dart
+│               ├── shared/contact_fields.dart
+│               ├── shared/payment_summary_card.dart
+│               ├── shared/pickup_location_field.dart
+│               ├── shared/rental_period_fields.dart
+│               ├── shared/submit_button.dart
+│               └── web/rent_form_content_web.dart
+├── firebase_options.dart
+└── main.dart
+```
