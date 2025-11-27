@@ -19,7 +19,7 @@ class BikesScreen extends StatelessWidget {
       body: Column(
         children: [
           if (kIsWeb) Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.only(left: 24.0, right: 24, top: 24),
             child: const HeaderWeb(title: 'Bikes'),
           ),
           Expanded(

@@ -9,11 +9,7 @@ class BikeCard extends StatelessWidget {
   final Bike bike;
   final VoidCallback? onTap;
 
-  const BikeCard({
-    super.key,
-    required this.bike,
-    this.onTap,
-  });
+  const BikeCard({super.key, required this.bike, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +18,7 @@ class BikeCard extends StatelessWidget {
     return Card(
       elevation: 2,
       color: colorScheme.onPrimary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
@@ -32,7 +26,7 @@ class BikeCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            _buildImage(colorScheme),
+             Expanded(child: _buildImage(colorScheme)),
             _buildContent(context, colorScheme),
           ],
         ),
@@ -41,26 +35,17 @@ class BikeCard extends StatelessWidget {
   }
 
   Widget _buildImage(ColorScheme colorScheme) {
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: CachedNetworkImage(
-        imageUrl: bike.photoUrl,
-        fit: BoxFit.cover,
-        errorWidget: (_, _, _) => Container(
-          color: colorScheme.secondary,
-          child: Icon(
-            Icons.two_wheeler,
-            size: 64,
-            color: colorScheme.primary,
-          ),
-        ),
-        progressIndicatorBuilder: (_, _, progress) => Container(
-          color: colorScheme.secondary,
-          child: Center(
-            child: CircularProgressIndicator(
-              value: progress.progress,
-            ),
-          ),
+    return CachedNetworkImage(
+      imageUrl: bike.photoUrl,
+      fit: BoxFit.cover,
+      errorWidget: (_, _, _) => Container(
+        color: colorScheme.secondary,
+        child: Icon(Icons.two_wheeler, size: 64, color: colorScheme.primary),
+      ),
+      progressIndicatorBuilder: (_, _, progress) => Container(
+        color: colorScheme.secondary,
+        child: Center(
+          child: CircularProgressIndicator(value: progress.progress),
         ),
       ),
     );
@@ -84,7 +69,7 @@ class BikeCard extends StatelessWidget {
 
   Widget _buildModel(BuildContext context, ColorScheme colorScheme) {
     final textTheme = Theme.of(context).textTheme;
-    final modelStyle = kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge;
+    final modelStyle = textTheme.titleLarge;
 
     return Text(
       bike.model,
@@ -103,32 +88,13 @@ class BikeCard extends StatelessWidget {
 
     return Row(
       children: [
-        Icon(
-          Icons.battery_charging_full,
-          size: kIsWeb ? 20 : 16,
-          color: colorScheme.primary,
-        ),
-        const SizedBox(width: 4),
         Text(
           'Range: ${bike.rangeKm} km',
           style: specStyle?.copyWith(
-            color: colorScheme.onSecondary.withValues(alpha: 0.8),
+            color: colorScheme.onSecondary,
           ),
         ),
         const SizedBox(width: 16),
-        Icon(
-          bike.isAvailable ? Icons.check_circle : Icons.cancel,
-          size: kIsWeb ? 20 : 16,
-          color: bike.isAvailable ? colorScheme.primary : colorScheme.error,
-        ),
-        const SizedBox(width: 4),
-        Text(
-          bike.isAvailable ? 'Available' : 'Not Available',
-          style: specStyle?.copyWith(
-            color: bike.isAvailable ? colorScheme.primary : colorScheme.error,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
       ],
     );
   }
@@ -136,16 +102,11 @@ class BikeCard extends StatelessWidget {
   Widget _buildPrice(BuildContext context, ColorScheme colorScheme) {
     final textTheme = Theme.of(context).textTheme;
     final priceStyle = kIsWeb ? textTheme.headlineSmall : textTheme.titleMedium;
+    final specStyle = kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium;
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(
-          'from ',
-          style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
-              ?.copyWith(
-            color: colorScheme.onSecondary.withValues(alpha: 0.6),
-          ),
-        ),
         Text(
           formatPriceToRupiahK(bike.pricePerDay),
           style: priceStyle?.copyWith(
@@ -156,8 +117,14 @@ class BikeCard extends StatelessWidget {
         Text(
           ' / day',
           style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
-              ?.copyWith(
-            color: colorScheme.onSecondary.withValues(alpha: 0.6),
+              ?.copyWith(color: colorScheme.onSecondary.withValues(alpha: 0.6)),
+        ),
+        Spacer(),
+        Text(
+          bike.isAvailable ? 'Available' : 'Not Available',
+          style: specStyle?.copyWith(
+            color: bike.isAvailable ? colorScheme.primary : colorScheme.error,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ],

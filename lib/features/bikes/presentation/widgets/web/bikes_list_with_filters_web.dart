@@ -42,25 +42,22 @@ class BikesListWithFiltersWeb extends ConsumerWidget {
     }
 
     return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1400),
-        child: GridView.builder(
-          padding: const EdgeInsets.all(24),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: _getCrossAxisCount(context),
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 0.85,
-          ),
-          itemCount: filteredBikes.length,
-          itemBuilder: (context, index) {
-            final bike = filteredBikes[index];
-            return BikeCard(
-              bike: bike,
-              onTap: () => context.go('/bikes/${bike.id}'),
-            );
-          },
+      child: GridView.builder(
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 24),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: _getCrossAxisCount(context),
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: 0.85,
         ),
+        itemCount: filteredBikes.length,
+        itemBuilder: (context, index) {
+          final bike = filteredBikes[index];
+          return BikeCard(
+            bike: bike,
+            onTap: () => context.go('/bikes/${bike.id}'),
+          );
+        },
       ),
     );
   }

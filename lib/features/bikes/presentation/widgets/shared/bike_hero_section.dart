@@ -66,7 +66,7 @@ class BikeHeroSection extends StatelessWidget {
 
   Widget _buildImage(ColorScheme colorScheme) {
     return Container(
-      height: kIsWeb ? 400 : 250,
+      height: kIsWeb ? null : 250,
       width: double.infinity,
       color: colorScheme.onPrimary.withValues(alpha: 0.5),
       child: bike.photoUrl.isEmpty
@@ -77,16 +77,14 @@ class BikeHeroSection extends StatelessWidget {
             )
           : CachedNetworkImage(
               imageUrl: bike.photoUrl,
-              fit: BoxFit.contain,
+              fit: kIsWeb ? BoxFit.none : BoxFit.contain,
               errorWidget: (_, _, _) => Icon(
                 Icons.two_wheeler,
                 size: kIsWeb ? 120 : 80,
                 color: colorScheme.primary,
               ),
               progressIndicatorBuilder: (_, _, progress) => Center(
-                child: CircularProgressIndicator(
-                  value: progress.progress,
-                ),
+                child: CircularProgressIndicator(value: progress.progress),
               ),
             ),
     );
