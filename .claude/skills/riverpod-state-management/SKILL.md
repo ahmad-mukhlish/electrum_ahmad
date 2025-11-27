@@ -49,6 +49,8 @@ dev_dependencies:
   riverpod_lint: ^3.0.0
 ```
 
+> Note on ref types: Riverpod 3.x codegen no longer generates `*Ref` typedefs (e.g., `MyProviderRef`). Use the base `Ref`/`AutoDisposeRef` in provider signatures (e.g., `MyType myProvider(Ref ref) => ...;`).
+
 ### Project Setup
 ```bash
 # Add dependencies
