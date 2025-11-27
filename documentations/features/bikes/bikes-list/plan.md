@@ -51,7 +51,7 @@ Create a bikes list feature with Firestore integration that displays available e
 #### Datasource: BikesFirestoreDatasource
 **Location**: `lib/features/bikes/data/datasources/bikes_firestore_datasource.dart`
 
-- Create Riverpod provider that injects `FirebaseFirestore` from `core/services/firebase_service.dart`
+- Create Riverpod provider that injects `FirebaseFirestore` from `core/services/firebase/firebase_service.dart`
 - Implement datasource class with:
   - Constructor accepting `FirebaseFirestore` instance
   - Method `Stream<List<BikeDto>> getBikes()`:

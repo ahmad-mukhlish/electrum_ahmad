@@ -60,7 +60,7 @@ Create a plans feature with Firestore integration that displays subscription pla
 #### Datasource: PlansFirestoreDatasource
 **Location**: `lib/features/home/data/datasources/plans_firestore_datasource.dart`
 
-- Create Riverpod provider that injects `FirebaseFirestore` from `core/services/firebase_service.dart`
+- Create Riverpod provider that injects `FirebaseFirestore` from `core/services/firebase/firebase_service.dart`
 - Implement datasource class with:
   - Constructor accepting `FirebaseFirestore` instance
   - Method `Stream<List<PlanDto>> getPlans()`:

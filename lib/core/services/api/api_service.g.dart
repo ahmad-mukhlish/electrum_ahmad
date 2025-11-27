@@ -47,7 +47,7 @@ final class DioClientProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioClientHash() => r'2261b2400513a0cc69c9598aafa716c29e041312';
+String _$dioClientHash() => r'ec1638d657e9d7272d476dd668a6961d14d75777';
 
 @ProviderFor(apiService)
 const apiServiceProvider = ApiServiceProvider._();
@@ -88,4 +88,4 @@ final class ApiServiceProvider
   }
 }
 
-String _$apiServiceHash() => r'67fa756718b1e57df01607042bcce1ac140f2e66';
+String _$apiServiceHash() => r'95c38c847214ab56c5f0412ed4f219a12112575e';

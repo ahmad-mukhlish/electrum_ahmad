@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../core/services/firebase_service.dart';
+import '../../../../core/services/firebase/firebase_service.dart';
 import '../../domain/entities/bike.dart';
 import '../seed_data/bike_seed_data.dart';
 

@@ -44,7 +44,11 @@ Flutter mobile application.
 lib/
   core/
     routing/                    # GoRouter configuration
-    services/                   # Firebase Auth, Firestore, Local DB
+    services/                   # Group into subfolders when multiple files exist
+      api/                      # API/Dio services
+      firebase/                 # Firebase-related services
+      local_db/                 # Local database services
+      location/                 # Location services (use "location", not "location_platform")
     utils/                      # Helpers, Design tokens
     widgets/                    # Shared widgets
   features/

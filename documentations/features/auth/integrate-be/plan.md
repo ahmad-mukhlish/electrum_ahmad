@@ -43,7 +43,7 @@ Integrate Firebase Authentication with the existing auth feature to enable real 
 ### Phase 2: Firebase Integration
 
 #### 2.1 Create Firebase Service Provider
-**File**: `lib/core/services/firebase_service.dart`
+**File**: `lib/core/services/firebase/firebase_service.dart`
 - Create Riverpod provider for `FirebaseAuth.instance`
 - Create Riverpod provider for `FirebaseFirestore.instance`
 - These become the single source for Firebase instances
@@ -210,7 +210,7 @@ App starts → AuthNotifier.build()
 
 1. `lib/features/auth/domain/entities/user.dart` - Domain user entity
 2. `lib/features/auth/data/dtos/user_dto.dart` - Data transfer object with JSON
-3. `lib/core/services/firebase_service.dart` - Firebase instance providers
+3. `lib/core/services/firebase/firebase_service.dart` - Firebase instance providers
 4. `lib/features/auth/data/datasources/auth_firebase_datasource.dart` - Firebase auth operations
 5. `lib/features/auth/presentation/widgets/shared/register_form.dart` - Registration form widget
 6. `lib/features/auth/presentation/screens/register_screen.dart` - Registration screen

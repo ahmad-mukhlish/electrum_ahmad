@@ -16,7 +16,7 @@ Implement go_router with Riverpod-based authentication to handle routing between
 
 ### 1. Create Local DB Service (Core Layer)
 
-**File:** `lib/core/services/local_db_service.dart`
+**File:** `lib/core/services/local_db/local_db_service.dart`
 - Generic wrapper around SharedPreferences
 - Store everything as String (booleans, numbers, JSON objects)
 - Methods:
@@ -100,7 +100,7 @@ Implement go_router with Riverpod-based authentication to handle routing between
 
 | File                                                                 | Action | Description                               |
 |----------------------------------------------------------------------|--------|-------------------------------------------|
-| `core/services/local_db_service.dart`                                | Create | SharedPreferences wrapper                 |
+| `core/services/local_db/local_db_service.dart`                                | Create | SharedPreferences wrapper                 |
 | `features/auth/data/datasources/auth_local_datasource.dart`          | Create | Local data source for auth state          |
 | `features/auth/data/repositories/auth_repository_impl.dart`          | Create | Auth repository implementation            |
 | `features/auth/presentation/viewmodel/notifiers/auth_notifier.dart`  | Create | Riverpod auth state notifier              |

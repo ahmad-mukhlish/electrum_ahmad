@@ -1,15 +1,12 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'location_platform_service.g.dart';
+part 'location_service.g.dart';
 
 @Riverpod(keepAlive: true)
-LocationPlatformService locationPlatformService(
-  Ref ref,
-) =>
-    LocationPlatformService();
+LocationService locationService(Ref ref) => LocationService();
 
-class LocationPlatformService {
+class LocationService {
   Future<LocationPermission> checkPermission() async {
     try {
       return await Geolocator.checkPermission();

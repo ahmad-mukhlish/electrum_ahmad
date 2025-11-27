@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../core/services/local_db_service.dart';
+import '../../../../core/services/local_db/local_db_service.dart';
 import '../dtos/user_dto.dart';
 
 part 'auth_local_datasource.g.dart';
