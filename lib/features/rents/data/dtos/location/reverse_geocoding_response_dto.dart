@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entities/resolved_location.dart';
+import '../../../domain/entities/resolved_location.dart';
 
 part 'reverse_geocoding_response_dto.g.dart';
 

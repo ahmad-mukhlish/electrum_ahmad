@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../data/repositories/rents/rents_repository_impl.dart';
+import 'package:electrum_ahmad/features/rents/data/repositories/rents/rents_repository_impl.dart';
+
 import '../../../../bikes/domain/entities/bike.dart';
 import '../../../domain/entities/rent.dart';
 import '../states/rent_form_state.dart';

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../core/services/api/api_service.dart';
-import '../../dtos/reverse_geocoding_response_dto.dart';
+import '../../dtos/location/reverse_geocoding_response_dto.dart';
 
 part 'location_remote_datasource.g.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../data/repositories/location_repository_impl.dart';
+import 'package:electrum_ahmad/features/rents/data/repositories/location/location_repository_impl.dart';
 import '../../viewmodel/notifiers/rent_form_provider.dart';
 
 class PickupLocationField extends HookConsumerWidget {

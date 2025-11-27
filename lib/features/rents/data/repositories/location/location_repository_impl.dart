@@ -1,11 +1,12 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../core/services/location/location_service.dart';
-import '../../domain/entities/resolved_location.dart';
-import '../../domain/repositories/location_repository.dart';
-import '../datasources/location/location_remote_datasource.dart';
-import '../dtos/reverse_geocoding_response_dto.dart';
+import 'package:electrum_ahmad/core/services/location/location_service.dart';
+import 'package:electrum_ahmad/features/rents/domain/entities/resolved_location.dart';
+import 'package:electrum_ahmad/features/rents/domain/repositories/location_repository.dart';
+
+import '../../datasources/location/location_remote_datasource.dart';
+import '../../dtos/location/reverse_geocoding_response_dto.dart';
 
 part 'location_repository_impl.g.dart';
 
