@@ -16,7 +16,7 @@ import '../../features/profile/presentation/screens/profile_screen.dart';
 
 part 'routing.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 GoRouter router(Ref ref) {
   //Bridge from Riverpod to listanable : a Listenable for GoRouter
   final listenable = ValueNotifier<AsyncValue<User?>>(const AsyncLoading());
