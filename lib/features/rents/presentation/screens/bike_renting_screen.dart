@@ -7,11 +7,11 @@ import 'package:quickalert/quickalert.dart';
 import '../../../../core/widgets/primary_app_bar.dart';
 import '../../../bikes/domain/entities/bike.dart';
 import '../viewmodel/notifiers/submit/rent_submit_provider.dart';
-import '../widgets/mobile/rent_form_content_mobile.dart';
-import '../widgets/web/rent_form_content_web.dart';
+import '../widgets/mobile/rent_form_mobile.dart';
+import '../widgets/web/rent_form_web.dart';
 
-class BikeRentingFormScreen extends ConsumerWidget {
-  const BikeRentingFormScreen({
+class BikeRentingScreen extends ConsumerWidget {
+  const BikeRentingScreen({
     super.key,
     required this.bike,
   });
@@ -43,8 +43,8 @@ class BikeRentingFormScreen extends ConsumerWidget {
         children: [
           Expanded(
             child: kIsWeb
-                ? RentFormContentWeb(bike: bike)
-                : RentFormContentMobile(bike: bike),
+                ? RentFormWeb(bike: bike)
+                : RentFormMobile(bike: bike),
           ),
         ],
       ),

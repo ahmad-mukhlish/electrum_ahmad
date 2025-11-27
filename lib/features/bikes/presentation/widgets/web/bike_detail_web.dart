@@ -6,8 +6,8 @@ import '../shared/bike_hero_section.dart';
 import '../shared/bike_pickup_areas.dart';
 import '../shared/bike_specs_row.dart';
 
-class BikeDetailContentWeb extends StatelessWidget {
-  const BikeDetailContentWeb({
+class BikeDetailWeb extends StatelessWidget {
+  const BikeDetailWeb({
     super.key,
     required this.bike,
   });

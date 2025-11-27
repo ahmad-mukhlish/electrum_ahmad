@@ -5,10 +5,10 @@ import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 import '../shared/availability_toggle.dart';
 import '../shared/price_bucket_selector.dart';
 import '../shared/range_bucket_selector.dart';
-import 'bikes_search_field_web.dart';
+import 'bikes_search_web.dart';
 
-class BikesFilterPanel extends ConsumerWidget {
-  const BikesFilterPanel({super.key});
+class FilterPanelWeb extends ConsumerWidget {
+  const FilterPanelWeb({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,7 +49,7 @@ class BikesFilterPanel extends ConsumerWidget {
           children: [
             _buildHeader(textTheme, colorScheme),
             const SizedBox(height: 16),
-            const BikesSearchFieldWeb(),
+            const BikesSearchWeb(),
             const SizedBox(height: 16),
             _buildDivider(colorScheme),
             const SizedBox(height: 24),

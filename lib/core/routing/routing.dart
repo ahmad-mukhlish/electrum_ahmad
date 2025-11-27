@@ -13,7 +13,7 @@ import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/main/presentation/screens/main_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/rents/domain/entities/rent/rent.dart';
-import '../../features/rents/presentation/screens/bike_renting_form_screen.dart';
+import '../../features/rents/presentation/screens/bike_renting_screen.dart';
 import '../../features/rents/presentation/screens/rent_detail_screen.dart';
 
 part 'routing.g.dart';
@@ -97,7 +97,7 @@ GoRouter router(Ref ref) {
             path: 'interest',
             builder: (context, state) {
               final bike = state.extra as Bike;
-              return BikeRentingFormScreen(bike: bike);
+              return BikeRentingScreen(bike: bike);
             },
           ),
         ],

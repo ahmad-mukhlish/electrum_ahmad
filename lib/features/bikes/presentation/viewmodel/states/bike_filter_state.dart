@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/entities/bike.dart';
-import 'filter_buckets.dart';
+import 'price_bucket.dart';
+import 'range_bucket.dart';
 
 part 'bike_filter_state.freezed.dart';
 

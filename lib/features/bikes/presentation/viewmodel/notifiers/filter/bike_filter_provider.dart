@@ -2,7 +2,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../domain/entities/bike.dart';
 import '../../states/bike_filter_state.dart';
-import '../../states/filter_buckets.dart';
+import '../../states/price_bucket.dart';
+import '../../states/range_bucket.dart';
 import '../stream/bikes_provider.dart';
 
 part 'bike_filter_provider.g.dart';

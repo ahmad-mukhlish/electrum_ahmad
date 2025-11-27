@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 
-class BikesSearchFieldWeb extends HookConsumerWidget {
-  const BikesSearchFieldWeb({super.key});
+class BikesSearchWeb extends HookConsumerWidget {
+  const BikesSearchWeb({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

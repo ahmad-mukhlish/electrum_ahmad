@@ -8,8 +8,8 @@ import '../shared/pickup_location_field.dart';
 import '../shared/rental_period_fields.dart';
 import '../shared/submit_button.dart';
 
-class RentFormContentMobile extends StatelessWidget {
-  const RentFormContentMobile({
+class RentFormMobile extends StatelessWidget {
+  const RentFormMobile({
     super.key,
     required this.bike,
   });

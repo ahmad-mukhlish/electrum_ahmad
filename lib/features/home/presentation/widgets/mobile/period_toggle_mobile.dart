@@ -5,8 +5,8 @@ import '../../viewmodel/notifier/plan/selected_period_provider.dart';
 import '../shared/period_toggle.dart';
 
 /// Separate widget for period toggle to avoid rebuilding entire section.
-class PeriodToggleSection extends ConsumerWidget {
-  const PeriodToggleSection({super.key});
+class PeriodToggleMobile extends ConsumerWidget {
+  const PeriodToggleMobile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

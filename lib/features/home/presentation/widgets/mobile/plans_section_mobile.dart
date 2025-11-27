@@ -5,7 +5,7 @@ import '../../../../../core/utils/color_helper.dart';
 import '../../../../../core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifier/plan/plans_state_provider.dart';
 import '../shared/plan_card.dart';
-import 'period_toggle_section.dart';
+import 'period_toggle_mobile.dart';
 
 class PlansSectionMobile extends HookConsumerWidget {
   const PlansSectionMobile({super.key});
@@ -27,7 +27,7 @@ class PlansSectionMobile extends HookConsumerWidget {
             children: [
               _buildSectionTitle(context),
               const SizedBox(height: 8),
-              const PeriodToggleSection(),
+              const PeriodToggleMobile(),
               const SizedBox(height: 16),
               ...planStates.map((planState) {
                 final backgroundColor = hexToColor(planState.plan.hexColor);

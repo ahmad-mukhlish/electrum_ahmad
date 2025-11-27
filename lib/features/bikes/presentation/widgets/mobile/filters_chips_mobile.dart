@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 
-class ActiveFiltersChips extends ConsumerWidget {
-  const ActiveFiltersChips({super.key});
+class FiltersChipsMobile extends ConsumerWidget {
+  const FiltersChipsMobile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

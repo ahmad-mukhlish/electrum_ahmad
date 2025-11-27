@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../viewmodel/notifiers/detail/bike_detail_provider.dart';
-import '../widgets/mobile/bike_detail_content_mobile.dart';
-import '../widgets/web/bike_detail_content_web.dart';
+import '../widgets/mobile/bike_detail_mobile.dart';
+import '../widgets/web/bike_detail_web.dart';
 
 class BikeDetailScreen extends ConsumerWidget {
   const BikeDetailScreen({
@@ -31,8 +31,8 @@ class BikeDetailScreen extends ConsumerWidget {
             children: [
               Expanded(
                 child: kIsWeb
-                    ? BikeDetailContentWeb(bike: bike)
-                    : BikeDetailContentMobile(bike: bike),
+                    ? BikeDetailWeb(bike: bike)
+                    : BikeDetailMobile(bike: bike),
               ),
             ],
           );

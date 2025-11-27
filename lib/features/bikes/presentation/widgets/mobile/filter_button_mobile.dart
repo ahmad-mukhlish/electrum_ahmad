@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
-import 'bikes_filter_sheet.dart';
+import 'filter_sheet_mobile.dart';
 
-class BikesFilterButton extends ConsumerWidget {
-  const BikesFilterButton({super.key});
+class FilterButtonMobile extends ConsumerWidget {
+  const FilterButtonMobile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,6 +46,6 @@ class BikesFilterButton extends ConsumerWidget {
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (_) => const BikesFilterSheet(),
+        builder: (_) => const FilterSheetMobile(),
       );
 }

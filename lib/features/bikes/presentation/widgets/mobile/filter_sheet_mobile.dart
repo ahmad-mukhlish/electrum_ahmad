@@ -3,13 +3,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
-import '../../viewmodel/states/filter_buckets.dart';
+import '../../viewmodel/states/price_bucket.dart';
+import '../../viewmodel/states/range_bucket.dart';
 import '../shared/availability_toggle.dart';
 import '../shared/price_bucket_selector.dart';
 import '../shared/range_bucket_selector.dart';
 
-class BikesFilterSheet extends HookConsumerWidget {
-  const BikesFilterSheet({super.key});
+class FilterSheetMobile extends HookConsumerWidget {
+  const FilterSheetMobile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
