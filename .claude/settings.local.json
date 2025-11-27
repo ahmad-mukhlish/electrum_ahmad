@@ -14,7 +14,9 @@
       "Skill(flutter-developer)",
       "Skill(riverpod-state-management)",
       "Bash(flutter pub get)",
-      "Skill(maestro-flutter)"
+      "Skill(maestro-flutter)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)"
     ],
     "deny": [],
     "ask": []

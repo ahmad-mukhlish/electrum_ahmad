@@ -96,6 +96,41 @@ documentations/                 # AI-assisted docs (separate from code)
   references/                   # Design references, screenshots, etc.
 ```
 
+## Maestro Test Structure
+
+The Maestro tests are organized following the entry point + runFlow pattern for better modularity and maintainability.
+
+```
+maestro/
+├── all-tests.yaml                   # Master test orchestrator (entry point)
+├── common/                          # Reusable flows shared between platforms
+│   ├── auth-setup.yaml             # Authentication setup flow
+│   └── setup-home.yaml             # Home screen setup flow
+├── mobile/
+│   └── flows/                      # Mobile-specific test flows
+│       ├── auth-flow-mobile.yaml   # Mobile authentication tests
+│       └── home-flow-mobile.yaml   # Mobile home screen tests
+└── web/
+    └── flows/                      # Web-specific test flows
+        ├── auth-flow-web.yaml      # Web authentication tests
+        └── home-flow-web.yaml      # Web home screen tests
+```
+
+**Key Principles:**
+- `all-tests.yaml` is the entry point that orchestrates all test flows
+- `common/` contains reusable flows shared between mobile and web
+- `mobile/flows/` and `web/flows/` contain platform-specific test flows
+- Each flow file uses `runFlow` to reference other flows
+- Path references use relative paths (e.g., `../../common/auth-setup.yaml`)
+
+**Running Tests:**
+```bash
+maestro test maestro/all-tests.yaml              # Run all tests
+maestro test maestro/mobile/flows/               # Run all mobile tests
+maestro test maestro/web/flows/                  # Run all web tests
+maestro test maestro/common/auth-setup.yaml      # Run specific flow
+```
+
 ## Commands
 
 - `flutter run` — Run app

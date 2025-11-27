@@ -6,7 +6,7 @@ appId: com.electrum.app
 # ===========================
 # Scenario 1: Successful Login (Seeded User)
 # ===========================
-- runFlow: ../common_tests/auth-setup.yaml
+- runFlow: ../../common/auth-setup.yaml
 
 - tapOn:
     text: ".*Login email.*"
@@ -32,7 +32,7 @@ appId: com.electrum.app
 # ===========================
 # Scenario 2: Failed Login (Random Credentials)
 # ===========================
-- runFlow: ../common_tests/auth-setup.yaml
+- runFlow: ../../common/auth-setup.yaml
 
 - tapOn:
     text: ".*Login email.*"
@@ -62,7 +62,7 @@ appId: com.electrum.app
 # ===========================
 # Scenario 3: Successful Registration (Random Credentials)
 # ===========================
-- runFlow: ../common_tests/auth-setup.yaml
+- runFlow: ../../common/auth-setup.yaml
 
 # Navigate to register screen
 - tapOn:
@@ -95,7 +95,7 @@ appId: com.electrum.app
 # ===========================
 # Scenario 4: Failed Registration (Existing User)
 # ===========================
-- runFlow: ../common_tests/auth-setup.yaml
+- runFlow: ../../common/auth-setup.yaml
 
 # Navigate to register screen
 - tapOn:
@@ -134,7 +134,7 @@ appId: com.electrum.app
 # ===========================
 
 # First, login if not already logged in
-- runFlow: ../common_tests/auth-setup.yaml
+- runFlow: ../../common/auth-setup.yaml
 
 - tapOn:
     text: ".*Login email.*"

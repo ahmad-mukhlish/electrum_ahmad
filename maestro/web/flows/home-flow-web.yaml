@@ -8,7 +8,7 @@ appId: com.electrum.app
 # ===========================
 
 # Setup: Navigate to home screen
-- runFlow: ../../common_tests/setup-home.yaml
+- runFlow: ../../common/setup-home.yaml
 
 # Assert: Home screen structure is visible
 - assertVisible:
