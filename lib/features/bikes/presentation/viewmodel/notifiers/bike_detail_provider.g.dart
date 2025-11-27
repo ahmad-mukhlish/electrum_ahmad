@@ -9,19 +9,19 @@ part of 'bike_detail_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// Provider for fetching a single bike by ID
-/// Returns Stream<Bike?> from Firestore for real-time updates
+/// Returns Stream Bike from Firestore for real-time updates
 
 @ProviderFor(bikeDetail)
 const bikeDetailProvider = BikeDetailFamily._();
 
 /// Provider for fetching a single bike by ID
-/// Returns Stream<Bike?> from Firestore for real-time updates
+/// Returns Stream Bike from Firestore for real-time updates
 
 final class BikeDetailProvider
     extends $FunctionalProvider<AsyncValue<Bike?>, Bike?, Stream<Bike?>>
     with $FutureModifier<Bike?>, $StreamProvider<Bike?> {
   /// Provider for fetching a single bike by ID
-  /// Returns Stream<Bike?> from Firestore for real-time updates
+  /// Returns Stream Bike from Firestore for real-time updates
   const BikeDetailProvider._({
     required BikeDetailFamily super.from,
     required String super.argument,
@@ -68,7 +68,7 @@ final class BikeDetailProvider
 String _$bikeDetailHash() => r'196cec20bb3a0f1b1ba53f764be339c7dc192347';
 
 /// Provider for fetching a single bike by ID
-/// Returns Stream<Bike?> from Firestore for real-time updates
+/// Returns Stream Bike from Firestore for real-time updates
 
 final class BikeDetailFamily extends $Family
     with $FunctionalFamilyOverride<Stream<Bike?>, String> {
@@ -82,7 +82,7 @@ final class BikeDetailFamily extends $Family
       );
 
   /// Provider for fetching a single bike by ID
-  /// Returns Stream<Bike?> from Firestore for real-time updates
+  /// Returns Stream Bike from Firestore for real-time updates
 
   BikeDetailProvider call(String bikeId) =>
       BikeDetailProvider._(argument: bikeId, from: this);

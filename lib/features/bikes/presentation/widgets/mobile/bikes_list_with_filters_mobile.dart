@@ -1,0 +1,157 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../viewmodel/notifiers/bike_filter_provider.dart';
+import '../shared/bike_card.dart';
+import 'active_filters_chips.dart';
+import 'bikes_filter_button.dart';
+import 'bikes_search_bar.dart';
+
+class BikesListWithFiltersMobile extends ConsumerWidget {
+  const BikesListWithFiltersMobile({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final filterState = ref.watch(bikeFilterProvider);
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+          child: Column(
+            children: [
+              const BikesSearchBar(),
+              const SizedBox(height: 12),
+              const BikesFilterButton(),
+            ],
+          ),
+        ),
+        const ActiveFiltersChips(),
+        const SizedBox(height: 8),
+        Expanded(
+          child: _buildContent(context, ref, filterState),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContent(
+    BuildContext context,
+    WidgetRef ref,
+    filterState,
+  ) {
+    if (filterState.isLoading) {
+      return _buildLoadingState();
+    }
+
+    if (filterState.error != null) {
+      _showErrorSnackbar(context, filterState.error!);
+      return const SizedBox.shrink();
+    }
+
+    final filteredBikes = filterState.filteredBikes;
+
+    if (filteredBikes.isEmpty) {
+      return _buildEmptyState(
+        context,
+        filterState.hasActiveFilters,
+        onReset: () => ref.read(bikeFilterProvider.notifier).resetFilters(),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      itemCount: filteredBikes.length,
+      itemBuilder: (context, index) {
+        final bike = filteredBikes[index];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: BikeCard(
+            bike: bike,
+            onTap: () => context.go('/bikes/${bike.id}'),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildEmptyState(
+    BuildContext context,
+    bool hasFilters, {
+    VoidCallback? onReset,
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              hasFilters ? Icons.search_off : Icons.two_wheeler,
+              size: 80,
+              color: colorScheme.primary.withValues(alpha: 0.5),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              hasFilters
+                  ? 'No bikes match your search'
+                  : 'No bikes available',
+              style: textTheme.titleLarge?.copyWith(
+                color: colorScheme.onSecondary.withValues(alpha: 0.7),
+              ),
+              textAlign: TextAlign.center,
+            ),
+            if (hasFilters) ...[
+              const SizedBox(height: 8),
+              Text(
+                'Try adjusting your filters',
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSecondary.withValues(alpha: 0.6),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              OutlinedButton(
+                onPressed: onReset,
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: colorScheme.primary),
+                ),
+                child: Text(
+                  'Reset filters',
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoadingState() => const Center(
+        child: CircularProgressIndicator(),
+      );
+
+  void _showErrorSnackbar(BuildContext context, String error) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading bikes: $error'),
+            backgroundColor: colorScheme.error,
+          ),
+        );
+      }
+    });
+  }
+}

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/header_web.dart';
 import '../../../../core/widgets/primary_app_bar.dart';
-import '../widgets/mobile/bikes_list_mobile.dart';
-import '../widgets/web/bikes_list_web.dart';
+import '../widgets/mobile/bikes_list_with_filters_mobile.dart';
+import '../widgets/web/bikes_list_with_filters_web.dart';
 
 class BikesScreen extends StatelessWidget {
   const BikesScreen({super.key});
@@ -23,7 +23,9 @@ class BikesScreen extends StatelessWidget {
             child: const HeaderWeb(title: 'Bikes'),
           ),
           Expanded(
-            child: kIsWeb ? const BikesListWeb() : const BikesListMobile(),
+            child: kIsWeb
+                ? const BikesListWithFiltersWeb()
+                : const BikesListWithFiltersMobile(),
           ),
         ],
       ),

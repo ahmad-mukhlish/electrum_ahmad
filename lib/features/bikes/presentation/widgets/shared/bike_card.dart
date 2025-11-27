@@ -29,6 +29,7 @@ class BikeCard extends StatelessWidget {
         onTap: onTap,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             _buildImage(colorScheme),
             _buildContent(context, colorScheme),
