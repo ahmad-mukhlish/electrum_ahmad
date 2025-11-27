@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -74,25 +75,19 @@ class BikeHeroSection extends StatelessWidget {
               size: kIsWeb ? 120 : 80,
               color: colorScheme.primary,
             )
-          : Image.network(
-              bike.photoUrl,
+          : CachedNetworkImage(
+              imageUrl: bike.photoUrl,
               fit: BoxFit.contain,
-              errorBuilder: (_, _, _) => Icon(
+              errorWidget: (_, _, _) => Icon(
                 Icons.two_wheeler,
                 size: kIsWeb ? 120 : 80,
                 color: colorScheme.primary,
               ),
-              loadingBuilder: (_, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                        : null,
-                  ),
-                );
-              },
+              progressIndicatorBuilder: (_, _, progress) => Center(
+                child: CircularProgressIndicator(
+                  value: progress.progress,
+                ),
+              ),
             ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -42,10 +43,10 @@ class BikeCard extends StatelessWidget {
   Widget _buildImage(ColorScheme colorScheme) {
     return AspectRatio(
       aspectRatio: 16 / 9,
-      child: Image.network(
-        bike.photoUrl,
+      child: CachedNetworkImage(
+        imageUrl: bike.photoUrl,
         fit: BoxFit.cover,
-        errorBuilder: (_, _, _) => Container(
+        errorWidget: (_, _, _) => Container(
           color: colorScheme.secondary,
           child: Icon(
             Icons.two_wheeler,
@@ -53,20 +54,14 @@ class BikeCard extends StatelessWidget {
             color: colorScheme.primary,
           ),
         ),
-        loadingBuilder: (_, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Container(
-            color: colorScheme.secondary,
-            child: Center(
-              child: CircularProgressIndicator(
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
-              ),
+        progressIndicatorBuilder: (_, _, progress) => Container(
+          color: colorScheme.secondary,
+          child: Center(
+            child: CircularProgressIndicator(
+              value: progress.progress,
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

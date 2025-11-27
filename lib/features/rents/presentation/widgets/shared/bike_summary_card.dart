@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -91,13 +92,18 @@ class BikeSummaryCard extends StatelessWidget {
             )
           : ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                bike.photoUrl,
+              child: CachedNetworkImage(
+                imageUrl: bike.photoUrl,
                 fit: BoxFit.cover,
-                errorBuilder: (_, _, _) => Icon(
+                errorWidget: (_, _, _) => Icon(
                   Icons.two_wheeler,
                   size: imageSize * 0.5,
                   color: colorScheme.primary,
+                ),
+                progressIndicatorBuilder: (_, _, progress) => Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                  ),
                 ),
               ),
             ),

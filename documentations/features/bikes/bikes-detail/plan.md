@@ -116,7 +116,6 @@ lib/features/bikes/
 **Layout:**
 - Container with gradient background (primary color with low alpha → onPrimary)
 - Image section: responsive height (400px web, 250px mobile)
-- Image.network with loading and error states
 - Fallback: two_wheeler icon if no image
 - Title: bike.model (displayMedium web, headlineLarge mobile)
 - Subtitle: Static text based on model name pattern (e.g., "Urban Commuter", "Electric Scooter")
