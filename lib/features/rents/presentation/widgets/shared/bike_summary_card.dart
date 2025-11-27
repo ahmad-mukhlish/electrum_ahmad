@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/price_formatter.dart';
-import '../../../domain/entities/bike.dart';
+import '../../../../bikes/domain/entities/bike.dart';
 
 class BikeSummaryCard extends StatelessWidget {
   const BikeSummaryCard({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/bike.dart';
+import '../../../../bikes/domain/entities/bike.dart';
 import '../shared/bike_summary_card.dart';
 import '../shared/contact_fields.dart';
 import '../shared/payment_summary_card.dart';

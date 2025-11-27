@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../domain/entities/bike.dart';
+import '../../../../bikes/domain/entities/bike.dart';
 import '../../viewmodel/notifiers/rent_form_provider.dart';
 import '../../viewmodel/notifiers/rent_submit_provider.dart';
 

@@ -8,7 +8,7 @@ import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/auth/presentation/viewmodel/notifiers/auth_notifier.dart';
 import '../../features/bikes/domain/entities/bike.dart';
 import '../../features/bikes/presentation/screens/bike_detail_screen.dart';
-import '../../features/bikes/presentation/screens/bike_renting_form_screen.dart';
+import '../../features/rents/presentation/screens/bike_renting_form_screen.dart';
 import '../../features/bikes/presentation/screens/bikes_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/main/presentation/screens/main_screen.dart';
