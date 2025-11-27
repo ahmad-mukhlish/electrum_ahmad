@@ -12,6 +12,7 @@ class BikesListWithFiltersWeb extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(child: _buildBikesGrid(context, ref)),
         const BikesFilterPanel(),

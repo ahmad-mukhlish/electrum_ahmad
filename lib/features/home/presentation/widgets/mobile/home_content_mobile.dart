@@ -8,15 +8,18 @@ class HomeContentMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            PromotionsCarousel(),
-            SizedBox(height: 16),
-            PlansSectionMobile(),
-          ],
+    return Semantics(
+      label: "Home screen",
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: const [
+              PromotionsCarousel(),
+              SizedBox(height: 16),
+              PlansSectionMobile(),
+            ],
+          ),
         ),
       ),
     );

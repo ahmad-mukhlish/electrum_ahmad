@@ -43,24 +43,23 @@ class BikesFilterPanel extends ConsumerWidget {
         ),
       ),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.only(top: 16, left: 24, right: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildHeader(textTheme, colorScheme),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             const BikesSearchFieldWeb(),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             _buildDivider(colorScheme),
             const SizedBox(height: 24),
             _buildSectionTitle('Availability', textTheme, colorScheme),
-            const SizedBox(height: 12),
             AvailabilityToggle(
               value: showAvailableOnly,
               onChanged: (value) =>
                   ref.read(bikeFilterProvider.notifier).setShowAvailableOnly(value),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 8),
             _buildDivider(colorScheme),
             const SizedBox(height: 24),
             _buildSectionTitle('Price Range', textTheme, colorScheme),

@@ -84,7 +84,7 @@ class BikeCard extends StatelessWidget {
 
   Widget _buildSpecs(BuildContext context, ColorScheme colorScheme) {
     final textTheme = Theme.of(context).textTheme;
-    final specStyle = kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium;
+    final specStyle = kIsWeb ? textTheme.titleMedium : textTheme.bodyMedium;
 
     return Row(
       children: [
