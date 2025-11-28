@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:electrum_ahmad/core/utils/snackbar_helper.dart';
 import '../../viewmodel/states/plan_state.dart';
 import 'plan_pricing.dart';
 
@@ -37,7 +38,7 @@ class PlanCard extends StatelessWidget {
               const SizedBox(height: 4),
               _buildBestFor(textTheme, colorScheme),
               const SizedBox(height: 8),
-              _buildSubscribeButton(colorScheme),
+              _buildSubscribeButton(context, colorScheme),
               const SizedBox(height: 16),
               _buildTerms(textTheme, colorScheme),
             ],
@@ -75,12 +76,16 @@ class PlanCard extends StatelessWidget {
     );
   }
 
-  Widget _buildSubscribeButton(ColorScheme colorScheme) {
+  Widget _buildSubscribeButton(BuildContext context, ColorScheme colorScheme) {
     return SizedBox(
       width: double.infinity,
       child: FilledButton(
         onPressed: () {
-          ///TBA (out of scope)
+          SnackbarHelper.showInfo(
+            context,
+            'TBA (Out of Scope)',
+            semanticsLabel: 'Plan subscribe info',
+          );
         },
         style: FilledButton.styleFrom(
           backgroundColor: colorScheme.secondary,

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:electrum_ahmad/features/rents/data/repositories/location/location_repository_impl.dart';
 import 'package:electrum_ahmad/core/utils/snackbar_helper.dart';
+import 'package:electrum_ahmad/features/rents/data/repositories/location/location_repository_impl.dart';
 import '../../viewmodel/notifiers/form/rent_form_provider.dart';
 
 class PickupLocationField extends HookConsumerWidget {
@@ -54,11 +54,10 @@ class PickupLocationField extends HookConsumerWidget {
             );
 
         if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Location set: ${resolved.address}'),
-              backgroundColor: colorScheme.primary,
-            ),
+          SnackbarHelper.showSuccess(
+            context,
+            'Location set: ${resolved.address}',
+            semanticsLabel: 'Location success',
           );
         }
       } catch (e) {

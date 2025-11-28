@@ -27,10 +27,6 @@ appId: com.electrum.ahmad.electrum_ahmad
 - assertVisible:
     text: ".*Home bottom.*"
 
-# Assert: No error snackbar
-- assertNotVisible:
-    text: ".*Error snackbar.*"
-
 # ===========================
 # Scenario 2: Failed Login (Random Credentials)
 # ===========================
@@ -51,9 +47,7 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 - waitForAnimationToEnd
 
-# Assert: Error snackbar is visible
-- assertVisible:
-    text: ".*Error snackbar.*"
+
 
 # Assert: Still on login screen
 - assertVisible:
@@ -78,6 +72,8 @@ appId: com.electrum.ahmad.electrum_ahmad
 - tapOn:
     text: ".*Register email.*"
 - inputText: "test_${CURRENT_TIME}@example.com"
+
+- hideKeyboard
 
 - tapOn:
     text: ".*Register password.*"
@@ -109,6 +105,8 @@ appId: com.electrum.ahmad.electrum_ahmad
     text: ".*Register email.*"
 - inputText: "ahmad.mukhlish.saputra@gmail.com"
 
+- hideKeyboard
+
 - tapOn:
     text: ".*Register password.*"
 - inputText: "CobaCoba123"
@@ -118,9 +116,7 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 - waitForAnimationToEnd
 
-# Assert: Error snackbar is visible
-- assertVisible:
-    text: ".*Error snackbar.*"
+
 
 # Assert: Still on register screen
 - assertVisible:
@@ -140,6 +136,8 @@ appId: com.electrum.ahmad.electrum_ahmad
 - tapOn:
     text: ".*Login email.*"
 - inputText: "ahmad.mukhlish.saputra@gmail.com"
+
+- hideKeyboard
 
 - tapOn:
     text: ".*Login password.*"

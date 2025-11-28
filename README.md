@@ -102,44 +102,44 @@ The Maestro tests are organized following the entry point + runFlow pattern for 
 
 ```
 maestro/
-├── all-tests.yaml                   # Master test orchestrator (entry point)
+├── all-tests.yaml                   # Entry point; runs platform suites
 ├── common/                          # Reusable flows shared between platforms
 │   ├── auth-setup.yaml             # Authentication setup flow
 │   └── setup-home.yaml             # Home screen setup flow
 ├── mobile/
+│   ├── all-tests-mobile.yaml       # Mobile orchestrator; runs all mobile flows
 │   └── flows/                      # Mobile-specific test flows
 │       ├── auth-flow-mobile.yaml   # Mobile authentication tests
 │       └── home-flow-mobile.yaml   # Mobile home screen tests
 └── web/
+    ├── all-tests-web.yaml          # Web orchestrator; runs all web flows
     └── flows/                      # Web-specific test flows
         ├── auth-flow-web.yaml      # Web authentication tests
         └── home-flow-web.yaml      # Web home screen tests
 ```
 
-**Key Principles:**
-- `all-tests.yaml` is the entry point that orchestrates all test flows
-- `common/` contains reusable flows shared between mobile and web
-- `mobile/flows/` and `web/flows/` contain platform-specific test flows
-- Each flow file uses `runFlow` to reference other flows
-- Path references use relative paths (e.g., `../../common/auth-setup.yaml`)
+### Running Maestro Tests
 
-**Running Tests:**
 ```bash
-maestro test maestro/all-tests.yaml              # Run all tests
-maestro test maestro/mobile/flows/               # Run all mobile tests
-maestro test maestro/web/flows/                  # Run all web tests
-maestro test maestro/common/auth-setup.yaml      # Run specific flow
+maestro test maestro/all-tests.yaml
 ```
 
-## Commands
+```bash
+maestro test maestro/mobile/all-tests-mobile.yaml
+```
 
-- `flutter run` — Run app
-- `flutter test` — Run tests
-- `flutter analyze` — Lint check
-- `flutter build apk` — Build Android
-- `flutter build ios` — Build iOS
+```bash
+maestro test maestro/web/all-tests-web.yaml
+```
 
-## Notes
+## Unit test
+- Only test critical entity : rent entity
+- Only test critical repo : auth repository
 
-- Widgets under `features/*/presentation/widgets` are split into `mobile`, `web`, and `shared` folders; import the appropriate one in screens based on platform needs.
+## Widget test
+- Only test critical widget : authForm
 
+## What will do if given more time?
+- Complete all unit tests and widget tests (90%+ coverage)
+- Implement plans on subscribe (still only shows snackbar)
+- Implement promotions on click (still only shows snackbar)

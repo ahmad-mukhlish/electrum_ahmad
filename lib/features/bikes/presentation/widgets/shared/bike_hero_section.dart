@@ -13,54 +13,40 @@ class BikeHeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final titleStyle = kIsWeb
+        ? textTheme.displayMedium
+        : textTheme.headlineLarge;
+    final subtitleStyle = kIsWeb
+        ? textTheme.headlineSmall
+        : textTheme.bodyLarge;
 
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            colorScheme.primary.withValues(alpha: 0.1),
-            colorScheme.onPrimary,
-          ],
-        ),
-      ),
-      child: Column(
-        children: [
-          _buildImage(colorScheme),
-          Padding(
-            padding: EdgeInsets.all(kIsWeb ? 32 : 24),
-            child: Column(
-              children: [
-                Text(
-                  bike.model,
-                  style:
-                      (kIsWeb
-                              ? textTheme.displayMedium
-                              : textTheme.headlineLarge)
-                          ?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.onSecondary,
-                          ),
-                  textAlign: TextAlign.center,
+    return Column(
+      children: [
+        Card(elevation: 2, child: _buildImage(colorScheme),) ,
+        Padding(
+          padding: EdgeInsets.all(kIsWeb ? 32 : 24),
+          child: Column(
+            children: [
+              Text(
+                bike.model,
+                style: titleStyle?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onSecondary,
                 ),
-                SizedBox(height: kIsWeb ? 12 : 8),
-                Text(
-                  _getBikeSubtitle(),
-                  style:
-                      (kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge)
-                          ?.copyWith(
-                            color: colorScheme.onSecondary.withValues(
-                              alpha: 0.7,
-                            ),
-                          ),
-                  textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: kIsWeb ? 12 : 8),
+              Text(
+                _getBikeSubtitle(),
+                style: subtitleStyle?.copyWith(
+                  color: colorScheme.onSecondary.withValues(alpha: 0.7),
                 ),
-              ],
-            ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

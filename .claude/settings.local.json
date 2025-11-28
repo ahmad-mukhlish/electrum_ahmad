@@ -16,7 +16,10 @@
       "Bash(flutter pub get)",
       "Skill(maestro-flutter)",
       "Bash(mkdir:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(flutter test:*)",
+      "Bash(dart test:*)",
+      "Bash(flutter doctor:*)"
     ],
     "deny": [],
     "ask": []

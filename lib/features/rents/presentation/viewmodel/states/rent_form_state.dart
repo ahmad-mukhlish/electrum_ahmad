@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../domain/entities/rent/rent.dart';
+
 part 'rent_form_state.freezed.dart';
 
 @freezed
@@ -17,21 +19,28 @@ abstract class RentFormState with _$RentFormState {
     @Default('') String contactEmail,
   }) = _RentFormState;
 
-  /// Calculate total rental days (inclusive, minimum 1)
+  /// Calculate total rental days (delegates to domain entity)
   int get totalDays {
     if (fromDate == null || toDate == null) return 0;
-    // Inclusive calculation: both from and to dates count
-    return toDate!.difference(fromDate!).inDays + 1;
+    return Rent.calculateTotalDays(fromDate!, toDate!);
   }
 
-  /// Calculate total amount based on price per day
-  int totalAmount(int pricePerDay) => totalDays * pricePerDay;
+  /// Calculate total amount based on price per day (delegates to domain entity)
+  int totalAmount(int pricePerDay) {
+    if (fromDate == null || toDate == null) return 0;
+    return Rent.calculateTotalAmount(
+      fromDate: fromDate!,
+      toDate: toDate!,
+      pricePerDay: pricePerDay,
+    );
+  }
 
-  /// Check if form is valid for submission
+  /// Check if form is valid for submission (UI validation)
   bool get isValid {
     if (fromDate == null) return false;
     if (toDate == null) return false;
-    if (toDate!.isBefore(fromDate!)) return false;
+    // Delegate rental period validation to domain entity
+    if (!Rent.isValidRentalPeriod(fromDate!, toDate!)) return false;
     if (pickupText.trim().isEmpty) return false;
     if (contactName.trim().isEmpty) return false;
     if (contactPhone.trim().isEmpty) return false;

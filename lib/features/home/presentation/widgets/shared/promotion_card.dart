@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/utils/snackbar_helper.dart';
 import '../../../domain/entities/promotion/promotion.dart';
 
 class PromotionCard extends StatelessWidget {
@@ -22,22 +23,33 @@ class PromotionCard extends StatelessWidget {
 
     return Semantics(
       label: "Promo card",
-      child: Card(
-        elevation: 4,
-        color: backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTitle(textTheme, textColor),
-              const SizedBox(height: 12),
-              _buildShortCopy(textTheme, textColor),
-              const SizedBox(height: 16),
-              _buildValidity(textTheme, textColor),
-            ],
+      child: InkWell(
+        onTap: () {
+          SnackbarHelper.showInfo(
+            context,
+            'TBA (Out of Scope)',
+            semanticsLabel: 'Plan subscribe info',
+          );
+        },
+        child: Card(
+          elevation: 4,
+          color: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildTitle(textTheme, textColor),
+                const SizedBox(height: 12),
+                _buildShortCopy(textTheme, textColor),
+                const SizedBox(height: 16),
+                _buildValidity(textTheme, textColor),
+              ],
+            ),
           ),
         ),
       ),

@@ -54,6 +54,7 @@ dependencies:
   flutter_osm_plugin: ^1.1.4
   flutter_launcher_icons: ^0.14.4
   cached_network_image: ^3.4.1
+  mocktail: ^1.0.4
 
 dev_dependencies:
   flutter_test:
