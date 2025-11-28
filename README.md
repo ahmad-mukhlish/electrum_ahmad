@@ -10,6 +10,12 @@ https://github.com/user-attachments/assets/bc43aa61-b564-4f83-a706-13f1ebcbb5da
 
 https://github.com/user-attachments/assets/4950f841-6d9b-4436-98db-eb0be83b295f
 
+## Automated Demo 
+
+
+https://github.com/user-attachments/assets/42fe06bf-aaec-416c-9d58-09288efb4378
+
+
 
 ## Highlights 
 - Supports web and mobile
