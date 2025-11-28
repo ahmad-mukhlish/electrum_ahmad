@@ -20,8 +20,8 @@ class BikeCTAButton extends StatelessWidget {
     return FilledButton.icon(
       onPressed: bike.isAvailable ? () => _handleInterestPress(context) : null,
       style: FilledButton.styleFrom(
-        backgroundColor: colorScheme.primary,
-        foregroundColor: colorScheme.onPrimary,
+        backgroundColor: colorScheme.onSecondary,
+        foregroundColor: colorScheme.onSecondary,
         disabledBackgroundColor: colorScheme.onSecondary.withValues(alpha: 0.3),
         disabledForegroundColor: colorScheme.onSecondary.withValues(alpha: 0.5),
         padding: EdgeInsets.all(16),
@@ -29,7 +29,6 @@ class BikeCTAButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      icon: const Icon(Icons.favorite),
       label: Text(
         bike.isAvailable ? "I'm interested to rent" : 'Not Available',
         style: (kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge)

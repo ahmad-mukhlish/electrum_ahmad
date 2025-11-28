@@ -25,7 +25,7 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 # Assert: Successfully logged in (home screen visible)
 - assertVisible:
-    text: ".*Home bottom.*"
+    text: ".*Home.*"
 
 # ===========================
 # Scenario 2: Failed Login (Random Credentials)
@@ -55,7 +55,7 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 # Assert: Home navigation NOT visible
 - assertNotVisible:
-    text: ".*Home bottom.*"
+    text: ".*Home.*"
 
 # ===========================
 # Scenario 3: Successful Registration (Random Credentials)
@@ -86,7 +86,7 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 # Assert: Successfully registered and logged in
 - assertVisible:
-    text: ".*Home bottom.*"
+    text: ".*Home.*"
 
 
 # ===========================
@@ -124,7 +124,7 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 # Assert: Home navigation NOT visible
 - assertNotVisible:
-    text: ".*Home bottom.*"
+    text: ".*Home.*"
 
 # ===========================
 # Scenario 5: Logout Flow
@@ -150,7 +150,7 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 # Assert: Successfully logged in
 - assertVisible:
-    text: ".*Home bottom.*"
+    text: ".*Home.*"
 
 # Navigate to Profile
 - tapOn:
@@ -176,4 +176,4 @@ appId: com.electrum.ahmad.electrum_ahmad
 
 # Assert: Home navigation NOT visible
 - assertNotVisible:
-    text: ".*Home bottom.*"
+    text: ".*Home.*"

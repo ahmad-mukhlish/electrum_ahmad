@@ -2,10 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BikeServiceCenterAreas extends StatelessWidget {
-  const BikeServiceCenterAreas({
-    super.key,
-    required this.serviceCenterAreas,
-  });
+  const BikeServiceCenterAreas({super.key, required this.serviceCenterAreas});
 
   final List<String> serviceCenterAreas;
 
@@ -13,6 +10,12 @@ class BikeServiceCenterAreas extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final titleStyle = (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
+        ?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: colorScheme.onSecondary,
+        );
+    final spacing = kIsWeb ? 16.0 : 12.0;
 
     if (serviceCenterAreas.isEmpty) {
       return const SizedBox.shrink();
@@ -23,18 +26,15 @@ class BikeServiceCenterAreas extends StatelessWidget {
       children: [
         Text(
           'Available Service Center Areas',
-          style: (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
-              ?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: colorScheme.onSecondary,
-          ),
+          style: titleStyle,
         ),
-        SizedBox(height: kIsWeb ? 16 : 12),
+        SizedBox(height: spacing),
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children:
-              serviceCenterAreas.map((area) => _buildAreaChip(context, area)).toList(),
+          children: serviceCenterAreas
+              .map((area) => _buildAreaChip(context, area))
+              .toList(),
         ),
       ],
     );
@@ -43,17 +43,27 @@ class BikeServiceCenterAreas extends StatelessWidget {
   Widget _buildAreaChip(BuildContext context, String area) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final padding = EdgeInsets.symmetric(
+      horizontal: kIsWeb ? 16 : 12,
+      vertical: kIsWeb ? 10 : 8,
+    );
+    final chipColor = colorScheme.tertiary.withValues(alpha: 0.1);
+    final chipBorderColor = colorScheme.tertiary.withValues(alpha: 0.3);
+    final iconSize = kIsWeb ? 16.0 : 14.0;
+    final gap = kIsWeb ? 6.0 : 4.0;
+    final textStyle = (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
+        ?.copyWith(
+          color: colorScheme.tertiary,
+          fontWeight: FontWeight.w600,
+        );
 
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: kIsWeb ? 16 : 12,
-        vertical: kIsWeb ? 10 : 8,
-      ),
+      padding: padding,
       decoration: BoxDecoration(
-        color: colorScheme.tertiary.withValues(alpha: 0.1),
+        color: chipColor,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: colorScheme.tertiary.withValues(alpha: 0.3),
+          color: chipBorderColor,
           width: 1,
         ),
       ),
@@ -62,17 +72,13 @@ class BikeServiceCenterAreas extends StatelessWidget {
         children: [
           Icon(
             Icons.location_on,
-            size: kIsWeb ? 16 : 14,
+            size: iconSize,
             color: colorScheme.tertiary,
           ),
-          SizedBox(width: kIsWeb ? 6 : 4),
+          SizedBox(width: gap),
           Text(
             area,
-            style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
-                ?.copyWith(
-              color: colorScheme.tertiary,
-              fontWeight: FontWeight.w600,
-            ),
+            style: textStyle,
           ),
         ],
       ),

@@ -11,12 +11,12 @@ appId: com.electrum.ahmad.electrum_ahmad
 - waitForAnimationToEnd
 
 # Step 3: Check if user is already logged in
-# If "Home bottom" is visible, user is logged in on mobile
+# If "Home" is visible, user is logged in on mobile
 # If "Home sidebar" is visible, user is logged in on web
 - runFlow:
     when:
       visible:
-        text: ".*Home bottom.*"
+        text: ".*Home.*"
     commands:
       # User is logged in on mobile - need to logout
       - tapOn:

@@ -22,9 +22,9 @@ class BikeHeroSection extends StatelessWidget {
 
     return Column(
       children: [
-        Card(elevation: 2, child: _buildImage(colorScheme),) ,
+        _buildImage(colorScheme) ,
         Padding(
-          padding: EdgeInsets.all(kIsWeb ? 32 : 24),
+          padding: EdgeInsets.all(24),
           child: Column(
             children: [
               Text(
@@ -52,7 +52,7 @@ class BikeHeroSection extends StatelessWidget {
 
   Widget _buildImage(ColorScheme colorScheme) {
     return Container(
-      height: kIsWeb ? null : 250,
+      height: kIsWeb ? 600 : 250,
       width: double.infinity,
       color: colorScheme.onPrimary.withValues(alpha: 0.5),
       child: bike.photoUrl.isEmpty
@@ -63,7 +63,7 @@ class BikeHeroSection extends StatelessWidget {
             )
           : CachedNetworkImage(
               imageUrl: bike.photoUrl,
-              fit: kIsWeb ? BoxFit.none : BoxFit.contain,
+              fit: kIsWeb ? BoxFit.contain : BoxFit.contain,
               errorWidget: (_, _, _) => Icon(
                 Icons.two_wheeler,
                 size: kIsWeb ? 120 : 80,
