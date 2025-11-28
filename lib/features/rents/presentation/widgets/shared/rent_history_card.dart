@@ -29,13 +29,12 @@ class RentHistoryCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildThumbnail(colorScheme),
               const SizedBox(width: 12),
-              Expanded(
-                child: _buildContent(context, colorScheme, textTheme),
-              ),
+              Flexible(child: _buildContent(context, colorScheme, textTheme)),
             ],
           ),
         ),
@@ -95,19 +94,18 @@ class RentHistoryCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        if (rentState.rent.bikeModel.isNotEmpty) Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: _buildModelName(textTheme, colorScheme)),
-            const SizedBox(width: 8),
-            _buildStatusBadge(colorScheme, textTheme),
+           Expanded(child: _buildModelName(textTheme, colorScheme)),
+            const SizedBox(width: 16),
           ],
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 8),
         _buildDateRange(textTheme, colorScheme),
         const SizedBox(height: 4),
         _buildPickupArea(textTheme, colorScheme),
-        const SizedBox(height: 6),
+        const SizedBox(height: 8),
         _buildPrice(textTheme, colorScheme),
       ],
     );
@@ -117,43 +115,10 @@ class RentHistoryCard extends StatelessWidget {
     return Text(
       rentState.rent.bikeModel,
       style: kIsWeb
-          ? textTheme.headlineSmall?.copyWith(
-              color: colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
-            )
-          : textTheme.titleMedium?.copyWith(
-              color: colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
-            ),
+          ? textTheme.titleLarge?.copyWith(color: colorScheme.onSurface, fontWeight: FontWeight.w500)
+          : textTheme.titleMedium?.copyWith(color: colorScheme.onSurface),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-    );
-  }
-
-  Widget _buildStatusBadge(ColorScheme colorScheme, TextTheme textTheme) {
-    final statusColor = rentState.getStatusColor(colorScheme);
-
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: kIsWeb ? 16 : 8,
-        vertical: kIsWeb ? 6 : 4,
-      ),
-      decoration: BoxDecoration(
-        color: statusColor.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        rentState.statusLabel,
-        style: kIsWeb
-            ? textTheme.bodyLarge?.copyWith(
-                color: statusColor,
-                fontWeight: FontWeight.w600,
-              )
-            : textTheme.labelSmall?.copyWith(
-                color: statusColor,
-                fontWeight: FontWeight.w600,
-              ),
-      ),
     );
   }
 
@@ -169,7 +134,7 @@ class RentHistoryCard extends StatelessWidget {
         Text(
           '${rentState.formattedDateRange} (${rentState.totalDays} days)',
           style: kIsWeb
-              ? textTheme.bodyLarge?.copyWith(
+              ? textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 )
               : textTheme.bodySmall?.copyWith(
@@ -185,15 +150,15 @@ class RentHistoryCard extends StatelessWidget {
       children: [
         Icon(
           Icons.location_on,
-          size: kIsWeb ? 18 : 14,
+          size: kIsWeb ? 16 : 12,
           color: colorScheme.onSurfaceVariant,
         ),
-        const SizedBox(width: 6),
+        const SizedBox(width: 4),
         Expanded(
           child: Text(
             rentState.rent.pickupText,
             style: kIsWeb
-                ? textTheme.bodyLarge?.copyWith(
+                ? textTheme.bodyMedium?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                   )
                 : textTheme.bodySmall?.copyWith(
@@ -211,14 +176,8 @@ class RentHistoryCard extends StatelessWidget {
     return Text(
       rentState.formattedPrice,
       style: kIsWeb
-          ? textTheme.headlineSmall?.copyWith(
-              color: colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            )
-          : textTheme.titleMedium?.copyWith(
-              color: colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            ),
+          ? textTheme.titleLarge?.copyWith(color: colorScheme.primary)
+          : textTheme.titleMedium?.copyWith(color: colorScheme.primary),
     );
   }
 }

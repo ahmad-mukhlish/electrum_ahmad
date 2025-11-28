@@ -73,7 +73,6 @@ class RentHistoryList extends StatelessWidget {
   Widget _buildList(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.symmetric(
-        horizontal: kIsWeb ? 24 : 0,
         vertical: kIsWeb ? 16 : 0,
       ),
       itemCount: rents.length,
@@ -81,11 +80,7 @@ class RentHistoryList extends StatelessWidget {
         final rent = rents[index];
         final rentState = RentHistoryItemState.fromEntity(rent);
 
-        return Padding(
-          padding: EdgeInsets.only(
-            left: kIsWeb ? 0 : 0,
-            right: kIsWeb ? 0 : 0,
-          ),
+        return SizedBox(
           child: RentHistoryCard(
             rentState: rentState,
             onTap: () => onRentTap(rent),

@@ -25,7 +25,7 @@ class PaymentSummaryCard extends ConsumerWidget {
 
     return Card(
       elevation: 3,
-      color: colorScheme.primary.withValues(alpha: 0.05),
+      color: colorScheme.secondary,
       child: Padding(
         padding: EdgeInsets.all(kIsWeb ? 24 : 16),
         child: Column(

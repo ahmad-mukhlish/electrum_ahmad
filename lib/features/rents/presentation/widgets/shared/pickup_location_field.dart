@@ -26,7 +26,6 @@ class PickupLocationField extends HookConsumerWidget {
       return null;
     }, [formState.pickupText, controller]);
 
-
     Future<void> handleUseMyLocation() async {
       if (isLoading.value) return;
       isLoading.value = true;
@@ -45,8 +44,7 @@ class PickupLocationField extends HookConsumerWidget {
           return;
         }
 
-        ref
-            .read(rentFormProvider.notifier)
+        ref.read(rentFormProvider.notifier)
             .setLocation(
               resolved.latitude,
               resolved.longitude,
@@ -83,7 +81,7 @@ class PickupLocationField extends HookConsumerWidget {
           textTheme,
           (value) => ref.read(rentFormProvider.notifier).setPickupText(value),
         ),
-        SizedBox(height: kIsWeb ? 12 : 8),
+        SizedBox(height: kIsWeb ? 24 : 8),
         _buildLocationButton(
           colorScheme: colorScheme,
           textTheme: textTheme,
@@ -168,7 +166,10 @@ class PickupLocationField extends HookConsumerWidget {
     ),
     style: OutlinedButton.styleFrom(
       side: BorderSide(color: colorScheme.primary),
-      padding: EdgeInsets.symmetric(vertical: isWeb ? 36 : 14, horizontal: kIsWeb ? 24 : 16),
+      padding: EdgeInsets.symmetric(
+        vertical: isWeb ? 36 : 14,
+        horizontal: kIsWeb ? 24 : 16,
+      ),
     ),
   );
 }

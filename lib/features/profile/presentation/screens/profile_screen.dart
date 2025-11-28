@@ -43,7 +43,6 @@ class ProfileScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 24),
                       if (user.displayName != null) ...[
                         _buildInfoField(
                           label: 'Name',
@@ -60,13 +59,11 @@ class ProfileScreen extends ConsumerWidget {
                         colorScheme: colorScheme,
                       ),
                       const SizedBox(height: 24),
-                      _buildRentHistorySection(
-                        context,
-                        ref,
-                        colorScheme,
-                      ),
+                      _buildRentHistorySection(context, ref, colorScheme),
                       const SizedBox(height: 24),
-                      Center(child: _buildLogoutButton(ref, colorScheme, context)),
+                      Center(
+                        child: _buildLogoutButton(ref, colorScheme, context),
+                      ),
                       const SizedBox(height: 16),
                       _buildMadeWithLove(context, colorScheme),
                       const SizedBox(height: 24),
@@ -95,35 +92,37 @@ class ProfileScreen extends ConsumerWidget {
         Text(
           label,
           style: kIsWeb
-              ? Theme.of(context).textTheme.headlineSmall?.copyWith(
+              ? Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.w500,
                 )
               : Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.w500,
                 ),
         ),
         const SizedBox(height: 4),
         Text(
           value,
           style: kIsWeb
-              ? Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: colorScheme.onSurface,
-                  fontWeight: FontWeight.bold,
-                )
-              : Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onSurface,
-                  fontWeight: FontWeight.bold,
-                ),
+              ? Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(color: colorScheme.onSurface)
+              : Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(color: colorScheme.onSurface),
         ),
       ],
     );
   }
 
-  Widget _buildLogoutButton(WidgetRef ref, ColorScheme colorScheme, BuildContext context) {
+  Widget _buildLogoutButton(
+    WidgetRef ref,
+    ColorScheme colorScheme,
+    BuildContext context,
+  ) {
     return SizedBox(
-      width: kIsWeb ? MediaQuery.of(context).size.width * 0.5 : double.infinity,
+      width: kIsWeb
+          ? MediaQuery.of(context).size.width * 0.25
+          : double.infinity,
       child: Semantics(
         label: "Logout button",
         child: FilledButton.icon(
@@ -132,15 +131,20 @@ class ProfileScreen extends ConsumerWidget {
             backgroundColor: colorScheme.error,
             foregroundColor: colorScheme.onError,
             padding: const EdgeInsets.symmetric(vertical: 16),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          ),
-          icon: const Icon(Icons.logout, size: kIsWeb ? 24 : 16,),
-          label: const Text(
-            'Logout',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: kIsWeb ? 32 : 16,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
             ),
+          ),
+          icon: const Icon(Icons.logout, size: kIsWeb ? 24 : 16),
+          label: Text(
+            'Logout',
+            style: kIsWeb
+                ? Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: colorScheme.onPrimary,
+                  )
+                : Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: colorScheme.onPrimary,
+                  ),
           ),
         ),
       ),
@@ -162,16 +166,11 @@ class ProfileScreen extends ConsumerWidget {
           Text(
             'Rent History',
             style: kIsWeb
-                ? textTheme.headlineLarge?.copyWith(
+                ? textTheme.headlineMedium?.copyWith(
                     color: colorScheme.onSurface,
-                    fontWeight: FontWeight.bold,
                   )
-                : textTheme.titleLarge?.copyWith(
-                    color: colorScheme.onSurface,
-                    fontWeight: FontWeight.bold,
-                  ),
+                : textTheme.titleLarge?.copyWith(color: colorScheme.onSurface),
           ),
-          const SizedBox(height: 16),
           Expanded(
             child: rentHistoryAsync.when(
               data: (rents) => RentHistoryList(
@@ -179,13 +178,8 @@ class ProfileScreen extends ConsumerWidget {
                 onRentTap: (Rent rent) => _showRentDetail(context, rent),
               ),
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (error, stack) => _buildErrorState(
-                context,
-                ref,
-                colorScheme,
-                textTheme,
-                error,
-              ),
+              error: (error, stack) =>
+                  _buildErrorState(context, ref, colorScheme, textTheme, error),
             ),
           ),
         ],
@@ -267,7 +261,7 @@ class ProfileScreen extends ConsumerWidget {
       child: Text(
         'Made with ❤️ by ahmad-mukhlish',
         style: kIsWeb
-            ? Theme.of(context).textTheme.headlineMedium?.copyWith(
+            ? Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               )
             : Theme.of(context).textTheme.bodySmall?.copyWith(

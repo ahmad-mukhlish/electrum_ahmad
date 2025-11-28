@@ -18,26 +18,36 @@ appId: com.electrum.ahmad.electrum_ahmad
       visible:
         text: ".*Home.*"
     commands:
-      # User is logged in on mobile - need to logout
-      - tapOn:
-          text: ".*Profile.*"
-      - waitForAnimationToEnd
-      - tapOn:
-          text: ".*Logout button.*"
-      - waitForAnimationToEnd
+      # User is logged in on mobile - need to logout (only if profile is reachable)
+      - runFlow:
+          when:
+            visible:
+              text: ".*Profile.*"
+          commands:
+            - tapOn:
+                text: ".*Profile.*"
+            - waitForAnimationToEnd
+            - tapOn:
+                text: ".*Logout button.*"
+            - waitForAnimationToEnd
 
 - runFlow:
     when:
       visible:
         text: ".*Home sidebar.*"
     commands:
-      # User is logged in on web - need to logout
-      - tapOn:
-          text: "Profile"
-      - waitForAnimationToEnd
-      - tapOn:
-          text: ".*Logout button.*"
-      - waitForAnimationToEnd
+      # User is logged in on web - need to logout (only if profile is reachable)
+      - runFlow:
+          when:
+            visible:
+              text: "Profile"
+          commands:
+            - tapOn:
+                text: "Profile"
+            - waitForAnimationToEnd
+            - tapOn:
+                text: ".*Logout button.*"
+            - waitForAnimationToEnd
 
 # Step 4: Verify we're on the login screen
 - assertVisible:

@@ -25,7 +25,7 @@ class BikeSummaryCard extends StatelessWidget {
         child: Row(
           children: [
             _buildImage(colorScheme),
-            SizedBox(width: kIsWeb ? 20 : 16),
+            SizedBox(width: kIsWeb ? 24 : 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,28 +40,26 @@ class BikeSummaryCard extends StatelessWidget {
                       color: colorScheme.onSecondary,
                     ),
                   ),
-                  const SizedBox(height: 4),
                   Text(
                     _getBikeSubtitle(),
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.onSecondary.withValues(alpha: 0.7),
+                      color: colorScheme.tertiary,
                     ),
                   ),
-                  SizedBox(height: kIsWeb ? 12 : 8),
+                  SizedBox(height: kIsWeb ? 24 : 8),
                   Text(
                     'Range: ${bike.rangeKm} km',
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.onSecondary.withValues(alpha: 0.7),
+                      color: colorScheme.tertiary,
                     ),
                   ),
-                  const SizedBox(height: 4),
                   Text(
                     'from ${formatPriceToRupiahK(bike.pricePerDay)} / day',
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.secondary,
+                      color: colorScheme.tertiary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -75,7 +73,7 @@ class BikeSummaryCard extends StatelessWidget {
   }
 
   Widget _buildImage(ColorScheme colorScheme) {
-    final imageSize = kIsWeb ? 100.0 : 80.0;
+    final imageSize = kIsWeb ? 200.0 : 80.0;
 
     return Container(
       width: imageSize,

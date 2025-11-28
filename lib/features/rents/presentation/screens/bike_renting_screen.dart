@@ -66,7 +66,7 @@ class BikeRentingScreen extends ConsumerWidget {
         await Future.delayed(const Duration(milliseconds: 100));
         // Navigate to homepage
         if (context.mounted) {
-          context.go('/');
+          context.go('/profile');
         }
       },
     );

@@ -9,10 +9,7 @@ import '../../domain/entities/rent/rent.dart';
 import '../viewmodel/states/rent_history_item_state.dart';
 
 class RentDetailScreen extends StatelessWidget {
-  const RentDetailScreen({
-    super.key,
-    required this.rent,
-  });
+  const RentDetailScreen({super.key, required this.rent});
 
   final Rent rent;
 
@@ -38,9 +35,9 @@ class RentDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildHeader(context, colorScheme, textTheme, rentState),
-                  const SizedBox(height: 24),
                   _buildPhoto(colorScheme),
+                  const SizedBox(height: 24),
+                  Center(child: _buildHeader(context, colorScheme, textTheme, rentState)),
                   const SizedBox(height: 24),
                   _buildDateSection(context, colorScheme, textTheme),
                   const SizedBox(height: 20),
@@ -48,7 +45,12 @@ class RentDetailScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   _buildContactSection(context, colorScheme, textTheme),
                   const SizedBox(height: 20),
-                  _buildPriceSection(context, colorScheme, textTheme, rentState),
+                  _buildPriceSection(
+                    context,
+                    colorScheme,
+                    textTheme,
+                    rentState,
+                  ),
                   const SizedBox(height: 20),
                   _buildFooter(context, colorScheme, textTheme),
                 ],
@@ -66,59 +68,18 @@ class RentDetailScreen extends StatelessWidget {
     TextTheme textTheme,
     RentHistoryItemState rentState,
   ) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Text(
-            rent.bikeModel,
-            style: kIsWeb
-                ? textTheme.displaySmall?.copyWith(
-                    color: colorScheme.onSurface,
-                    fontWeight: FontWeight.bold,
-                  )
-                : textTheme.headlineMedium?.copyWith(
-                    color: colorScheme.onSurface,
-                    fontWeight: FontWeight.bold,
-                  ),
-          ),
-        ),
-        const SizedBox(width: 12),
-        _buildStatusBadge(colorScheme, textTheme, rentState),
-      ],
+    return Text(
+      rent.bikeModel,
+      style: kIsWeb
+          ? textTheme.headlineSmall?.copyWith(
+              color: colorScheme.onSurface,
+            )
+          : textTheme.headlineMedium?.copyWith(
+              color: colorScheme.onSurface,
+            ),
     );
   }
 
-  Widget _buildStatusBadge(
-    ColorScheme colorScheme,
-    TextTheme textTheme,
-    RentHistoryItemState rentState,
-  ) {
-    final statusColor = rentState.getStatusColor(colorScheme);
-
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: kIsWeb ? 20 : 12,
-        vertical: kIsWeb ? 10 : 6,
-      ),
-      decoration: BoxDecoration(
-        color: statusColor.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Text(
-        rentState.statusLabel,
-        style: kIsWeb
-            ? textTheme.titleMedium?.copyWith(
-                color: statusColor,
-                fontWeight: FontWeight.w600,
-              )
-            : textTheme.bodyMedium?.copyWith(
-                color: statusColor,
-                fontWeight: FontWeight.w600,
-              ),
-      ),
-    );
-  }
 
   Widget _buildPhoto(ColorScheme colorScheme) {
     if (rent.photoUrl == null) return const SizedBox.shrink();
@@ -129,7 +90,7 @@ class RentDetailScreen extends StatelessWidget {
         imageUrl: rent.photoUrl!,
         width: double.infinity,
         height: kIsWeb ? 300 : 200,
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
         placeholder: (context, url) => Container(
           width: double.infinity,
           height: kIsWeb ? 300 : 200,
@@ -260,7 +221,8 @@ class RentDetailScreen extends StatelessWidget {
         const SizedBox(height: 8),
         _buildPriceRow(
           label: 'Price per day',
-          value: 'Rp ${NumberFormat('#,##0', 'id_ID').format(rent.pricePerDay)}',
+          value:
+              'Rp ${NumberFormat('#,##0', 'id_ID').format(rent.pricePerDay)}',
           colorScheme: colorScheme,
           textTheme: textTheme,
         ),
@@ -323,13 +285,11 @@ class RentDetailScreen extends StatelessWidget {
     return Text(
       title,
       style: kIsWeb
-          ? textTheme.headlineSmall?.copyWith(
+          ? textTheme.titleLarge?.copyWith(
               color: colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
             )
           : textTheme.titleLarge?.copyWith(
               color: colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
             ),
     );
   }
@@ -344,11 +304,7 @@ class RentDetailScreen extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          icon,
-          size: kIsWeb ? 24 : 20,
-          color: colorScheme.primary,
-        ),
+        Icon(icon, size: kIsWeb ? 24 : 20, color: colorScheme.primary),
         const SizedBox(width: 12),
         Expanded(
           child: Column(

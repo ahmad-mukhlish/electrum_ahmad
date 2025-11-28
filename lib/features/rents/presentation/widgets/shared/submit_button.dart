@@ -47,7 +47,7 @@ class SubmitButton extends ConsumerWidget {
               ),
             )
           : Text(
-              'Send request',
+              'Pick My Ride',
               style:
                   (kIsWeb ? textTheme.headlineSmall : textTheme.bodyLarge)
                       ?.copyWith(
