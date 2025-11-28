@@ -3,5 +3,4 @@ appId: com.electrum.ahmad.electrum_ahmad
 # Master Test Orchestrator
 # Entry point; runs platform suites only
 
-- runFlow: mobile/all-tests-mobile.yaml
-- runFlow: web/all-tests-web.yaml
+- runFlow: auth/all-tests-mobile.yaml

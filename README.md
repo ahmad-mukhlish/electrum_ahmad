@@ -17,10 +17,10 @@ Flutter mobile application targeting mobile and web, with platform-specific widg
 
 ## Why Firebase Auth and Firestore?
 
-This is a frontend/mobile take-home, so I chose to go all-in on Firebase Auth + Cloud Firestore.
-The focus is on app architecture, UX, and state management rather than building a custom backend. 
-All Firebase data access is still funneled through clean architecture and only resides in data layer.
-Backend could be swapped later without changing other layers.
+- This is a frontend/mobile take-home, so I chose to go all-in on Firebase Auth + Cloud Firestore.
+- The focus is on app architecture, UX, and state management rather than building a custom backend. 
+- All Firebase data access is still funneled through clean architecture and only resides in data layer.
+- Backend could be swapped later without changing other layers.
 
 ## AI-assisted workflow and per-feature docs
 
@@ -37,7 +37,7 @@ Backend could be swapped later without changing other layers.
 - Reasons for this structure:
     - **Context management**
       Each feature carries its own compact context, removing the need
-      to reload the entire codebase into an AI tool or human memory.
+      to reload the entire codebase into an AI tool.
     - **Token and time efficiency**
       When resuming work on a feature, only these two files need to be
       reviewed instead of all source files.
@@ -58,7 +58,7 @@ lib/
   core/
     routing/                    # GoRouter configuration
     services/                   # Firebase Auth, Firestore, Local DB
-    utils/                      # Helpers, Design tokens
+    utils/                      # Helpers
     widgets/                    # Shared widgets
   features/
     auth/
@@ -96,21 +96,23 @@ documentations/                 # AI-assisted docs (separate from code)
   references/                   # Design references, screenshots, etc.
 ```
 
+## Automated Tests
 
 ### Running Maestro Tests (For now only covers Auth flow for Mobile)
 
 ```bash
 maestro test maestro/all-tests.yaml
 ```
+### Unit & Widget Tests 
 
-## Unit test
+### Unit test
 - Only test critical entity : rent entity
-- Only test critical repo : auth repository
+- Only test critical state : plan state
 
-## Widget test
+### Widget test
 - Only test critical widget : authForm
 
 ## What will do if given more time?
-- Complete all unit tests and widget tests (90%+ coverage)
+- Complete all unit tests and widget tests (aim 90%+ coverage)
 - Implement maestro for all flow on mobile 
 - Implement playwright for test on web
