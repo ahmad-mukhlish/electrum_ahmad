@@ -132,15 +132,19 @@ class RentHistoryCard extends StatelessWidget {
           color: colorScheme.onSurfaceVariant,
         ),
         const SizedBox(width: 6),
-        Text(
-          '${rentState.formattedDateRange} (${rentState.totalDays} days)',
-          style: kIsWeb
-              ? textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                )
-              : textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+        Flexible(
+          child: Text(
+            '${rentState.formattedDateRange} (${rentState.totalDays} days)',
+            style: kIsWeb
+                ? textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  )
+                : textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     );
