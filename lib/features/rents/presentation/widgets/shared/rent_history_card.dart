@@ -115,7 +115,7 @@ class RentHistoryCard extends StatelessWidget {
     return Text(
       rentState.rent.bikeModel,
       style: kIsWeb
-          ? textTheme.titleLarge?.copyWith(color: colorScheme.onSurface, fontWeight: FontWeight.w500)
+          ? textTheme.titleLarge?.copyWith(color: colorScheme.onSurface, fontWeight: FontWeight.w500, fontSize: 18)
           : textTheme.titleMedium?.copyWith(color: colorScheme.onSurface),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
@@ -176,7 +176,7 @@ class RentHistoryCard extends StatelessWidget {
     return Text(
       rentState.formattedPrice,
       style: kIsWeb
-          ? textTheme.titleLarge?.copyWith(color: colorScheme.primary)
+          ? textTheme.titleMedium?.copyWith(color: colorScheme.primary, fontSize: 16, fontWeight: FontWeight.w600)
           : textTheme.titleMedium?.copyWith(color: colorScheme.primary),
     );
   }

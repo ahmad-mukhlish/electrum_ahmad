@@ -7,10 +7,7 @@ import '../../../../bikes/domain/entities/bike.dart';
 import '../../viewmodel/notifiers/form/rent_form_provider.dart';
 
 class PaymentSummaryCard extends ConsumerWidget {
-  const PaymentSummaryCard({
-    super.key,
-    required this.bike,
-  });
+  const PaymentSummaryCard({super.key, required this.bike});
 
   final Bike bike;
 
@@ -33,12 +30,11 @@ class PaymentSummaryCard extends ConsumerWidget {
           children: [
             Text(
               'Payment Summary',
-              style:
-                  (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
-                      ?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: colorScheme.onSecondary,
-              ),
+              style: (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
+                  ?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onSecondary,
+                  ),
             ),
             SizedBox(height: kIsWeb ? 20 : 16),
             if (totalDays > 0) ...[
@@ -49,16 +45,16 @@ class PaymentSummaryCard extends ConsumerWidget {
                     'Price per day',
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.onSecondary.withValues(alpha: 0.8),
-                    ),
+                          color: colorScheme.onSecondary.withValues(alpha: 0.8),
+                        ),
                   ),
                   Text(
                     formatPriceToRupiahK(bike.pricePerDay),
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.onSecondary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                          color: colorScheme.onSecondary,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                 ],
               ),
@@ -70,16 +66,16 @@ class PaymentSummaryCard extends ConsumerWidget {
                     'Total days',
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.onSecondary.withValues(alpha: 0.8),
-                    ),
+                          color: colorScheme.onSecondary.withValues(alpha: 0.8),
+                        ),
                   ),
                   Text(
                     '$totalDays ${totalDays == 1 ? 'day' : 'days'}',
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.onSecondary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                          color: colorScheme.onSecondary,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                 ],
               ),
@@ -94,23 +90,25 @@ class PaymentSummaryCard extends ConsumerWidget {
                 children: [
                   Text(
                     'Total Amount',
-                    style: (kIsWeb
-                            ? textTheme.headlineSmall
-                            : textTheme.titleMedium)
-                        ?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.onSecondary,
-                    ),
+                    style:
+                        (kIsWeb
+                                ? textTheme.headlineSmall
+                                : textTheme.titleMedium)
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.onSecondary,
+                            ),
                   ),
                   Text(
                     formatPriceToRupiahK(totalAmount),
-                    style: (kIsWeb
-                            ? textTheme.headlineSmall
-                            : textTheme.titleMedium)
-                        ?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.secondary,
-                    ),
+                    style:
+                        (kIsWeb
+                                ? textTheme.headlineSmall
+                                : textTheme.titleMedium)
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.onSecondary,
+                            ),
                   ),
                 ],
               ),
@@ -119,9 +117,9 @@ class PaymentSummaryCard extends ConsumerWidget {
                 'Select rental dates to see payment summary',
                 style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                     ?.copyWith(
-                  color: colorScheme.onSecondary.withValues(alpha: 0.6),
-                  fontStyle: FontStyle.italic,
-                ),
+                      color: colorScheme.onSecondary.withValues(alpha: 0.6),
+                      fontStyle: FontStyle.italic,
+                    ),
               ),
           ],
         ),

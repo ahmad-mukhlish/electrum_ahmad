@@ -141,6 +141,7 @@ class ProfileScreen extends ConsumerWidget {
             style: kIsWeb
                 ? Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: colorScheme.onPrimary,
+                    fontWeight: FontWeight.w500,
                   )
                 : Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: colorScheme.onPrimary,
@@ -166,7 +167,7 @@ class ProfileScreen extends ConsumerWidget {
           Text(
             'Rent History',
             style: kIsWeb
-                ? textTheme.headlineMedium?.copyWith(
+                ? textTheme.headlineSmall?.copyWith(
                     color: colorScheme.onSurface,
                   )
                 : textTheme.titleLarge?.copyWith(color: colorScheme.onSurface),

@@ -22,7 +22,7 @@ class BikeServiceCenterAreas extends StatelessWidget {
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           'Available Service Center Areas',
