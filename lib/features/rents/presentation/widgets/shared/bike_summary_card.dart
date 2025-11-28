@@ -36,7 +36,7 @@ class BikeSummaryCard extends StatelessWidget {
                             ? textTheme.headlineSmall
                             : textTheme.titleLarge)
                         ?.copyWith(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       color: colorScheme.onSecondary,
                     ),
                   ),
@@ -44,7 +44,7 @@ class BikeSummaryCard extends StatelessWidget {
                     _getBikeSubtitle(),
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
-                      color: colorScheme.tertiary,
+                      color: colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: kIsWeb ? 24 : 8),
@@ -60,7 +60,7 @@ class BikeSummaryCard extends StatelessWidget {
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
                       color: colorScheme.tertiary,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],

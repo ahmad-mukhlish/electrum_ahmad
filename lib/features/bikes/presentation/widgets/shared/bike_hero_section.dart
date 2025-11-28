@@ -30,7 +30,7 @@ class BikeHeroSection extends StatelessWidget {
               Text(
                 bike.model,
                 style: titleStyle?.copyWith(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: colorScheme.onSecondary,
                 ),
                 textAlign: TextAlign.center,
@@ -39,7 +39,7 @@ class BikeHeroSection extends StatelessWidget {
               Text(
                 _getBikeSubtitle(),
                 style: subtitleStyle?.copyWith(
-                  color: colorScheme.onSecondary.withValues(alpha: 0.7),
+                  color: colorScheme.onSecondary,
                 ),
                 textAlign: TextAlign.center,
               ),

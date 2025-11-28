@@ -22,104 +22,135 @@ class RentDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: colorScheme.onPrimary,
       appBar: kIsWeb ? null : PrimaryAppBar(title: 'Rent Details'),
-      body: Column(
-        children: [
-          if (kIsWeb)
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: HeaderWeb(title: 'Rent Details'),
-            ),
-          _buildPhoto(colorScheme),
-          const SizedBox(height: 24),
-          Center(
-            child: _buildHeader(context, colorScheme, textTheme, rentState),
+      body: _buildBody(context, colorScheme, textTheme, rentState),
+    );
+  }
+
+  Widget _buildBody(
+    BuildContext context,
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+    RentHistoryItemState rentState,
+  ) {
+    return Column(
+      children: [
+        if (kIsWeb)
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: HeaderWeb(title: 'Rent Details'),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(kIsWeb ? 32 : 24),
-              child: kIsWeb
-                  ? Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 16),
-                              _buildDateSection(
-                                context,
-                                colorScheme,
-                                textTheme,
-                              ),
-                              const SizedBox(height: 16),
-                              _buildPriceSection(
-                                context,
-                                colorScheme,
-                                textTheme,
-                                rentState,
-                              ),
-                              const SizedBox(height: 16),
-                              _buildFooter(context, colorScheme, textTheme),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 32),
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildContactSection(
-                                context,
-                                colorScheme,
-                                textTheme,
-                              ),
-                              const SizedBox(height: 16),
-                              _buildLocationSection(
-                                context,
-                                colorScheme,
-                                textTheme,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildPhoto(colorScheme),
-                        const SizedBox(height: 24),
-                        Center(
-                          child: _buildHeader(
-                            context,
-                            colorScheme,
-                            textTheme,
-                            rentState,
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        _buildDateSection(context, colorScheme, textTheme),
-                        const SizedBox(height: 20),
-                        _buildContactSection(context, colorScheme, textTheme),
-                        const SizedBox(height: 20),
-                        _buildLocationSection(context, colorScheme, textTheme),
-                        const SizedBox(height: 20),
-                        _buildPriceSection(
-                          context,
-                          colorScheme,
-                          textTheme,
-                          rentState,
-                        ),
-                        const SizedBox(height: 20),
-                        _buildFooter(context, colorScheme, textTheme),
-                      ],
-                    ),
+        _buildPhoto(colorScheme),
+        const SizedBox(height: 24),
+        Center(
+          child: _buildHeader(context, colorScheme, textTheme, rentState),
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(kIsWeb ? 32 : 24),
+            child: _buildResponsiveContent(
+              context,
+              colorScheme,
+              textTheme,
+              rentState,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildResponsiveContent(
+    BuildContext context,
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+    RentHistoryItemState rentState,
+  ) {
+    return kIsWeb
+        ? _buildWebContent(context, colorScheme, textTheme, rentState)
+        : _buildMobileContent(context, colorScheme, textTheme, rentState);
+  }
+
+  Widget _buildWebContent(
+    BuildContext context,
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+    RentHistoryItemState rentState,
+  ) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 16),
+              _buildDateSection(
+                context,
+                colorScheme,
+                textTheme,
+              ),
+              const SizedBox(height: 16),
+              _buildPriceSection(
+                context,
+                colorScheme,
+                textTheme,
+                rentState,
+              ),
+              const SizedBox(height: 16),
+              _buildFooter(context, colorScheme, textTheme),
+            ],
+          ),
+        ),
+        const SizedBox(width: 32),
+        Expanded(
+          flex: 1,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildContactSection(
+                context,
+                colorScheme,
+                textTheme,
+              ),
+              const SizedBox(height: 16),
+              _buildLocationSection(
+                context,
+                colorScheme,
+                textTheme,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileContent(
+    BuildContext context,
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+    RentHistoryItemState rentState,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 24),
+        _buildDateSection(context, colorScheme, textTheme),
+        const SizedBox(height: 20),
+        _buildContactSection(context, colorScheme, textTheme),
+        const SizedBox(height: 20),
+        _buildLocationSection(context, colorScheme, textTheme),
+        const SizedBox(height: 20),
+        _buildPriceSection(
+          context,
+          colorScheme,
+          textTheme,
+          rentState,
+        ),
+        const SizedBox(height: 20),
+        _buildFooter(context, colorScheme, textTheme),
+      ],
     );
   }
 

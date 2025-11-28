@@ -54,7 +54,7 @@ class BikeServiceCenterAreas extends StatelessWidget {
     final textStyle = (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
         ?.copyWith(
           color: colorScheme.tertiary,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         );
 
     return Container(
