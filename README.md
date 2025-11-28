@@ -4,16 +4,14 @@ Flutter mobile application targeting mobile and web, with platform-specific widg
 
 ## Web Demo
 
-https://github.com/user-attachments/assets/bc43aa61-b564-4f83-a706-13f1ebcbb5da
+https://www.loom.com/share/543dc72a317f4ca8b9b7a61c9e19bff9
 
 ## Mobile Demo
-
-https://github.com/user-attachments/assets/4950f841-6d9b-4436-98db-eb0be83b295f
+https://www.loom.com/share/6bf59e80682d4de99a43edd86004d6ad
 
 ## Automated Demo 
 
-
-https://github.com/user-attachments/assets/42fe06bf-aaec-416c-9d58-09288efb4378
+https://www.loom.com/share/b3dda55512104f668343f9d6c3ad72a9
 
 
 
