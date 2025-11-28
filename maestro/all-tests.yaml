@@ -1,37 +1,7 @@
 appId: com.electrum.ahmad.electrum_ahmad
 ---
 # Master Test Orchestrator
-# Entry point to run all tests (auth + home + bikes)
+# Entry point; runs platform suites only
 
-# ===========================
-# Auth Tests
-# ===========================
-
-# Run mobile auth tests
-- runFlow: mobile/flows/auth-flow-mobile.yaml
-
-# Run web auth tests
-#- runFlow: web/flows/auth-flow-web.yaml
-
-# ===========================
-# Home Screen Tests
-# ===========================
-
-# Setup home screen (shared for mobile and web)
-- runFlow: common/setup-home.yaml
-
-# Run mobile home screen tests
-- runFlow: mobile/flows/home-flow-mobile.yaml
-
-# Run web home screen tests
-#- runFlow: web/flows/home-flow-web.yaml
-
-# ===========================
-# Bike Screen Tests
-# ===========================
-
-# Run mobile bike screen tests
-- runFlow: mobile/flows/bikes-flow-mobile.yaml
-
-# Run web bike screen tests
-#- runFlow: web/flows/bikes-flow-web.yaml
+- runFlow: mobile/all-tests-mobile.yaml
+- runFlow: web/all-tests-web.yaml

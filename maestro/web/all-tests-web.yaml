@@ -1,0 +1,8 @@
+appId: com.electrum.ahmad.electrum_ahmad
+---
+# Web Test Orchestrator
+# Runs all web-specific flows
+
+- runFlow: flows/auth-flow-web.yaml
+- runFlow: flows/home-flow-web.yaml
+- runFlow: flows/bikes-flow-web.yaml
