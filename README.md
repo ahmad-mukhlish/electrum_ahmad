@@ -2,7 +2,11 @@
 
 Flutter mobile application targeting mobile and web, with platform-specific widgets split for clarity.
 
-https://www.loom.com/share/f9ed56e4c9c0486484f6b03d575ebf2f
+## Web Demo
+
+https://github.com/user-attachments/assets/bc43aa61-b564-4f83-a706-13f1ebcbb5da
+
+## Mobile Demo
 
 ## Highlights 
 - Supports web and mobile
