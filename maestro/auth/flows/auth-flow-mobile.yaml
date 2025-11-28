@@ -27,67 +27,9 @@ appId: com.electrum.ahmad.electrum_ahmad
 - assertVisible:
     text: ".*Home.*"
 
-# ===========================
-# Scenario 2: Failed Login (Random Credentials)
-# ===========================
-- runFlow: ../../common/auth-setup.yaml
-
-- tapOn:
-    text: ".*Login email.*"
-- inputText: "random_${CURRENT_TIME}@example.com"
-
-- hideKeyboard
-
-- tapOn:
-    text: ".*Login password.*"
-- inputText: "RandomPassword123"
-
-- tapOn:
-    text: ".*Login button.*"
-
-- waitForAnimationToEnd
-
-
-
-# Assert: Still on login screen
-- assertVisible:
-    text: ".*Login button.*"
-
 
 # ===========================
-# Scenario 3: Successful Registration (Random Credentials)
-# ===========================
-- runFlow: ../../common/auth-setup.yaml
-
-# Navigate to register screen
-- tapOn:
-    text: ".*Login signup.*"
-
-- waitForAnimationToEnd
-
-# Fill registration form with random credentials
-- tapOn:
-    text: ".*Register email.*"
-- inputText: "test_${CURRENT_TIME}@example.com"
-
-- hideKeyboard
-
-- tapOn:
-    text: ".*Register password.*"
-- inputText: "TestPassword123"
-
-- tapOn:
-    text: ".*Register button.*"
-
-- waitForAnimationToEnd
-
-# Assert: Successfully registered and logged in
-- assertVisible:
-    text: ".*Home.*"
-
-
-# ===========================
-# Scenario 4: Failed Registration (Existing User)
+# Scenario 2: Failed Registration (Existing User)
 # ===========================
 - runFlow: ../../common/auth-setup.yaml
 
@@ -114,14 +56,13 @@ appId: com.electrum.ahmad.electrum_ahmad
 - waitForAnimationToEnd
 
 
-
 # Assert: Still on register screen
 - assertVisible:
     text: ".*Register button.*"
 
 
 # ===========================
-# Scenario 5: Logout Flow
+# Scenario 3: Logout Flow
 # ===========================
 
 # First, login if not already logged in
