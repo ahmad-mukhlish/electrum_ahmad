@@ -73,7 +73,7 @@ class BikeSummaryCard extends StatelessWidget {
   }
 
   Widget _buildImage(ColorScheme colorScheme) {
-    final imageSize = kIsWeb ? 200.0 : 80.0;
+    final imageSize = kIsWeb ? 200.0 : 100.0;
 
     return Container(
       width: imageSize,

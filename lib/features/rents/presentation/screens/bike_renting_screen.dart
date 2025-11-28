@@ -44,7 +44,7 @@ class BikeRentingScreen extends ConsumerWidget {
           Expanded(
             child: kIsWeb
                 ? RentFormWeb(bike: bike)
-                : RentFormMobile(bike: bike),
+                : SafeArea(child: RentFormMobile(bike: bike)),
           ),
         ],
       ),

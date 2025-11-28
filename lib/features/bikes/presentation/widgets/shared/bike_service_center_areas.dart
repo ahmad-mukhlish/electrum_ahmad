@@ -10,7 +10,7 @@ class BikeServiceCenterAreas extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final titleStyle = (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
+    final titleStyle = (kIsWeb ? textTheme.headlineSmall : textTheme.titleMedium)
         ?.copyWith(
           fontWeight: FontWeight.w500,
           color: colorScheme.onSecondary,

@@ -143,8 +143,9 @@ class ProfileScreen extends ConsumerWidget {
                     color: colorScheme.onPrimary,
                     fontWeight: FontWeight.w500,
                   )
-                : Theme.of(context).textTheme.labelMedium?.copyWith(
+                : Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: colorScheme.onPrimary,
+                    fontWeight: FontWeight.bold,
                   ),
           ),
         ),

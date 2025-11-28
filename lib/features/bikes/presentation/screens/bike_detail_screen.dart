@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../viewmodel/notifiers/detail/bike_detail_provider.dart';
 import '../widgets/mobile/bike_detail_mobile.dart';
@@ -20,26 +21,39 @@ class BikeDetailScreen extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final bikeAsync = ref.watch(bikeDetailProvider(bikeId));
 
+    final content = Column(
+      children: [
+        Expanded(
+          child: bikeAsync.when(
+            data: (bike) {
+              if (bike == null) {
+                return _buildNotFoundState(context);
+              }
+              return kIsWeb
+                  ? BikeDetailWeb(bike: bike)
+                  : BikeDetailMobile(bike: bike);
+            },
+            loading: () => _buildLoadingState(),
+            error: (error, _) => _buildErrorState(context, ref, error),
+          ),
+        ),
+      ],
+    );
+
     return Scaffold(
       backgroundColor: colorScheme.onPrimary,
-      body: bikeAsync.when(
-        data: (bike) {
-          if (bike == null) {
-            return _buildNotFoundState(context);
-          }
-          return Column(
-            children: [
-              Expanded(
-                child: kIsWeb
-                    ? BikeDetailWeb(bike: bike)
-                    : BikeDetailMobile(bike: bike),
+      body: kIsWeb
+          ? content
+          : SafeArea(
+            child: PopScope(
+                canPop: false,
+                onPopInvokedWithResult: (didPop, _) {
+                  if (didPop) return;
+                  context.go('/bikes');
+                },
+                child: content,
               ),
-            ],
-          );
-        },
-        loading: () => _buildLoadingState(),
-        error: (error, _) => _buildErrorState(context, ref, error),
-      ),
+          ),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/widgets/header_web.dart';
@@ -19,10 +20,21 @@ class RentDetailScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final rentState = RentHistoryItemState.fromEntity(rent);
 
+    final body = kIsWeb
+        ? _buildBody(context, colorScheme, textTheme, rentState)
+        : PopScope(
+            canPop: false,
+            onPopInvokedWithResult: (didPop, _) {
+              if (didPop) return;
+              context.go('/profile');
+            },
+            child: SafeArea(child: _buildBody(context, colorScheme, textTheme, rentState)),
+          );
+
     return Scaffold(
       backgroundColor: colorScheme.onPrimary,
       appBar: kIsWeb ? null : PrimaryAppBar(title: 'Rent Details'),
-      body: _buildBody(context, colorScheme, textTheme, rentState),
+      body: body,
     );
   }
 
@@ -135,7 +147,6 @@ class RentDetailScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 24),
         _buildDateSection(context, colorScheme, textTheme),
         const SizedBox(height: 20),
         _buildContactSection(context, colorScheme, textTheme),
@@ -373,7 +384,7 @@ class RentDetailScreen extends StatelessWidget {
       title,
       style: kIsWeb
           ? textTheme.titleLarge?.copyWith(color: colorScheme.onSurface)
-          : textTheme.titleLarge?.copyWith(color: colorScheme.onSurface),
+          : textTheme.titleMedium?.copyWith(color: colorScheme.onSurface, fontSize: 18),
     );
   }
 
