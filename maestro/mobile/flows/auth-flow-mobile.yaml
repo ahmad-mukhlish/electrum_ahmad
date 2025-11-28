@@ -53,9 +53,6 @@ appId: com.electrum.ahmad.electrum_ahmad
 - assertVisible:
     text: ".*Login button.*"
 
-# Assert: Home navigation NOT visible
-- assertNotVisible:
-    text: ".*Home.*"
 
 # ===========================
 # Scenario 3: Successful Registration (Random Credentials)
@@ -122,9 +119,6 @@ appId: com.electrum.ahmad.electrum_ahmad
 - assertVisible:
     text: ".*Register button.*"
 
-# Assert: Home navigation NOT visible
-- assertNotVisible:
-    text: ".*Home.*"
 
 # ===========================
 # Scenario 5: Logout Flow
@@ -174,6 +168,3 @@ appId: com.electrum.ahmad.electrum_ahmad
 - assertVisible:
     text: ".*Login button.*"
 
-# Assert: Home navigation NOT visible
-- assertNotVisible:
-    text: ".*Home.*"

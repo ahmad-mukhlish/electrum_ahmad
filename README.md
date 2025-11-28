@@ -96,40 +96,11 @@ documentations/                 # AI-assisted docs (separate from code)
   references/                   # Design references, screenshots, etc.
 ```
 
-## Maestro Test Structure
 
-The Maestro tests are organized following the entry point + runFlow pattern for better modularity and maintainability.
-
-```
-maestro/
-├── all-tests.yaml                   # Entry point; runs platform suites
-├── common/                          # Reusable flows shared between platforms
-│   ├── auth-setup.yaml             # Authentication setup flow
-│   └── setup-home.yaml             # Home screen setup flow
-├── mobile/
-│   ├── all-tests-mobile.yaml       # Mobile orchestrator; runs all mobile flows
-│   └── flows/                      # Mobile-specific test flows
-│       ├── auth-flow-mobile.yaml   # Mobile authentication tests
-│       └── home-flow-mobile.yaml   # Mobile home screen tests
-└── web/
-    ├── all-tests-web.yaml          # Web orchestrator; runs all web flows
-    └── flows/                      # Web-specific test flows
-        ├── auth-flow-web.yaml      # Web authentication tests
-        └── home-flow-web.yaml      # Web home screen tests
-```
-
-### Running Maestro Tests
+### Running Maestro Tests (For now only covers Auth flow for Mobile)
 
 ```bash
 maestro test maestro/all-tests.yaml
-```
-
-```bash
-maestro test maestro/mobile/all-tests-mobile.yaml
-```
-
-```bash
-maestro test maestro/web/all-tests-web.yaml
 ```
 
 ## Unit test
@@ -141,5 +112,5 @@ maestro test maestro/web/all-tests-web.yaml
 
 ## What will do if given more time?
 - Complete all unit tests and widget tests (90%+ coverage)
-- Implement plans on subscribe (still only shows snackbar)
-- Implement promotions on click (still only shows snackbar)
+- Implement maestro for all flow on mobile 
+- Implement playwright for test on web

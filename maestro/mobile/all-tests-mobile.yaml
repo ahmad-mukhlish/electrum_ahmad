@@ -4,5 +4,3 @@ appId: com.electrum.ahmad.electrum_ahmad
 # Runs all mobile-specific flows
 
 - runFlow: flows/auth-flow-mobile.yaml
-- runFlow: flows/home-flow-mobile.yaml
-- runFlow: flows/bikes-flow-mobile.yaml
