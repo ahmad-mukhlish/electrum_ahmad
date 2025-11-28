@@ -17,9 +17,7 @@ class RentHistoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (rents.isEmpty) {
-      return _buildEmptyState(context);
-    }
+    if (rents.isEmpty) return _buildEmptyState(context);
 
     return _buildList(context);
   }
@@ -72,9 +70,7 @@ class RentHistoryList extends StatelessWidget {
 
   Widget _buildList(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.symmetric(
-        vertical: kIsWeb ? 16 : 0,
-      ),
+      padding: EdgeInsets.symmetric(vertical: kIsWeb ? 16 : 0),
       itemCount: rents.length,
       itemBuilder: (context, index) {
         final rent = rents[index];

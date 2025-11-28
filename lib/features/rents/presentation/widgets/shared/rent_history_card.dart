@@ -21,6 +21,7 @@ class RentHistoryCard extends StatelessWidget {
 
     return Card(
       elevation: 2,
+      color: colorScheme.secondary,
       margin: const EdgeInsets.symmetric(vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(

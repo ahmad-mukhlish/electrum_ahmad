@@ -92,7 +92,7 @@ class ProfileScreen extends ConsumerWidget {
         Text(
           label,
           style: kIsWeb
-              ? Theme.of(context).textTheme.titleLarge?.copyWith(
+              ? Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 )
               : Theme.of(context).textTheme.labelMedium?.copyWith(

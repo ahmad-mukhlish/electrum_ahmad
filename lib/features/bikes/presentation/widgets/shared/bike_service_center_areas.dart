@@ -12,7 +12,7 @@ class BikeServiceCenterAreas extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final titleStyle = (kIsWeb ? textTheme.headlineSmall : textTheme.titleLarge)
         ?.copyWith(
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
           color: colorScheme.onSecondary,
         );
     final spacing = kIsWeb ? 16.0 : 12.0;

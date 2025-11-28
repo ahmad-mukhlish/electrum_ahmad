@@ -20,7 +20,7 @@ class RentDetailScreen extends StatelessWidget {
     final rentState = RentHistoryItemState.fromEntity(rent);
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
+      backgroundColor: colorScheme.onPrimary,
       appBar: kIsWeb ? null : PrimaryAppBar(title: 'Rent Details'),
       body: Column(
         children: [
@@ -29,32 +29,93 @@ class RentDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               child: HeaderWeb(title: 'Rent Details'),
             ),
+          _buildPhoto(colorScheme),
+          const SizedBox(height: 24),
+          Center(
+            child: _buildHeader(context, colorScheme, textTheme, rentState),
+          ),
           Expanded(
             child: SingleChildScrollView(
               padding: EdgeInsets.all(kIsWeb ? 32 : 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildPhoto(colorScheme),
-                  const SizedBox(height: 24),
-                  Center(child: _buildHeader(context, colorScheme, textTheme, rentState)),
-                  const SizedBox(height: 24),
-                  _buildDateSection(context, colorScheme, textTheme),
-                  const SizedBox(height: 20),
-                  _buildLocationSection(context, colorScheme, textTheme),
-                  const SizedBox(height: 20),
-                  _buildContactSection(context, colorScheme, textTheme),
-                  const SizedBox(height: 20),
-                  _buildPriceSection(
-                    context,
-                    colorScheme,
-                    textTheme,
-                    rentState,
-                  ),
-                  const SizedBox(height: 20),
-                  _buildFooter(context, colorScheme, textTheme),
-                ],
-              ),
+              child: kIsWeb
+                  ? Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 16),
+                              _buildDateSection(
+                                context,
+                                colorScheme,
+                                textTheme,
+                              ),
+                              const SizedBox(height: 16),
+                              _buildPriceSection(
+                                context,
+                                colorScheme,
+                                textTheme,
+                                rentState,
+                              ),
+                              const SizedBox(height: 16),
+                              _buildFooter(context, colorScheme, textTheme),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 32),
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildContactSection(
+                                context,
+                                colorScheme,
+                                textTheme,
+                              ),
+                              const SizedBox(height: 16),
+                              _buildLocationSection(
+                                context,
+                                colorScheme,
+                                textTheme,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildPhoto(colorScheme),
+                        const SizedBox(height: 24),
+                        Center(
+                          child: _buildHeader(
+                            context,
+                            colorScheme,
+                            textTheme,
+                            rentState,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _buildDateSection(context, colorScheme, textTheme),
+                        const SizedBox(height: 20),
+                        _buildContactSection(context, colorScheme, textTheme),
+                        const SizedBox(height: 20),
+                        _buildLocationSection(context, colorScheme, textTheme),
+                        const SizedBox(height: 20),
+                        _buildPriceSection(
+                          context,
+                          colorScheme,
+                          textTheme,
+                          rentState,
+                        ),
+                        const SizedBox(height: 20),
+                        _buildFooter(context, colorScheme, textTheme),
+                      ],
+                    ),
             ),
           ),
         ],
@@ -71,15 +132,10 @@ class RentDetailScreen extends StatelessWidget {
     return Text(
       rent.bikeModel,
       style: kIsWeb
-          ? textTheme.headlineSmall?.copyWith(
-              color: colorScheme.onSurface,
-            )
-          : textTheme.headlineMedium?.copyWith(
-              color: colorScheme.onSurface,
-            ),
+          ? textTheme.headlineSmall?.copyWith(color: colorScheme.onSurface)
+          : textTheme.headlineMedium?.copyWith(color: colorScheme.onSurface),
     );
   }
-
 
   Widget _buildPhoto(ColorScheme colorScheme) {
     if (rent.photoUrl == null) return const SizedBox.shrink();
@@ -126,7 +182,7 @@ class RentDetailScreen extends StatelessWidget {
         _buildInfoRow(
           icon: Icons.calendar_today,
           label: 'From',
-          value: _formatDateTime(rent.fromDate),
+          value: _formatDate(rent.fromDate),
           colorScheme: colorScheme,
           textTheme: textTheme,
         ),
@@ -134,7 +190,7 @@ class RentDetailScreen extends StatelessWidget {
         _buildInfoRow(
           icon: Icons.event,
           label: 'To',
-          value: _formatDateTime(rent.toDate),
+          value: _formatDate(rent.toDate),
           colorScheme: colorScheme,
           textTheme: textTheme,
         ),
@@ -285,12 +341,8 @@ class RentDetailScreen extends StatelessWidget {
     return Text(
       title,
       style: kIsWeb
-          ? textTheme.titleLarge?.copyWith(
-              color: colorScheme.onSurface,
-            )
-          : textTheme.titleLarge?.copyWith(
-              color: colorScheme.onSurface,
-            ),
+          ? textTheme.titleLarge?.copyWith(color: colorScheme.onSurface)
+          : textTheme.titleLarge?.copyWith(color: colorScheme.onSurface),
     );
   }
 
@@ -409,11 +461,6 @@ class RentDetailScreen extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  String _formatDateTime(DateTime dateTime) {
-    final dateFormat = DateFormat('dd MMM yyyy, HH:mm');
-    return dateFormat.format(dateTime);
   }
 
   String _formatDate(DateTime dateTime) {
