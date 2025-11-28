@@ -129,6 +129,10 @@ maestro test maestro/all-tests.yaml
 ### Widget test
 - Only test critical widget : authForm
 
+```bash
+flutter test
+```
+
 ## What will do if given more time?
 - Complete all unit tests and widget tests (aim 90%+ coverage)
 - Implement maestro for all flow on mobile 
