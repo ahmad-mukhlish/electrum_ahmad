@@ -2,6 +2,25 @@
 
 Flutter mobile application targeting mobile and web, with platform-specific widgets split for clarity.
 
+## How to run
+
+### Android 
+- Make sure an android device / emulator is connected and ready to use
+- Run this command
+
+```bash
+flutter run 
+```
+
+### Web
+
+```bash
+flutter run \
+  -d chrome \
+  --web-hostname localhost \
+  --web-port 3000 lib/main.dart
+```
+
 ## Tech Stack
 
 - Flutter 3.x
