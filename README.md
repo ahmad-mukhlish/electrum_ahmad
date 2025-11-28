@@ -22,8 +22,9 @@ Flutter mobile application targeting mobile and web, with platform-specific widg
 - All Firebase data access is still funneled through clean architecture and only resides in data layer.
 - Backend could be swapped later without changing other layers.
 
-## AI-assisted workflow and per-feature docs
+## AI-assisted workflow
 
+### Brief.md and Plan.md
 - Each feature/task is documented in the `documentations/` folder (separate from code) with:
     - `brief.md` → manual brief containing:
         - Context
@@ -33,7 +34,7 @@ Flutter mobile application targeting mobile and web, with platform-specific widg
         - Keep in mind
     - `plan.md` → AI-assisted implementation plan
       (generated with Claude / other tools and then curated).
-
+  
 - Reasons for this structure:
     - **Context management**
       Each feature carries its own compact context, removing the need
@@ -50,10 +51,26 @@ Flutter mobile application targeting mobile and web, with platform-specific widg
       stays clean in `lib/`. This makes AI involvement explicit and
       reviewable without cluttering the codebase.
 
+### AGENTS.md
+-  Unified rules for all AI tools (AI-tools agnostic) for this project only. 
+-  Will continue to grow with more conventions / rules about this project.
+### SKILLS.md
+- resides at .claude/skills
+- including best practice at using and developing flutter, maestro automated testing and riverpod state management
 
 ## Project Structure (following clean architecture with MVVM pattern)
 
 ```
+.claude/
+  skills/
+   flutter-developer/
+    SKILL.md                    # Specific currated and edited skill.md about best practices in flutter 
+   maestro-flutter/
+    SKILL.md                    # Specific currated and edited skill.md about best practices in using maestro alongside flutter
+   riverpod-state-management/  
+    SKILL.md                    # Specific currated and edited skill.md about best practices riverpod state management 3.0 in 2025
+AGENTS.md                       # AI rules for this project (AI tool agnostic)
+CLAUDE.md                       # Pointer to AGENTS.md
 lib/
   core/
     routing/                    # GoRouter configuration
