@@ -2,6 +2,13 @@
 
 Flutter mobile application targeting mobile and web, with platform-specific widgets split for clarity.
 
+## Highlights 
+- Supports web and mobile
+- Add geolocation for get precise location in interested to rents
+- Use enhanced AI workflow using brief.md, plan.md, skills.md, and agents.md
+- Offline support for reading data using firestore database
+- Sample automated test using maestro, unit test and widget test
+
 ## How to run
 
 ### Android 
