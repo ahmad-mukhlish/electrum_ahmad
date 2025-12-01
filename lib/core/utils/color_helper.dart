@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//TODO @ahmad-mukhlis consider to encapsulate this into Static Helper Class
 /// Convert hex string to Color
 /// Supports formats: 'FFFFFF', '#FFFFFF', 'FFFFFFFF', '#FFFFFFFF'
 Color hexToColor(String hexString) {

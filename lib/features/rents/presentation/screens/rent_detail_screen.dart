@@ -28,7 +28,9 @@ class RentDetailScreen extends StatelessWidget {
               if (didPop) return;
               context.go('/profile');
             },
-            child: SafeArea(child: _buildBody(context, colorScheme, textTheme, rentState)),
+            child: SafeArea(
+              child: _buildBody(context, colorScheme, textTheme, rentState),
+            ),
           );
 
     return Scaffold(
@@ -53,9 +55,7 @@ class RentDetailScreen extends StatelessWidget {
           ),
         _buildPhoto(colorScheme),
         const SizedBox(height: 24),
-        Center(
-          child: _buildHeader(context, colorScheme, textTheme, rentState),
-        ),
+        Center(child: _buildHeader(context, colorScheme, textTheme, rentState)),
         Expanded(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(kIsWeb ? 32 : 24),
@@ -97,18 +97,9 @@ class RentDetailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 16),
-              _buildDateSection(
-                context,
-                colorScheme,
-                textTheme,
-              ),
+              _buildDateSection(context, colorScheme, textTheme),
               const SizedBox(height: 16),
-              _buildPriceSection(
-                context,
-                colorScheme,
-                textTheme,
-                rentState,
-              ),
+              _buildPriceSection(context, colorScheme, textTheme, rentState),
               const SizedBox(height: 16),
               _buildFooter(context, colorScheme, textTheme),
             ],
@@ -120,17 +111,9 @@ class RentDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildContactSection(
-                context,
-                colorScheme,
-                textTheme,
-              ),
+              _buildContactSection(context, colorScheme, textTheme),
               const SizedBox(height: 16),
-              _buildLocationSection(
-                context,
-                colorScheme,
-                textTheme,
-              ),
+              _buildLocationSection(context, colorScheme, textTheme),
             ],
           ),
         ),
@@ -153,12 +136,7 @@ class RentDetailScreen extends StatelessWidget {
         const SizedBox(height: 20),
         _buildLocationSection(context, colorScheme, textTheme),
         const SizedBox(height: 20),
-        _buildPriceSection(
-          context,
-          colorScheme,
-          textTheme,
-          rentState,
-        ),
+        _buildPriceSection(context, colorScheme, textTheme, rentState),
         const SizedBox(height: 20),
         _buildFooter(context, colorScheme, textTheme),
       ],
@@ -384,7 +362,10 @@ class RentDetailScreen extends StatelessWidget {
       title,
       style: kIsWeb
           ? textTheme.titleLarge?.copyWith(color: colorScheme.onSurface)
-          : textTheme.titleMedium?.copyWith(color: colorScheme.onSurface, fontSize: 18),
+          : textTheme.titleMedium?.copyWith(
+              color: colorScheme.onSurface,
+              fontSize: 18,
+            ),
     );
   }
 
@@ -505,6 +486,7 @@ class RentDetailScreen extends StatelessWidget {
     );
   }
 
+  //TODO @ahmad-mukhlis consider to move this into DateHelper class
   String _formatDate(DateTime dateTime) {
     final dateFormat = DateFormat('dd MMMM yyyy');
     return dateFormat.format(dateTime);

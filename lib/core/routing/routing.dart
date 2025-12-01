@@ -21,6 +21,7 @@ part 'routing.g.dart';
 @Riverpod(keepAlive: true)
 GoRouter router(Ref ref) {
   //Bridge from Riverpod to listanable : a Listenable for GoRouter
+  //TODO @ahmad-mukhlis consider to move this into separate class / provider
   final listenable = ValueNotifier<AsyncValue<User?>>(const AsyncLoading());
   ref.onDispose(listenable.dispose);
 

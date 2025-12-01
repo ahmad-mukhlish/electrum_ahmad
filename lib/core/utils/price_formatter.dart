@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 
+//TODO @ahmad-mukhlis consider to encapsulate this into Static Helper Class
 /// Format price to Rupiah with K suffix
 /// Examples:
 /// - 100000 -> "Rp. 100K"

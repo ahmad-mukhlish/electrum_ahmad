@@ -23,6 +23,7 @@ class LocationRepositoryImpl implements LocationRepository {
   })  : _locationService = platformService,
         _locationDatasource = locationDatasource;
 
+  //TODO @ahmad-mukhlis consider to move this location service into the data source
   final LocationService _locationService;
   final LocationRemoteDatasource _locationDatasource;
 
