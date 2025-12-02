@@ -55,4 +55,4 @@ final class LocationRepositoryProvider
 }
 
 String _$locationRepositoryHash() =>
-    r'eeac6b23917ff7b87821d58f61aba5506c90747a';
+    r'5aea6bb1558e3d9ce18d359f6627028ff40dea16';

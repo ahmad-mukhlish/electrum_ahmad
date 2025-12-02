@@ -1,13 +1,12 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'location_service.g.dart';
+part 'geolocator_service.g.dart';
 
 @Riverpod(keepAlive: true)
-LocationService locationService(Ref ref) => LocationService();
+GeolocatorService geolocatorService(Ref ref) => GeolocatorService();
 
-class LocationService {
-  //TODO @ahmad-mukhlis shall this being separated since the check permission and request permission is UI only?
+class GeolocatorService {
   Future<LocationPermission> checkPermission() async {
     try {
       return await Geolocator.checkPermission();
@@ -24,10 +23,9 @@ class LocationService {
     }
   }
 
-  //TODO @ahmad-mukhlis this too isn't this violates single responsibility?
   Future<bool> isLocationServiceEnabled() async {
     try {
-      return Geolocator.isLocationServiceEnabled();
+      return await Geolocator.isLocationServiceEnabled();
     } catch (e) {
       rethrow;
     }
@@ -37,7 +35,7 @@ class LocationService {
     LocationAccuracy accuracy = LocationAccuracy.high,
   }) async {
     try {
-      return Geolocator.getCurrentPosition(
+      return await Geolocator.getCurrentPosition(
         locationSettings: LocationSettings(accuracy: accuracy),
       );
     } catch (e) {

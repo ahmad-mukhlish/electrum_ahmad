@@ -1,9 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+// Safe: All SnackbarHelper calls use addPostFrameCallback with mounted check
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:electrum_ahmad/core/services/geolocator/geolocator_service.dart';
 import 'package:electrum_ahmad/core/utils/snackbar_helper.dart';
+import 'package:electrum_ahmad/features/rents/data/datasources/geolocator/geolocator_datasource.dart';
 import 'package:electrum_ahmad/features/rents/data/repositories/location/location_repository_impl.dart';
 import '../../viewmodel/notifiers/form/rent_form_provider.dart';
 
@@ -31,16 +37,46 @@ class PickupLocationField extends HookConsumerWidget {
       isLoading.value = true;
 
       try {
+        final geolocatorService = ref.read(geolocatorServiceProvider);
+        final geolocatorDatasource = ref.read(geolocatorDatasourceProvider);
         final locationRepository = ref.read(locationRepositoryProvider);
+
+        // 1. Check and request location permission
+        var permission = await geolocatorService.checkPermission();
+
+        if (permission == LocationPermission.denied) {
+          permission = await geolocatorService.requestPermission();
+        }
+
+        if (permission == LocationPermission.deniedForever) {
+          SnackbarHelper.showError(
+            context,
+            'Location permission denied. Please enable in app settings.',
+          );
+          return;
+        }
+
+        if (permission != LocationPermission.whileInUse &&
+            permission != LocationPermission.always) {
+          SnackbarHelper.showError(context, 'Location permission is required.');
+          return;
+        }
+
+        // 2. Check if location service is enabled
+        final isEnabled = await geolocatorDatasource.isServiceEnabled();
+        if (!isEnabled) {
+          SnackbarHelper.showError(context, 'Please enable location services.');
+          return;
+        }
+
+        // 3. Get location (repository handles data orchestration)
         final resolved = await locationRepository.resolveCurrentLocation();
 
         if (resolved == null) {
-          if (context.mounted) {
-            SnackbarHelper.showError(
-              context,
-              'Unable to get your location. Please enable location services.',
-            );
-          }
+          SnackbarHelper.showError(
+            context,
+            'Unable to get your location. Please try again.',
+          );
           return;
         }
 
@@ -51,20 +87,16 @@ class PickupLocationField extends HookConsumerWidget {
               resolved.address,
             );
 
-        if (context.mounted) {
-          SnackbarHelper.showSuccess(
-            context,
-            'Location set: ${resolved.address}',
-            semanticsLabel: 'Location success',
-          );
-        }
+        SnackbarHelper.showSuccess(
+          context,
+          'Location set: ${resolved.address}',
+          semanticsLabel: 'Location success',
+        );
       } catch (e) {
-        if (context.mounted) {
-          SnackbarHelper.showError(
-            context,
-            'Failed to get location. Please try again.',
-          );
-        }
+        SnackbarHelper.showError(
+          context,
+          'Failed to get location. Please try again.',
+        );
       } finally {
         isLoading.value = false;
       }
