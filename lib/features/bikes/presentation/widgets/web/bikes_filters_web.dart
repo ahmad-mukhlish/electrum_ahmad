@@ -22,27 +22,42 @@ class BikesFiltersWeb extends ConsumerWidget {
   }
 
   Widget _buildBikesGrid(BuildContext context, WidgetRef ref) {
-    final filterState = ref.watch(bikeFilterProvider);
-    //TODO @ahmad-mukhlis why not use useMemo or useEffect instead?
+    // Use select() to optimize rebuilds - only rebuild when isLoading changes
+    final isLoading = ref.watch(
+      bikeFilterProvider.select((state) => state.isLoading),
+    );
 
-    if (filterState.isLoading) {
+    if (isLoading) {
       return _buildLoadingState();
     }
 
-    if (filterState.error != null) {
+    // Only rebuild this section when error changes
+    final error = ref.watch(
+      bikeFilterProvider.select((state) => state.error),
+    );
+
+    if (error != null) {
       SnackbarHelper.showError(
         context,
-        'Error loading bikes: ${filterState.error!}',
+        'Error loading bikes: $error',
       );
       return const SizedBox.shrink();
     }
 
-    final filteredBikes = filterState.filteredBikes;
+    // Only rebuild when filteredBikes changes (most important optimization)
+    final filteredBikes = ref.watch(
+      bikeFilterProvider.select((state) => state.filteredBikes),
+    );
 
     if (filteredBikes.isEmpty) {
+      // Only watch hasActiveFilters when needed for empty state
+      final hasActiveFilters = ref.watch(
+        bikeFilterProvider.select((state) => state.hasActiveFilters),
+      );
+
       return _buildEmptyState(
         context,
-        filterState.hasActiveFilters,
+        hasActiveFilters,
         onReset: () => ref.read(bikeFilterProvider.notifier).resetFilters(),
       );
     }
