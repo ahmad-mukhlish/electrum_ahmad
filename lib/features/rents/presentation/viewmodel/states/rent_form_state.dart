@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/entities/rent/rent.dart';
+import '../../../domain/helpers/rent_calculator.dart';
 
 part 'rent_form_state.freezed.dart';
 
@@ -19,16 +19,16 @@ abstract class RentFormState with _$RentFormState {
     @Default('') String contactEmail,
   }) = _RentFormState;
 
-  /// Calculate total rental days (delegates to domain entity)
+  /// Calculate total rental days (delegates to domain helper)
   int get totalDays {
     if (fromDate == null || toDate == null) return 0;
-    return Rent.calculateTotalDays(fromDate!, toDate!);
+    return RentCalculator.calculateTotalDays(fromDate!, toDate!);
   }
 
-  /// Calculate total amount based on price per day (delegates to domain entity)
+  /// Calculate total amount based on price per day (delegates to domain helper)
   int totalAmount(int pricePerDay) {
     if (fromDate == null || toDate == null) return 0;
-    return Rent.calculateTotalAmount(
+    return RentCalculator.calculateTotalAmount(
       fromDate: fromDate!,
       toDate: toDate!,
       pricePerDay: pricePerDay,
@@ -39,8 +39,8 @@ abstract class RentFormState with _$RentFormState {
   bool get isValid {
     if (fromDate == null) return false;
     if (toDate == null) return false;
-    // Delegate rental period validation to domain entity
-    if (!Rent.isValidRentalPeriod(fromDate!, toDate!)) return false;
+    // Delegate rental period validation to domain helper
+    if (!RentCalculator.isValidRentalPeriod(fromDate!, toDate!)) return false;
     if (pickupText.trim().isEmpty) return false;
     if (contactName.trim().isEmpty) return false;
     if (contactPhone.trim().isEmpty) return false;

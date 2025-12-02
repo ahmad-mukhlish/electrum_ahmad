@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:electrum_ahmad/features/rents/domain/entities/rent/rent.dart';
+import 'package:electrum_ahmad/features/rents/domain/helpers/rent_calculator.dart';
 
 void main() {
-  group('Rent Entity Business Logic Tests', () {
+  group('RentCalculator Business Logic Tests', () {
     group('calculateTotalDays', () {
       test('should calculate 1 day for same date (inclusive)', () {
         // Arrange
@@ -10,7 +10,7 @@ void main() {
         final toDate = DateTime(2025, 1, 1);
 
         // Act
-        final result = Rent.calculateTotalDays(fromDate, toDate);
+        final result = RentCalculator.calculateTotalDays(fromDate, toDate);
 
         // Assert
         expect(result, 1);
@@ -22,7 +22,7 @@ void main() {
         final toDate = DateTime(2025, 1, 2);
 
         // Act
-        final result = Rent.calculateTotalDays(fromDate, toDate);
+        final result = RentCalculator.calculateTotalDays(fromDate, toDate);
 
         // Assert
         expect(result, 2);
@@ -34,7 +34,7 @@ void main() {
         final toDate = DateTime(2025, 1, 7);
 
         // Act
-        final result = Rent.calculateTotalDays(fromDate, toDate);
+        final result = RentCalculator.calculateTotalDays(fromDate, toDate);
 
         // Assert
         expect(result, 7);
@@ -46,7 +46,7 @@ void main() {
         final toDate = DateTime(2025, 1, 30);
 
         // Act
-        final result = Rent.calculateTotalDays(fromDate, toDate);
+        final result = RentCalculator.calculateTotalDays(fromDate, toDate);
 
         // Assert
         expect(result, 30);
@@ -58,7 +58,7 @@ void main() {
         final toDate = DateTime(2025, 2, 2);
 
         // Act
-        final result = Rent.calculateTotalDays(fromDate, toDate);
+        final result = RentCalculator.calculateTotalDays(fromDate, toDate);
 
         // Assert
         expect(result, 4); // Jan 30, Jan 31, Feb 1, Feb 2 = 4 days
@@ -73,7 +73,7 @@ void main() {
         const pricePerDay = 50000;
 
         // Act
-        final result = Rent.calculateTotalAmount(
+        final result = RentCalculator.calculateTotalAmount(
           fromDate: fromDate,
           toDate: toDate,
           pricePerDay: pricePerDay,
@@ -90,7 +90,7 @@ void main() {
         const pricePerDay = 50000;
 
         // Act
-        final result = Rent.calculateTotalAmount(
+        final result = RentCalculator.calculateTotalAmount(
           fromDate: fromDate,
           toDate: toDate,
           pricePerDay: pricePerDay,
@@ -107,7 +107,7 @@ void main() {
         const pricePerDay = 50000;
 
         // Act
-        final result = Rent.calculateTotalAmount(
+        final result = RentCalculator.calculateTotalAmount(
           fromDate: fromDate,
           toDate: toDate,
           pricePerDay: pricePerDay,
@@ -124,7 +124,7 @@ void main() {
         const pricePerDay = 75000;
 
         // Act
-        final result = Rent.calculateTotalAmount(
+        final result = RentCalculator.calculateTotalAmount(
           fromDate: fromDate,
           toDate: toDate,
           pricePerDay: pricePerDay,
@@ -141,7 +141,7 @@ void main() {
         const pricePerDay = 0;
 
         // Act
-        final result = Rent.calculateTotalAmount(
+        final result = RentCalculator.calculateTotalAmount(
           fromDate: fromDate,
           toDate: toDate,
           pricePerDay: pricePerDay,
@@ -159,7 +159,7 @@ void main() {
         final toDate = DateTime(2025, 1, 1);
 
         // Act
-        final result = Rent.isValidRentalPeriod(fromDate, toDate);
+        final result = RentCalculator.isValidRentalPeriod(fromDate, toDate);
 
         // Assert
         expect(result, true);
@@ -171,7 +171,7 @@ void main() {
         final toDate = DateTime(2025, 1, 5);
 
         // Act
-        final result = Rent.isValidRentalPeriod(fromDate, toDate);
+        final result = RentCalculator.isValidRentalPeriod(fromDate, toDate);
 
         // Assert
         expect(result, true);
@@ -183,7 +183,7 @@ void main() {
         final toDate = DateTime(2025, 1, 1);
 
         // Act
-        final result = Rent.isValidRentalPeriod(fromDate, toDate);
+        final result = RentCalculator.isValidRentalPeriod(fromDate, toDate);
 
         // Assert
         expect(result, false);
@@ -195,7 +195,7 @@ void main() {
         final toDate = DateTime(2025, 1, 1);
 
         // Act
-        final result = Rent.isValidRentalPeriod(fromDate, toDate);
+        final result = RentCalculator.isValidRentalPeriod(fromDate, toDate);
 
         // Assert
         expect(result, false);
@@ -209,7 +209,7 @@ void main() {
         final toDate = DateTime(2024, 3, 1);
 
         // Act
-        final totalDays = Rent.calculateTotalDays(fromDate, toDate);
+        final totalDays = RentCalculator.calculateTotalDays(fromDate, toDate);
 
         // Assert
         expect(totalDays, 3); // Feb 28, Feb 29, Mar 1 = 3 days
@@ -221,7 +221,7 @@ void main() {
         final toDate = DateTime(2025, 1, 2);
 
         // Act
-        final totalDays = Rent.calculateTotalDays(fromDate, toDate);
+        final totalDays = RentCalculator.calculateTotalDays(fromDate, toDate);
 
         // Assert
         expect(totalDays, 4); // Dec 30, Dec 31, Jan 1, Jan 2 = 4 days
@@ -234,8 +234,8 @@ void main() {
         const pricePerDay = 50000;
 
         // Act
-        final totalDays = Rent.calculateTotalDays(fromDate, toDate);
-        final totalAmount = Rent.calculateTotalAmount(
+        final totalDays = RentCalculator.calculateTotalDays(fromDate, toDate);
+        final totalAmount = RentCalculator.calculateTotalAmount(
           fromDate: fromDate,
           toDate: toDate,
           pricePerDay: pricePerDay,
