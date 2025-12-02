@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/header_web.dart';
 import '../../../../core/widgets/primary_app_bar.dart';
-import '../widgets/mobile/bikes_filters_mobile.dart';
-import '../widgets/web/bikes_filters_web.dart';
+import '../widgets/mobile/bikes_list_mobile.dart';
+import '../widgets/web/bikes_list_web.dart';
 
 class BikesScreen extends StatelessWidget {
   const BikesScreen({super.key});
@@ -20,17 +20,14 @@ class BikesScreen extends StatelessWidget {
         label: "Bike screen",
         child: Column(
           children: [
-            if (kIsWeb) Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24, top: 24),
-              child: const HeaderWeb(title: 'Bikes'),
-            ),
+            if (kIsWeb)
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 24, top: 24),
+                child: const HeaderWeb(title: 'Bikes'),
+              ),
             Expanded(
-              //TODO @ahmad-mukhlis this is bad naming,
-              //TODO @ahmad-mukhlis why we assume that this is being filtered directly?
-              //TODO @ahmad-mukhlis shouldn't we just create BikesListWeb?
-              child: kIsWeb
-                  ? const BikesFiltersWeb()
-                  : const BikesFiltersMobile(),
+              child:
+                  kIsWeb ? const BikesListWeb() : const BikesListMobile(),
             ),
           ],
         ),

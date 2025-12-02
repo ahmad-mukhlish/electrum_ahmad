@@ -5,35 +5,23 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../core/utils/snackbar_helper.dart';
 import '../../viewmodel/notifiers/filter/bike_filter_provider.dart';
 import '../shared/bike_card.dart';
-import 'filter_button_mobile.dart';
-import 'filters_chips_mobile.dart';
-import 'bikes_search_mobile.dart';
+import 'filter_panel_web.dart';
 
-class BikesFiltersMobile extends ConsumerWidget {
-  const BikesFiltersMobile({super.key});
+class BikesListWeb extends ConsumerWidget {
+  const BikesListWeb({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-          child: Row(
-            children: [
-              Expanded(child: SizedBox(height: 48, child: BikesSearchMobile())),
-              SizedBox(width: 8),
-              SizedBox(height: 48, child: FilterButtonMobile()),
-            ],
-          ),
-        ),
-        const FiltersChipsMobile(),
-        const SizedBox(height: 8),
-        Expanded(child: _buildContent(context, ref)),
+        Expanded(child: _buildBikesGrid(context, ref)),
+        const FilterPanelWeb(),
       ],
     );
   }
 
-  Widget _buildContent(BuildContext context, WidgetRef ref) {
+  Widget _buildBikesGrid(BuildContext context, WidgetRef ref) {
     // Use select() to optimize rebuilds - only rebuild when isLoading changes
     final isLoading = ref.watch(
       bikeFilterProvider.select((state) => state.isLoading),
@@ -74,23 +62,35 @@ class BikesFiltersMobile extends ConsumerWidget {
       );
     }
 
-    return Semantics(
-      label: "Bike section",
-      child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        itemCount: filteredBikes.length,
-        itemBuilder: (context, index) {
-          final bike = filteredBikes[index];
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: BikeCard(
+    return Center(
+      child: Semantics(
+        label: "Bike section",
+        child: GridView.builder(
+          padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 24),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: _getCrossAxisCount(context),
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 0.85,
+          ),
+          itemCount: filteredBikes.length,
+          itemBuilder: (context, index) {
+            final bike = filteredBikes[index];
+            return BikeCard(
               bike: bike,
               onTap: () => context.go('/bikes/${bike.id}'),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
+  }
+
+  int _getCrossAxisCount(BuildContext context) {
+    final width = MediaQuery.of(context).size.width - 350;
+    if (width > 1200) return 3;
+    if (width > 768) return 2;
+    return 2;
   }
 
   Widget _buildEmptyState(
@@ -104,45 +104,48 @@ class BikesFiltersMobile extends ConsumerWidget {
     return Semantics(
       label: "Bike empty",
       child: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
+        child: Padding(
+          padding: const EdgeInsets.all(48),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 hasFilters ? Icons.search_off : Icons.two_wheeler,
-                size: 80,
+                size: 120,
                 color: colorScheme.primary.withValues(alpha: 0.5),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
               Text(
-                hasFilters ? 'No bikes match your search' : 'No bikes available',
-                style: textTheme.titleLarge?.copyWith(
+                hasFilters
+                    ? 'No bikes match your search'
+                    : 'No bikes available',
+                style: textTheme.headlineMedium?.copyWith(
                   color: colorScheme.onSecondary.withValues(alpha: 0.7),
                 ),
-                textAlign: TextAlign.center,
               ),
               if (hasFilters) ...[
-                const SizedBox(height: 8),
+                const SizedBox(height: 12),
                 Text(
                   'Try adjusting your filters',
-                  style: textTheme.bodyMedium?.copyWith(
+                  style: textTheme.bodyLarge?.copyWith(
                     color: colorScheme.onSecondary.withValues(alpha: 0.6),
                   ),
-                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 Semantics(
                   label: "Empty reset",
                   child: OutlinedButton(
                     onPressed: onReset,
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: colorScheme.primary),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 18,
+                        horizontal: 32,
+                      ),
                     ),
                     child: Text(
                       'Reset filters',
-                      style: textTheme.bodyMedium?.copyWith(
+                      style: textTheme.bodyLarge?.copyWith(
                         color: colorScheme.primary,
                         fontWeight: FontWeight.w600,
                       ),
@@ -157,6 +160,8 @@ class BikesFiltersMobile extends ConsumerWidget {
     );
   }
 
-  Widget _buildLoadingState() =>
-      const Center(child: CircularProgressIndicator());
+  //TODO @ahmad-mukhlis this shall be as simple as LoadingWidget
+  Widget _buildLoadingState() => const Center(
+        child: CircularProgressIndicator(),
+      );
 }
