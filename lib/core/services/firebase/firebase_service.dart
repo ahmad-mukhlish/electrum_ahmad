@@ -10,6 +10,5 @@ firebase_auth.FirebaseAuth firebaseAuth(Ref ref) =>
     firebase_auth.FirebaseAuth.instance;
 
 /// Provider for Firestore instance
-//TODO @ahmad-mukhlis consider to move this into separate file
 @riverpod
 FirebaseFirestore firestore(Ref ref) => FirebaseFirestore.instance;

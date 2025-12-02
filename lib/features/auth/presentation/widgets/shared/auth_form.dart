@@ -88,7 +88,6 @@ class AuthForm extends HookConsumerWidget {
     String displayName,
     bool isRegister,
   ) {
-    //TODO @ahmad-mukhlis isn't the logic of auth should be just in the screen not in shared class?
     if (isRegister) {
       ref.read(authProvider.notifier).register(email, password, displayName);
     } else {

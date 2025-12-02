@@ -30,7 +30,6 @@ class BikeFilter extends _$BikeFilter {
   List<Bike> _filterBikes(List<Bike> allBikes, BikeFilterState filterState) {
     var filtered = allBikes;
 
-    //TODO @ahmad-mukhlis is this where we should and must use select()?
     // Apply search filter (case-insensitive substring on model)
     if (filterState.searchQuery.isNotEmpty) {
       final query = filterState.searchQuery.toLowerCase();

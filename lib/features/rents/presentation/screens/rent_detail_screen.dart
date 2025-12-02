@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/utils/date_helper.dart';
 import '../../../../core/widgets/header_web.dart';
 import '../../../../core/widgets/primary_app_bar.dart';
 import '../../domain/entities/rent/rent.dart';
@@ -202,7 +203,7 @@ class RentDetailScreen extends StatelessWidget {
         _buildInfoRow(
           icon: Icons.calendar_today,
           label: 'From',
-          value: _formatDate(rent.fromDate),
+          value: DateHelper.formatLongDate(rent.fromDate),
           colorScheme: colorScheme,
           textTheme: textTheme,
         ),
@@ -210,7 +211,7 @@ class RentDetailScreen extends StatelessWidget {
         _buildInfoRow(
           icon: Icons.event,
           label: 'To',
-          value: _formatDate(rent.toDate),
+          value: DateHelper.formatLongDate(rent.toDate),
           colorScheme: colorScheme,
           textTheme: textTheme,
         ),
@@ -338,7 +339,7 @@ class RentDetailScreen extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Requested on ${_formatDate(rent.createdAt)}',
+              'Requested on ${DateHelper.formatLongDate(rent.createdAt)}',
               style: kIsWeb
                   ? textTheme.bodyLarge?.copyWith(
                       color: colorScheme.onSurfaceVariant,
@@ -486,9 +487,4 @@ class RentDetailScreen extends StatelessWidget {
     );
   }
 
-  //TODO @ahmad-mukhlis consider to move this into DateHelper class
-  String _formatDate(DateTime dateTime) {
-    final dateFormat = DateFormat('dd MMMM yyyy');
-    return dateFormat.format(dateTime);
-  }
 }
