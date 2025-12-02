@@ -101,7 +101,7 @@ CLAUDE.md                       # Pointer to AGENTS.md
 lib/
   core/
     routing/                    # GoRouter configuration
-    services/                   # Firebase Auth, Firestore, Local DB
+    services/                   # Firebase Auth, Firestore, Local DB, Dio API, Geolcator
     utils/                      # Helpers
     widgets/                    # Shared widgets
   features/
