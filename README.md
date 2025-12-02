@@ -77,15 +77,9 @@ flutter run \
     - **Token and time efficiency**
       When resuming work on a feature, only these two files need to be
       reviewed instead of all source files.
-    - **Documentation for humans and AI**
-      The brief captures intent and constraints; the plan captures the
-      approach. Both help reviewers and AI tools stay aligned with the
-      intended design.
-    - **Separation of concerns**
-      Documentation lives in `documentations/` while production code
-      stays clean in `lib/`. This makes AI involvement explicit and
-      reviewable without cluttering the codebase.
-
+    - **Minimilze AI hallucinations**
+      With detailed plan we will have to review the AI first so AI won't assume or hallucinate
+ 
 ### AGENTS.md
 -  Unified rules for all AI tools (AI-tools agnostic) for this project only. 
 -  Will continue to grow with more conventions / rules about this project.
