@@ -71,14 +71,14 @@ flutter run \
       (generated with Claude / other tools and then curated).
   
 - Reasons for this structure:
+    - **Minimilze AI hallucinations**
+      With detailed plan we will have to review the AI first so AI won't assume or hallucinate
     - **Context management**
       Each feature carries its own context, removing the need
       to reload the entire codebase into an AI tool.
     - **Token and time efficiency**
       When resuming work on a feature, only these two files need to be
       reviewed instead of all source files.
-    - **Minimilze AI hallucinations**
-      With detailed plan we will have to review the AI first so AI won't assume or hallucinate
  
 ### AGENTS.md
 -  Unified rules for all AI tools (AI-tools agnostic) for this project only. 
