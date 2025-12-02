@@ -72,7 +72,7 @@ flutter run \
   
 - Reasons for this structure:
     - **Context management**
-      Each feature carries its own compact context, removing the need
+      Each feature carries its own context, removing the need
       to reload the entire codebase into an AI tool.
     - **Token and time efficiency**
       When resuming work on a feature, only these two files need to be
