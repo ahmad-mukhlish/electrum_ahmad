@@ -28,7 +28,7 @@ class BikesListWeb extends ConsumerWidget {
     );
 
     if (isLoading) {
-      return _buildLoadingState();
+      return _buildLoadingState(context);
     }
 
     // Only rebuild this section when error changes
@@ -160,8 +160,16 @@ class BikesListWeb extends ConsumerWidget {
     );
   }
 
-  //TODO @ahmad-mukhlis this shall be as simple as LoadingWidget
-  Widget _buildLoadingState() => const Center(
-        child: CircularProgressIndicator(),
-      );
+  Widget _buildLoadingState(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Center(
+      child: Semantics(
+        label: "Bike loading",
+        child: CircularProgressIndicator(
+          color: colorScheme.primary,
+        ),
+      ),
+    );
+  }
 }
