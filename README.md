@@ -161,6 +161,7 @@ flutter test
 ```
 
 ## What will do if given more time?
+- Implement design tokens and dark mode
 - Complete all unit tests and widget tests (aim 90%+ coverage)
 - Implement maestro for all flow on mobile 
 - Implement playwright for test on web
