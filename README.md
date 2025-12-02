@@ -48,7 +48,7 @@ flutter run \
 
 - Modern, compile-safe state management that pairs cleanly with `go_router`; GetX brings its own router, which conflicts with that approach.
 - Less boilerplate and ceremony than Bloc while staying testable and explicit.
-- Keeps dependency injection light and composable as features grow.
+- Supports hooks concepts that been widely used in modern FE frameworks
 
 ## Why Firebase Auth and Firestore?
 
