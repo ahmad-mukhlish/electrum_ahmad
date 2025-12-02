@@ -40,7 +40,6 @@ class BikeCTAButton extends StatelessWidget {
     );
   }
 
-  //TODO @ahmad-mukhlis still need to rethink again, is adding logic here at the shared widget is wise or not?
   void _handleInterestPress(BuildContext context) {
     context.go('/bikes/${bike.id}/interest', extra: bike);
   }

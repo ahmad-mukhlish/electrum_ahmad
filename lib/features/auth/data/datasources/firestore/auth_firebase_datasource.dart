@@ -81,7 +81,6 @@ class AuthFirebaseDatasource {
     }
   }
 
-  //TODO @ahmad-mukhlis aren't we have the mapping on the entity extension?
   /// Convert Firebase User to UserDto
   UserDto _userDtoFromFirebase(firebase_auth.User user) => UserDto(
         uid: user.uid,

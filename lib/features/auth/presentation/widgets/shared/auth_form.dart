@@ -22,7 +22,21 @@ class AuthForm extends HookConsumerWidget {
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
 
-    _setupAuthListener(ref, context);
+    useEffect(() {
+      ref.listen(authProvider, (_, next) {
+        next.whenOrNull(
+          error: (error, _) {
+            SnackbarHelper.showError(
+              context,
+              error.toString(),
+              duration: const Duration(seconds: 3),
+              semanticsLabel: 'Error snackbar',
+            );
+          },
+        );
+      });
+      return null;
+    }, []);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -80,22 +94,6 @@ class AuthForm extends HookConsumerWidget {
     } else {
       ref.read(authProvider.notifier).login(email, password);
     }
-  }
-
-  void _setupAuthListener(WidgetRef ref, BuildContext context) {
-    //TODO @ahmad-mukhlis shouldn't we use useEffect here?
-    ref.listen(authProvider, (_, next) {
-      next.whenOrNull(
-        error: (error, _) {
-          SnackbarHelper.showError(
-            context,
-            error.toString(),
-            duration: const Duration(seconds: 3),
-            semanticsLabel: 'Error snackbar',
-          );
-        },
-      );
-    });
   }
 
   Widget _buildHeader(
