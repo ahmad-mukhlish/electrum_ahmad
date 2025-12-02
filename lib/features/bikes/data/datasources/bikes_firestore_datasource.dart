@@ -40,17 +40,23 @@ class BikesFirestoreDatasource {
       return _firestore.collection('bikes').doc(bikeId).snapshots().map(
         (snapshot) {
           if (!snapshot.exists) return null;
-          return BikeDto.fromJson({
-            'id': snapshot.id,
-            //TODO @ahmad-mukhlis what is this ...snapshot.data()!
-            //TODO @ahmad-mukhlis and why use "!"
-            //TODO @ahmad-mukhlis is this even safe?
-            ...snapshot.data()!,
-          });
+          return BikeDto.fromJson(_snapshotToJson(snapshot));
         },
       );
     } catch (e) {
       rethrow;
     }
+  }
+
+  /// Convert Firestore DocumentSnapshot to JSON map with null safety
+  Map<String, dynamic> _snapshotToJson(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+  ) {
+    final data = snapshot.data();
+    final result = <String, dynamic>{'id': snapshot.id};
+    if (data != null) {
+      result.addAll(data);
+    }
+    return result;
   }
 }

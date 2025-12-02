@@ -25,7 +25,6 @@ class PromotionDto {
 
 /// DTO to Entity mapper
 extension PromotionDtoMapper on PromotionDto {
-  //TODO @ahmad-mukhlis THIS IS A BUG PLEASE FIX THIS OK
   /// Convert DTO to domain entity with default values
   Promotion toEntity() => Promotion(
         title: title ?? 'Wakwaw',
