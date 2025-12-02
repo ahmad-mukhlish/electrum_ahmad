@@ -112,7 +112,7 @@ class BikeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          formatPriceToRupiahK(bike.pricePerDay),
+          PriceFormatter.formatToRupiahK(bike.pricePerDay),
           style: priceStyle?.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.primary,

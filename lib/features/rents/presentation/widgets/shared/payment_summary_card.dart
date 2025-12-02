@@ -49,7 +49,7 @@ class PaymentSummaryCard extends ConsumerWidget {
                         ),
                   ),
                   Text(
-                    formatPriceToRupiahK(bike.pricePerDay),
+                    PriceFormatter.formatToRupiahK(bike.pricePerDay),
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
                           color: colorScheme.onSecondary,
@@ -100,7 +100,7 @@ class PaymentSummaryCard extends ConsumerWidget {
                             ),
                   ),
                   Text(
-                    formatPriceToRupiahK(totalAmount),
+                    PriceFormatter.formatToRupiahK(totalAmount),
                     style:
                         (kIsWeb
                                 ? textTheme.headlineSmall

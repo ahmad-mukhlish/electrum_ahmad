@@ -57,7 +57,7 @@ class BikeSpecsRow extends StatelessWidget {
     return _buildSpecChip(
       context,
       icon: Icons.payments,
-      label: 'from ${formatPriceToRupiahK(bike.pricePerDay)} / day',
+      label: 'from ${PriceFormatter.formatToRupiahK(bike.pricePerDay)} / day',
       backgroundColor: colorScheme.primary,
       textColor: colorScheme.onPrimary,
     );

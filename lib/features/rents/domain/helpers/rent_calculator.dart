@@ -1,8 +1,6 @@
 /// Domain helper for rental calculations and validations
 /// Contains business logic that is too complex for entity static methods
 class RentCalculator {
-  const RentCalculator._();
-
   /// BUSINESS RULE: Calculate total rental days (inclusive)
   /// Both fromDate and toDate are counted as rental days
   /// Minimum return value is 1 day

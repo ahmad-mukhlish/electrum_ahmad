@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SnackbarHelper {
-  const SnackbarHelper._();
-
   static void showError(
     BuildContext context,
     String message, {

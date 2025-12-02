@@ -3,8 +3,6 @@ import '../entities/plan/plan_period.dart';
 
 /// Helper class for Plan-related calculations and utilities
 class PlanHelper {
-  PlanHelper._();
-
   /// Calculate weekly discount percentage
   /// Formula: ((dailyPrice * 7) - weeklyPrice) / (dailyPrice * 7) * 100
   static double calculateWeeklyDiscount(int pricePerDay, int pricePerWeek) {

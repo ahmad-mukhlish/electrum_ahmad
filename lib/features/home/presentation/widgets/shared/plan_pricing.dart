@@ -29,10 +29,10 @@ class PlanPricing extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              formatPriceToRupiahK(currentPrice),
+              PriceFormatter.formatToRupiahK(currentPrice),
               style: textTheme.displaySmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: textWhiteColor,
               ),
             ),
             const SizedBox(width: 8),
@@ -50,9 +50,9 @@ class PlanPricing extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '${formatPriceToRupiahK(originalPrice)} ${selectedPeriod.unitText}',
+                '${PriceFormatter.formatToRupiahK(originalPrice)} ${selectedPeriod.unitText}',
                 style: textTheme.bodyMedium?.copyWith(
-                  color: Colors.white60,
+                  color: textWhiteColor.withValues(alpha: 0.6),
                   decoration: TextDecoration.lineThrough,
                 ),
               ),

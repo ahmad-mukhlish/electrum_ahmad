@@ -35,12 +35,12 @@ class MyApp extends ConsumerWidget {
 ThemeData _buildTheme() {
   final ThemeData baseTheme = ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      seedColor: hexToColor("#006A71"),
-      primary: hexToColor("#48A6A7"),
-      secondary: hexToColor("#F2EFE7"),
-      tertiary: hexToColor("#008080"),
-      onPrimary: hexToColor("#fffbf7"),
-      onSecondary: hexToColor("#003333"),
+      seedColor: ColorHelper.fromHex("#006A71"),
+      primary: ColorHelper.fromHex("#48A6A7"),
+      secondary: ColorHelper.fromHex("#F2EFE7"),
+      tertiary: ColorHelper.fromHex("#008080"),
+      onPrimary: ColorHelper.fromHex("#fffbf7"),
+      onSecondary: ColorHelper.fromHex("#003333"),
     ),
   );
 

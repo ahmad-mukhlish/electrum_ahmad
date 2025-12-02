@@ -30,7 +30,8 @@ class PlansSectionMobile extends HookConsumerWidget {
               const PeriodToggleMobile(),
               const SizedBox(height: 16),
               ...planStates.map((planState) {
-                final backgroundColor = hexToColor(planState.plan.hexColor);
+                final backgroundColor =
+                    ColorHelper.fromHex(planState.plan.hexColor);
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: PlanCard(

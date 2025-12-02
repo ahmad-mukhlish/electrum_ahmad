@@ -2,8 +2,6 @@ import 'package:intl/intl.dart';
 
 /// Helper class for date formatting utilities
 class DateHelper {
-  DateHelper._();
-
   /// Format date as "12 January 2025"
   /// Example: January 15, 2025 -> "15 January 2025"
   static String formatLongDate(DateTime dateTime) {

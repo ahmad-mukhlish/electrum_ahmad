@@ -31,7 +31,8 @@ class PlansSectionWeb extends HookConsumerWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: planStates.map((planState) {
-                  final backgroundColor = hexToColor(planState.plan.hexColor);
+                  final backgroundColor =
+                      ColorHelper.fromHex(planState.plan.hexColor);
                   return Expanded(
                     child: PlanCard(
                       planState: planState,

@@ -56,7 +56,7 @@ class BikeSummaryCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'from ${formatPriceToRupiahK(bike.pricePerDay)} / day',
+                    'from ${PriceFormatter.formatToRupiahK(bike.pricePerDay)} / day',
                     style: (kIsWeb ? textTheme.bodyLarge : textTheme.bodyMedium)
                         ?.copyWith(
                       color: colorScheme.tertiary,

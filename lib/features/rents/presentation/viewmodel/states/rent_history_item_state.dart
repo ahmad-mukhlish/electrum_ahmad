@@ -25,7 +25,7 @@ abstract class RentHistoryItemState with _$RentHistoryItemState {
       rent: rent,
       formattedDateRange: _formatDateRange(rent.fromDate, rent.toDate),
       totalDays: rent.totalDays,
-      formattedPrice: formatPriceToRupiah(rent.totalAmount),
+      formattedPrice: PriceFormatter.formatToRupiah(rent.totalAmount),
       statusLabel: _getStatusLabel(rent.status),
       statusColorKey: _getStatusColorKey(rent.status),
     );
