@@ -69,7 +69,7 @@ flutter run \
       (generated with Claude / other tools and then curated).
   
 - Reasons for this structure:
-    - **Minimilze AI hallucinations**
+    - **Minimize AI hallucinations**
       With detailed plan we will have to review the AI first so AI won't assume or hallucinate
     - **Context management**
       Each feature carries its own context, removing the need
