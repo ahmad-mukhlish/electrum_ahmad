@@ -25,6 +25,9 @@ class BikesScreen extends StatelessWidget {
               child: const HeaderWeb(title: 'Bikes'),
             ),
             Expanded(
+              //TODO @ahmad-mukhlis this is bad naming,
+              //TODO @ahmad-mukhlis why we assume that this is being filtered directly?
+              //TODO @ahmad-mukhlis shouldn't we just create BikesListWeb?
               child: kIsWeb
                   ? const BikesFiltersWeb()
                   : const BikesFiltersMobile(),

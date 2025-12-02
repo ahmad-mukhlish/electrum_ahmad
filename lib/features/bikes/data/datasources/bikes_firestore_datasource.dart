@@ -42,6 +42,9 @@ class BikesFirestoreDatasource {
           if (!snapshot.exists) return null;
           return BikeDto.fromJson({
             'id': snapshot.id,
+            //TODO @ahmad-mukhlis what is this ...snapshot.data()!
+            //TODO @ahmad-mukhlis and why use "!"
+            //TODO @ahmad-mukhlis is this even safe?
             ...snapshot.data()!,
           });
         },

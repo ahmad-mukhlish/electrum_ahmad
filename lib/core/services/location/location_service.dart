@@ -7,6 +7,7 @@ part 'location_service.g.dart';
 LocationService locationService(Ref ref) => LocationService();
 
 class LocationService {
+  //TODO @ahmad-mukhlis shall this being separated since the check permission and request permission is UI only?
   Future<LocationPermission> checkPermission() async {
     try {
       return await Geolocator.checkPermission();
@@ -23,6 +24,7 @@ class LocationService {
     }
   }
 
+  //TODO @ahmad-mukhlis this too isn't this violates single responsibility?
   Future<bool> isLocationServiceEnabled() async {
     try {
       return Geolocator.isLocationServiceEnabled();

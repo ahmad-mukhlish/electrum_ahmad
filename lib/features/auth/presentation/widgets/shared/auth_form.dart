@@ -74,6 +74,7 @@ class AuthForm extends HookConsumerWidget {
     String displayName,
     bool isRegister,
   ) {
+    //TODO @ahmad-mukhlis isn't the logic of auth should be just in the screen not in shared class?
     if (isRegister) {
       ref.read(authProvider.notifier).register(email, password, displayName);
     } else {
@@ -82,6 +83,7 @@ class AuthForm extends HookConsumerWidget {
   }
 
   void _setupAuthListener(WidgetRef ref, BuildContext context) {
+    //TODO @ahmad-mukhlis shouldn't we use useEffect here?
     ref.listen(authProvider, (_, next) {
       next.whenOrNull(
         error: (error, _) {

@@ -32,6 +32,8 @@ abstract class PlanState with _$PlanState {
       percentagePlanDiscountMonthly: monthlyDiscount,
     );
   }
+  //TODO @ahmad-mukhlis IS THIS REALLY THE ONLY WAY?
+  //TODO @ahmad-mukhlis LIKE DUDE, SERIOUSLY?
 
   /// Calculate weekly discount percentage
   /// Formula: ((dailyPrice * 7) - weeklyPrice) / (dailyPrice * 7) * 100

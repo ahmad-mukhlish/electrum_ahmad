@@ -7,6 +7,7 @@ part 'bike_detail_provider.g.dart';
 
 /// Provider for fetching a single bike by ID
 /// Returns Stream Bike from Firestore for real-time updates
+//TODO @ahmad-mukhlis is this using family?
 @riverpod
 Stream<Bike?> bikeDetail(Ref ref, String bikeId) {
   final repository = ref.watch(bikesRepositoryProvider);

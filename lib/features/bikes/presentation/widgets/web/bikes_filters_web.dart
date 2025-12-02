@@ -23,6 +23,7 @@ class BikesFiltersWeb extends ConsumerWidget {
 
   Widget _buildBikesGrid(BuildContext context, WidgetRef ref) {
     final filterState = ref.watch(bikeFilterProvider);
+    //TODO @ahmad-mukhlis why not use useMemo or useEffect instead?
 
     if (filterState.isLoading) {
       return _buildLoadingState();
@@ -144,6 +145,7 @@ class BikesFiltersWeb extends ConsumerWidget {
     );
   }
 
+  //TODO @ahmad-mukhlis this shall be as simple as LoadingWidget
   Widget _buildLoadingState() => const Center(
         child: CircularProgressIndicator(),
       );

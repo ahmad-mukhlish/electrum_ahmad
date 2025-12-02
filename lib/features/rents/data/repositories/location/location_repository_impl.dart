@@ -27,6 +27,7 @@ class LocationRepositoryImpl implements LocationRepository {
   final LocationService _locationService;
   final LocationRemoteDatasource _locationDatasource;
 
+  //TODO @ahmad-mukhlis is this better in this repository? why? is this UI presentation logic that should resides in UI?
   @override
   Future<bool> requestPermission() async {
     try {
@@ -50,6 +51,7 @@ class LocationRepositoryImpl implements LocationRepository {
   @override
   Future<Location?> resolveCurrentLocation() async {
     try {
+      //TODO @ahmad-mukhlis why need to add request permission here too?
       final hasPermission = await requestPermission();
       if (!hasPermission) return null;
 
