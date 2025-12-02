@@ -1,5 +1,4 @@
 /// Enum representing different subscription periods for plans
-//TODO @ahmad-mukhlis isn't ENUM should be on separate folder?
 enum PlanPeriod {
   daily,
   weekly,

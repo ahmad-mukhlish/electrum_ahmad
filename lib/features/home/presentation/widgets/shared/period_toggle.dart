@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/plan/plan_period.dart';
+import '../../../domain/enum/plan_period.dart';
 
 class PeriodToggle extends StatelessWidget {
   final PlanPeriod selectedPeriod;

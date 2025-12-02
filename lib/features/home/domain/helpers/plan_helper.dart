@@ -1,5 +1,5 @@
 import '../entities/plan/plan.dart';
-import '../entities/plan/plan_period.dart';
+import '../enum/plan_period.dart';
 
 /// Helper class for Plan-related calculations and utilities
 class PlanHelper {

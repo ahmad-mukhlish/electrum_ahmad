@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/helpers/plan_helper.dart';
 import '../../../domain/entities/plan/plan.dart';
-import '../../../domain/entities/plan/plan_period.dart';
+import '../../../domain/enum/plan_period.dart';
+import '../../../domain/helpers/plan_helper.dart';
 
 part 'plan_state.freezed.dart';
 

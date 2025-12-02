@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:electrum_ahmad/features/home/domain/enum/plan_period.dart';
 import 'package:electrum_ahmad/features/home/domain/entities/plan/plan.dart';
-import 'package:electrum_ahmad/features/home/domain/entities/plan/plan_period.dart';
 import 'package:electrum_ahmad/features/home/presentation/viewmodel/states/plan_state.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('PlanState Presentation Logic Tests', () {
