@@ -150,8 +150,8 @@ maestro test maestro/all-tests.yaml
 ### Unit & Widget Tests 
 
 ### Unit test
-- Only test critical entity : rent entity
-- Only test critical state : plan state
+- Only test critical entity : rent entity and rent helper
+- Only test critical state : plan state and plan helper
 
 ### Widget test
 - Only test critical widget : authForm
